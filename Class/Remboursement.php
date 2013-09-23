@@ -150,7 +150,8 @@ function insert()
 {
 $this->Remboursement_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO remboursement ( id_remboursement,is_avoir,txt_demande,statut,date_remboursement ) VALUES ( '$this->id_remboursement','$this->is_avoir','$this->txt_demande','$this->statut','$this->date_remboursement' )";
+$sql = "INSERT INTO remboursement ( id_remboursement,is_avoir,txt_demande,statut,date_remboursement ) VALUES ( '$this->id_remboursement','$this->is_avoir',
+'$this->txt_demande','$this->statut','$this->date_remboursement' )";
 $result = $this->database->query($sql);
 $this->Remboursement_pk_id = mysql_insert_id($this->database->link);
 
