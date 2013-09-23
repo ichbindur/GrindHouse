@@ -1,7 +1,6 @@
-
 <?php
 /* La grosse bite à DuDule*/
-/*
+/*;dvnskjnksjdvnknsv
 *
 * -------------------------------------------------------
 * CLASSNAME:        AAtribut
