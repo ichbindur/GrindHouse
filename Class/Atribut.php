@@ -1,6 +1,6 @@
 <?php
 /*
-*
+* salutation c'est la phase de test
 * -------------------------------------------------------
 * CLASSNAME:        Atribut
 * GENERATION DATE:  23.09.2013
