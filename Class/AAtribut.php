@@ -93,7 +93,7 @@ $this->valeur =  $val;
 function select($id)
 {
 
-$_COOKIE="COUCOU TOI hahahahah";
+$_COOKIE="COUCOU TOI hahahahah lololol";
 $sql =  "SELECT * FROM aattribut WHERE aatribut_pk_id = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
