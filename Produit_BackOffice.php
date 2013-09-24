@@ -93,31 +93,18 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
             </div>
 				
             <div id="button">
-		<input type="submit" id="bouton" name="validation"/>
+		<input type="submit" id="add" name="validation" value="Ajouter"/>
             </div>
 	</form></br></br>
         <form id="form2" method="POST" enctype="application/x-www-form-urlencoded">
             <div>	
 		<label for="identifiant">Liste des produits:</label>
-                
                 <?php
                   $data=array();
                   $data=$prod->selectall();
-               
-               
                  ?>
-                <select>
-                  <?php
-                  foreach($data as $value)
-                  echo '<option>'.$value['nom'].'</option>';
-                  ?>
-                </select>
-                
-                <table border="1px">
-                    
-              
+                <table border="1px">             
                     <?php       
-                    
                     foreach($data as $value)
                     {
                         echo '<tr>
@@ -133,11 +120,10 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                               <td>'.$value['dim_larg'].'</td>
                               <td>'.$value['dim_long'].'</td>
                               <td>'.$value['dossier_photo'].'</td>
-                              <td><input type="button"
+                              <td><input type="button" id="update" name="modification" value="Modifier"/></td>
+                              <td><input type="button" id="delete" name="suppression" value="Supprimer"/></td>
                               </tr>';
                     }
-                      
-                    
                     ?>
                   </table>
             </div>
