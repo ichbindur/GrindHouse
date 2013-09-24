@@ -220,6 +220,53 @@ $this->date_inscription = $row->date_inscription;
 
 }
 
+function selectWMail($mail)
+{
+
+$sql =  "SELECT * FROM utilisateur WHERE email = '$mail';";
+$result =  $this->database->query($sql);
+$result = $this->database->result;
+$row = mysql_fetch_object($result);
+
+
+$this->id_user = $row->id_user;
+
+$this->prenom = $row->prenom;
+
+$this->nom = $row->nom;
+
+$this->email = $row->email;
+
+$this->mdp = $row->mdp;
+
+$this->adresse_postale = $row->adresse_postale;
+
+$this->complement_adresse = $row->complement_adresse;
+
+$this->cp = $row->cp;
+
+$this->pays = $row->pays;
+
+$this->is_venteprivee = $row->is_venteprivee;
+
+$this->is_admin = $row->is_admin;
+
+$this->date_inscription = $row->date_inscription;
+
+}
+
+function checkMail($mail){
+    
+    $sql =  "SELECT * FROM utilisateur WHERE email = '$mail';";
+    $result =  $this->database->query($sql);
+    $result = $this->database->result;
+    $row = mysql_fetch_object($result);
+    if($row->id_user != ""){
+        return false;
+    }else return true;
+}
+
+
 // **********************
 // DELETE
 // **********************
