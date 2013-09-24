@@ -4,7 +4,7 @@
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     </head>
     <body>
-        <form id="form" enctype="application/x-www-form-urlencoded">
+        <form id="form" method="POST" enctype="application/x-www-form-urlencoded">
             <div>	
 		<label for="identifiant">Référence:</label>
                     <input type="text" id="reference" name="reference" value=""><br/>
@@ -76,6 +76,12 @@
 
 <?php
 
+if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_larg'], $_POST['dim_larg']))
+{
+    include Produit.php;
+    $lol = new Produit();
+    $lol->insert();
+}
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
