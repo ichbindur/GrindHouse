@@ -27,7 +27,7 @@ var $produit_pk_id;   // PrimaryKey de la table
 
 var $id_produit;   // PrimaryKey de la table Produit
 var $reference;   // Reference du produit
-var $nom;   // Nom du produit
+var $nom = array();   // Nom du produit
 var $prix_ht;   // prix hors-taxe du produit
 var $description;   // description du produit
 var $poids;   // Poid du produit
@@ -38,7 +38,7 @@ var $stock;   // Nombre de produit en stock
 var $dim_larg;   // Largeur du produit
 var $dim_long;   // Longueur du produit
 var $dossier_photo;   // Dossier contenant toutes les photos du produit
-
+var $db;
 var $database; // Instance de la base de données
 
 
@@ -197,6 +197,29 @@ $this->dossier_photo =  $val;
 // **********************
 // SELECT METHOD / LOAD
 // **********************
+
+function connexion()
+{
+    $connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
+    
+    $this->db=$connexion;
+}
+function selectall()
+{   
+   
+    $req=$this->db->prepare('SELECT * FROM produit');
+    $req->execute();
+    
+    return $req->fetchAll();
+    
+   /* $req=$db->prepare('INSERT INTO table SET(reference = :v, ...)';
+    $req->bindValue(':v',$valeurReference);
+
+    
+    $req->execute();
+    
+    */
+}
 
 function select($id)
 {

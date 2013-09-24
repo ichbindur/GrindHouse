@@ -1,3 +1,27 @@
+<?php
+include ('./class/Produit.php');
+$prod = new Produit();
+$prod->connexion();
+
+if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_long'], $_POST['vente_prive'],
+        $_POST['promo'], $_POST['promo_vp'], $_POST['stock'], $_POST['dossier_photo'])){
+    $prod = new Produit();
+    $prod->setreference($_POST['reference']);
+    $prod->setnom($_POST['nom']);
+    $prod->setprix_ht($_POST['prix_ht']);
+    $prod->setdescription($_POST['description']);
+    $prod->setpoids($_POST['poids']);
+    $prod->setdim_larg($_POST['dim_larg']);
+    $prod->setdim_long($_POST['dim_long']);
+    $prod->setis_venteprivee($_POST['vente_prive']);
+    $prod->setpromotion($_POST['promo']);
+    $prod->setpromotion_vp($_POST['promo_vp']);
+    $prod->setstock($_POST['stock']);
+    $prod->setdossier_photo($_POST['dossier_photo']);
+    $prod->insert();
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
         <title>Back_Office</title>
@@ -26,15 +50,15 @@
             </div>
 				
             <div>
-		<label>Poids:</label>
+		<label>Poids (gramme):</label>
 		<input type="text" id="poids" name="poids" value=""/>
             </div>
 				
             <div>
 		<label>Vente privée:</label>
                     <span>
-                        <input type="radio" name="vente_prive"/>Oui
-			<input type="radio" name="vente_prive"/>Non
+                        <input type="radio" name="is_venteprivee" value="1"/>Oui
+			<input type="radio" name="is_venteprivee" value="0"/>Non
                     </span>                    
             </div>
 				
@@ -69,24 +93,41 @@
             </div>
 				
             <div id="button">
-		<input type="submit" id="bouton" name="soumission" value="Soumettre"/>
+		<input type="submit" id="add" name="validation" value="Ajouter"/>
             </div>
-	</form>
+	</form></br></br>
+        <form id="form2" method="POST" enctype="application/x-www-form-urlencoded">
+            <div>	
+		<label for="identifiant">Liste des produits:</label>
+                <?php
+                  $data=array();
+                  $data=$prod->selectall();
+                 ?>
+                <table border="1px">             
+                    <?php       
+                    foreach($data as $value)
+                    {
+                        echo '<tr>
+                              <td>'.$value['reference'].'</td>
+                              <td>'.$value['nom'].'</td>
+                              <td>'.$value['prix_ht'].'</td>
+                              <td>'.$value['description'].'</td>
+                              <td>'.$value['poids'].'</td>
+                              <td>'.$value['is_venteprivee'].'</td>
+                              <td>'.$value['promotion'].'</td>
+                              <td>'.$value['promotion_vp'].'</td>
+                              <td>'.$value['stock'].'</td>
+                              <td>'.$value['dim_larg'].'</td>
+                              <td>'.$value['dim_long'].'</td>
+                              <td>'.$value['dossier_photo'].'</td>
+                              <td><input type="button" id="update" name="modification" value="Modifier"/></td>
+                              <td><input type="button" id="delete" name="suppression" value="Supprimer"/></td>
+                              </tr>';
+                    }
+                    ?>
+                  </table>
+            </div>
+        </form>
+                            
     </body>
-
-<?php
-
-if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_larg'], $_POST['dim_larg']))
-{
-    include Produit.php;
-    $lol = new Produit();
-    $lol->insert();
-}
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-?>
-
 </html>
