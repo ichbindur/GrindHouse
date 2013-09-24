@@ -1,5 +1,5 @@
+
 <?php
-/* La grosse bite à DuDule*/
 /*
 *
 * -------------------------------------------------------
@@ -92,7 +92,6 @@ $this->valeur =  $val;
 function select($id)
 {
 
-$_COOKIE="nardine omouk";
 $sql =  "SELECT * FROM aattribut WHERE aatribut_pk_id = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
