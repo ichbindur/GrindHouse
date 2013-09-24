@@ -254,10 +254,12 @@ function insert()
 {
 $this->produit_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( '$this->id_produit','$this->reference','$this->nom','$this->prix_ht','$this->description','$this->poids','$this->is_venteprivee','$this->promotion','$this->promotion_vp','$this->stock','$this->dim_larg','$this->dim_long','$this->dossier_photo' )";
+$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( 
+'$this->id_produit','$this->reference','$this->nom','$this->prix_ht','$this->description','$this->poids','$this->is_venteprivee','$this->promotion','$this->promotion_vp',
+'$this->stock','$this->dim_larg','$this->dim_long','$this->dossier_photo' )";
 $result = $this->database->query($sql);
 $this->produit_pk_id = mysql_insert_id($this->database->link);
-
+ 
 }
 
 // **********************
