@@ -40,7 +40,7 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
             }
         </SCRIPT>
     </head>
-    <body onLoad="dropAdd">
+    <body onLoad="dropAdd()">
         <form id="form" method="POST" enctype="application/x-www-form-urlencoded">
             <div>	
 		<label for="identifiant">Référence:</label>
