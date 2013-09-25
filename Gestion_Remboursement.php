@@ -14,7 +14,7 @@
             </div>
 				
             <div>
-                <label>Demande:</label>
+                <label>D:</label>
                 <input type="text" id="txt_demande" name="txt_demande"><br/>
             </div>	
 				
@@ -29,46 +29,7 @@
             </div>
 				
             <div>
-                <label>Poids:</label>
-                <input type="text" id="poids" name="poids"/>
-            </div>
-				
-            <div>
-                <label>Vente privée:</label>
-                <span>
-                    <input type="radio" name="vente_prive"/>Oui
-                    <input type="radio" name="vente_prive"/>Non
-                </span>                    
-            </div>
-				
-            <div>
-                <label>Promotion(%):</label>
-                <input type="text" id="promo" name="promo"/>
-            </div>
-				
-            <div>
-                <label>Promotion vente privés:</label>
-                <input type="text" id="promo_vp" name="promo_vp"/>
-            </div>
-            
-            <div>
-                <label>Nombres de produit en stock:</label>
-                <input type="text" id="stock" name="stock"/>
-            </div>
-            
-            <div>
-                <label>Dimension largeur(cm):</label>
-                <input type="text" id="dim_larg" name="dim_larg"/>
-            </div>
-            
-            <div>
-                <label>Dimension longueur(cm):</label>
-                <input type="text" id="dim_long" name="dim_long"/>
-            </div>            
-            
-            <div>
-                <label>Dossier photo:</label>
-                <input type="text" id="dossier_photo" name="dossier_photo"/>
+                
             </div>
 				
             <div id="button">

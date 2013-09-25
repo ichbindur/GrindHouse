@@ -277,10 +277,19 @@ function insert()
 {
 $this->produit_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( 
+/*$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( 
 '$this->id_produit','$this->reference','$this->nom','$this->prix_ht','$this->description','$this->poids','$this->is_venteprivee','$this->promotion','$this->promotion_vp',
 '$this->stock','$this->dim_larg','$this->dim_long','$this->dossier_photo' )";
-$result = $this->database->query($sql);
+ * 
+ * //$result = $this->database->query($sql);
+ */
+
+
+$req=$this->db->prepare('INSERT INTO produit (id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) 
+VALUES ('.$this->id_produit.','.$this->reference.','.$this->nom.','.$this->prix_ht.','.$this->description.','.$this->poids.','.$this->is_venteprivee.','.$this->promotion.',
+'.$this->promotion_vp.','.$this->stock.','.$this->dim_larg.','.$this->dim_long.','.$this->dossier_photo.' )');
+
+$req->execute();
 $this->produit_pk_id = mysql_insert_id($this->database->link);
  
 }
@@ -292,13 +301,12 @@ $this->produit_pk_id = mysql_insert_id($this->database->link);
 function update($id)
 {
 
-
-
-$sql = " UPDATE produit SET  id_produit = '$this->id_produit',reference = '$this->reference',nom = '$this->nom',prix_ht = '$this->prix_ht',description = '$this->description',poids = '$this->poids',is_venteprivee = '$this->is_venteprivee',promotion = '$this->promotion',promotion_vp = '$this->promotion_vp',stock = '$this->stock',dim_larg = '$this->dim_larg',dim_long = '$this->dim_long',dossier_photo = '$this->dossier_photo' WHERE produit_pk_id = $id ";
+$sql = " UPDATE produit SET  id_produit = '$this->id_produit',reference = '$this->reference',nom = '$this->nom',prix_ht = '$this->prix_ht',
+description = '$this->description',poids = '$this->poids',is_venteprivee = '$this->is_venteprivee',promotion = '$this->promotion',
+promotion_vp = '$this->promotion_vp',stock = '$this->stock',dim_larg = '$this->dim_larg',dim_long = '$this->dim_long',
+dossier_photo = '$this->dossier_photo' WHERE produit_pk_id = $id ";
 
 $result = $this->database->query($sql);
-
-
 
 }
 

@@ -105,6 +105,21 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                  ?>
                 <table border="1px">             
                     <?php       
+                    echo '<tr>
+                          <td>Référence</td>
+                          <td>Nom</td>
+                          <td>Prix hors taxe</td>
+                          <td>Description</td>
+                          <td>Poids</td>
+                          <td>Vente privée</td>
+                          <td>Promotion</td>
+                          <td>Promotion vente privée</td>
+                          <td>En stock</td>
+                          <td>Dimension largeur</td>
+                          <td>Dimension longueur</td>
+                          <td>Dossier photo</td>
+                          <td colspan="2">Option</td>
+                          </tr>';
                     foreach($data as $value)
                     {
                         echo '<tr>
