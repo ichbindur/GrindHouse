@@ -1,10 +1,12 @@
 <?php
 include ('./class/Produit.php');
 $prod = new Produit();
-$prod->connexion();
+//$prod->connexion();
 
-if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_long'], $_POST['vente_prive'],
-        $_POST['promo'], $_POST['promo_vp'], $_POST['stock'], $_POST['dossier_photo'])){
+if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_long'], $_POST['is_venteprivee'],
+        $_POST['promo'], $_POST['promo_vp'], $_POST['stock'])){
+    
+    echo "Test";
     $prod = new Produit();
     $prod->setreference($_POST['reference']);
     $prod->setnom($_POST['nom']);
@@ -13,11 +15,12 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
     $prod->setpoids($_POST['poids']);
     $prod->setdim_larg($_POST['dim_larg']);
     $prod->setdim_long($_POST['dim_long']);
-    $prod->setis_venteprivee($_POST['vente_prive']);
+    $prod->setis_venteprivee($_POST['is_venteprivee']);
     $prod->setpromotion($_POST['promo']);
     $prod->setpromotion_vp($_POST['promo_vp']);
     $prod->setstock($_POST['stock']);
     $prod->setdossier_photo($_POST['dossier_photo']);
+    
     $prod->insert();
 }
 ?>
@@ -26,8 +29,18 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
     <head>
         <title>Back_Office</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+        <SCRIPT> 
+            function dropAdd()
+            {        
+                var elements = document.getElementsByClassName('pg_notify');
+                for (var i = 0; i < elements.length; i++)
+                {
+                    elements[i].style.display = 'none';
+                }
+            }
+        </SCRIPT>
     </head>
-    <body>
+    <body onLoad="dropAdd">
         <form id="form" method="POST" enctype="application/x-www-form-urlencoded">
             <div>	
 		<label for="identifiant">Référence:</label>
@@ -100,47 +113,11 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
             <div>	
 		<label for="identifiant">Liste des produits:</label>
                 <?php
-                  $data=array();
-                  $data=$prod->selectall();
-                 ?>
-                <table border="1px">             
-                    <?php       
-                    echo '<tr>
-                          <td>Référence</td>
-                          <td>Nom</td>
-                          <td>Prix hors taxe</td>
-                          <td>Description</td>
-                          <td>Poids</td>
-                          <td>Vente privée</td>
-                          <td>Promotion</td>
-                          <td>Promotion vente privée</td>
-                          <td>En stock</td>
-                          <td>Dimension largeur</td>
-                          <td>Dimension longueur</td>
-                          <td>Dossier photo</td>
-                          <td colspan="2">Option</td>
-                          </tr>';
-                    foreach($data as $value)
-                    {
-                        echo '<tr>
-                              <td>'.$value['reference'].'</td>
-                              <td>'.$value['nom'].'</td>
-                              <td>'.$value['prix_ht'].'</td>
-                              <td>'.$value['description'].'</td>
-                              <td>'.$value['poids'].'</td>
-                              <td>'.$value['is_venteprivee'].'</td>
-                              <td>'.$value['promotion'].'</td>
-                              <td>'.$value['promotion_vp'].'</td>
-                              <td>'.$value['stock'].'</td>
-                              <td>'.$value['dim_larg'].'</td>
-                              <td>'.$value['dim_long'].'</td>
-                              <td>'.$value['dossier_photo'].'</td>
-                              <td><input type="button" id="update" name="modification" value="Modifier"/></td>
-                              <td><input type="button" id="delete" name="suppression" value="Supprimer"/></td>
-                              </tr>';
-                    }
-                    ?>
-                  </table>
+                    require_once "./phpGrid/conf.php";
+                    $dg = new C_DataGrid('SELECT * FROM produit','id_produit','produit');
+                    $dg->set_dimension(1500,600);
+                    $dg->display();
+                ?>
             </div>
         </form>
                             
