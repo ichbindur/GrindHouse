@@ -72,7 +72,7 @@
  
 // $rows=mysql_affected_rows();
 
-if(ereg("SELECT",$query))
+if(preg_match("/SELECT/",$query))
 {
  $this->rows = mysql_num_rows($this->result);
 }

@@ -188,7 +188,7 @@ $this->date_inscription =  $val;
 function select($id)
 {
 
-$sql =  "SELECT * FROM utilisateur WHERE utilisateur_pk_id = $id;";
+$sql =  "SELECT * FROM utilisateur WHERE id_user = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
 $row = mysql_fetch_object($result);
@@ -273,7 +273,7 @@ function checkMail($mail){
 
 function delete($id)
 {
-$sql = "DELETE FROM utilisateur WHERE utilisateur_pk_id = $id;";
+$sql = "DELETE FROM utilisateur WHERE id_user = $id;";
 $result = $this->database->query($sql);
 
 }
@@ -286,7 +286,7 @@ function insert()
 {
 $this->utilisateur_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO utilisateur ( id_user,prenom,nom,email,mdp,adresse_postale,complement_adresse,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->id_user','$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
+$sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
 $result = $this->database->query($sql);
 $this->utilisateur_pk_id = mysql_insert_id($this->database->link);
 
@@ -301,7 +301,7 @@ function update($id)
 
 
 
-$sql = " UPDATE utilisateur SET  id_user = '$this->id_user',prenom = '$this->prenom',nom = '$this->nom',email = '$this->email',mdp = '$this->mdp',adresse_postale = '$this->adresse_postale',complement_adresse = '$this->complement_adresse',cp = '$this->cp',pays = '$this->pays',is_venteprivee = '$this->is_venteprivee',is_admin = '$this->is_admin',date_inscription = '$this->date_inscription' WHERE utilisateur_pk_id = $id ";
+$sql = " UPDATE utilisateur SET  prenom = '$this->prenom',nom = '$this->nom',email = '$this->email',mdp = '$this->mdp',adresse_postale = '$this->adresse_postale',complement_adresse = '$this->complement_adresse',cp = '$this->cp',pays = '$this->pays',is_venteprivee = '$this->is_venteprivee',is_admin = '$this->is_admin',date_inscription = '$this->date_inscription' WHERE id_user = $id ";
 
 $result = $this->database->query($sql);
 
