@@ -120,6 +120,13 @@ $this->description = $row->description;
 
 
 }
+function selectall(){
+    
+    $req=$this->db->prepare('SELECT * FROM transporteur');
+    $req->execute();
+    return $req->fetchAll();
+   
+}
 
 // **********************
 // DELETE
