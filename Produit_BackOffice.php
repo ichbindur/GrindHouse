@@ -4,9 +4,8 @@ $prod = new Produit();
 //$prod->connexion();
 
 if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_long'], $_POST['is_venteprivee'],
-        $_POST['promo'], $_POST['promo_vp'], $_POST['stock'])){
-    
-    echo "Test";
+        $_POST['promo'], $_POST['promo_vp'], $_POST['stock']))
+{
     $prod = new Produit();
     $prod->setreference($_POST['reference']);
     $prod->setnom($_POST['nom']);
@@ -28,9 +27,9 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
     $fileTmpLoc = $_FILES["dossier_photo"]["tmp_name"];
     $pathAndName = 'Photo/'.$fileName;
     move_uploaded_file($fileTmpLoc,$pathAndName);
+    $prod->setdossier_photo($fileName);
     
     //------AJOUT DU NOUVEAU PRODUIT------//
-    $prod->setdossier_photo($fileName);
     
     $prod->insert();
 }
@@ -40,13 +39,21 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
     <head>
         <title>Back_Office</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-        <SCRIPT> 
+        <SCRIPT  type="text/javascript"> 
             function dropAdd()
             {        
                 var elements = document.getElementsByClassName('pg_notify');
                 for (var i = 0; i < elements.length; i++)
                 {
                     elements[i].style.display = 'none';
+                }
+            }
+            function DeleteRow()
+            {
+                var row = $('#tt').datagrid('getSelected');
+                if (row)
+                {
+                    alert('Item ID:'+row.itemid+"\nPrice:"+row.listprice);
                 }
             }
         </SCRIPT>
@@ -145,7 +152,7 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                     $dg->set_col_title("promotion", "Promotion");
                     $dg -> set_col_width("promotion", 70);
                     $dg->set_col_title("promotion_vp", "Promotion vente privé");
-                    $dg -> set_col_width("promotion_vp", 140);
+                    $dg -> set_col_width("promotion_vp", 120);
                     $dg->set_col_title("stock", "Stock");
                     $dg -> set_col_width("stock", 35);
                     $dg->set_col_title("dim_larg", "Dimension largeur");
@@ -160,6 +167,22 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                     $dg->set_dimension(1600,600);
                     $dg->set_pagesize(40);
                     $dg->display();
+                    ?>
+                    <script type="text/javascript">
+                    function test(){
+                    jQuery("#getselected").click(function(){
+                    var selr = jQuery('#grid').jqGrid('getGridParam','selrow');
+                    if(selr) alert(selr);
+                    else alert("No selected row");
+                    return false;
+                    });
+                    }
+                    jQuery("#setselection").click(function(){
+                    jQuery('#grid').jqGrid('setSelection','10259');
+                    return false;
+                    });
+                    </script>
+                    <button onClick="test()"></button>
                 ?>
             </div>
         </form>
