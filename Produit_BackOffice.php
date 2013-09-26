@@ -19,7 +19,18 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
     $prod->setpromotion($_POST['promo']);
     $prod->setpromotion_vp($_POST['promo_vp']);
     $prod->setstock($_POST['stock']);
-    $prod->setdossier_photo($_POST['dossier_photo']);
+    $prod->setdossier_photo($_FILES['dossier_photo']);
+    
+    
+    //------AJOUT DE L'IMAGE SUR LE SERVEUR------//
+    
+    $fileName = $_FILES["dossier_photo"]["name"]; 
+    $fileTmpLoc = $_FILES["dossier_photo"]["tmp_name"];
+    $pathAndName = 'Photo/'.$fileName;
+    move_uploaded_file($fileTmpLoc,$pathAndName);
+    
+    //------AJOUT DU NOUVEAU PRODUIT------//
+    $prod->setdossier_photo($fileName);
     
     $prod->insert();
 }
@@ -39,12 +50,15 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                 }
             }
         </SCRIPT>
+        <style>
+            .image_css img{width: 100%;}
+        </style>
     </head>
     <body onLoad="dropAdd()">
-        <form id="form" method="POST" enctype="application/x-www-form-urlencoded">
+        <form id="form" method="POST" enctype="multipart/form-data">
             <div>	
 		<label for="identifiant">Référence:</label>
-                    <input type="text" id="reference" name="reference" value=""><br/>
+                <input type="text" id="reference" name="reference" value=""><br/>
             </div>
 				
             <div>
@@ -59,7 +73,7 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
 				
             <div>
 		<label>Description:</label>
-		<input type="text" id="description" name="description" value=""/>
+                <textarea id="description" name="description"></textarea>
             </div>
 				
             <div>
@@ -102,20 +116,49 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
             
             <div>
 		<label>Dossier photo:</label>
-                <input type="text" id="dossier_photo" name="dossier_photo"/>
+                <input type="file" id="dossier_photo" name="dossier_photo"/>
             </div>
 				
             <div id="button">
-		<input type="submit" id="add" name="validation" value="Ajouter"/>
+		<input type="submit" id="validation" name="validation" value="Ajouter"/>
             </div>
 	</form></br></br>
         <form id="form2" method="POST" enctype="application/x-www-form-urlencoded">
-            <div>	
+            <div id="img">	
 		<label for="identifiant">Liste des produits:</label>
                 <?php
                     require_once "./phpGrid/conf.php";
                     $dg = new C_DataGrid('SELECT * FROM produit','id_produit','produit');
-                    $dg->set_dimension(1500,600);
+                    $dg->set_col_title("id_produit", "ID Produit");
+                    $dg -> set_col_width("id_produit", 100);
+                    $dg->set_col_title("reference", "Référence");
+                    $dg -> set_col_width("reference", 70);
+                    $dg->set_col_title("nom", "Nom");
+                    $dg->set_col_title("prix_ht", "Prix hors taxe");
+                    $dg -> set_col_width("prix_ht", 90);
+                    $dg->set_col_title("description", "Description");
+                    $dg -> set_col_width("description", 500);
+                    $dg->set_col_title("poids", "Poids");
+                    $dg -> set_col_width("poids", 60);
+                    $dg->set_col_title("is_venteprivee", "Vente privé");
+                    $dg -> set_col_width("is_venteprivee", 85);
+                    $dg->set_col_title("promotion", "Promotion");
+                    $dg -> set_col_width("promotion", 70);
+                    $dg->set_col_title("promotion_vp", "Promotion vente privé");
+                    $dg -> set_col_width("promotion_vp", 140);
+                    $dg->set_col_title("stock", "Stock");
+                    $dg -> set_col_width("stock", 35);
+                    $dg->set_col_title("dim_larg", "Dimension largeur");
+                    $dg -> set_col_width("dim_larg", 105);
+                    $dg->set_col_title("dim_long", "Dimension longueur");
+                    $dg -> set_col_width("dim_long", 115);
+                    $dg->set_col_title("dossier_photo", "Image");
+                    $dg->set_col_width("dossier_photo", 200);
+                    $dg->set_col_property('dossier_photo',array('classes'=>'image_css'));
+                    $dg->set_col_img("dossier_photo", "./Photo/");
+                    $dg-> enable_edit('FORM');
+                    $dg->set_dimension(1600,600);
+                    $dg->set_pagesize(40);
                     $dg->display();
                 ?>
             </div>
