@@ -38,7 +38,7 @@ var $stock;   // Nombre de produit en stock
 var $dim_larg;   // Largeur du produit
 var $dim_long;   // Longueur du produit
 var $dossier_photo;   // Dossier contenant toutes les photos du produit
-var $db;
+protected $db;
 var $database; // Instance de la base de données
 
 
@@ -46,10 +46,10 @@ var $database; // Instance de la base de données
 // CONSTRUCTOR METHOD
 // **********************
 
-function Produit()
+public function __construct()
 {
 
-$this->database = new Database();
+    $this->connexion();
 
 }
 
@@ -214,10 +214,7 @@ function selectall()
     
    /* $req=$db->prepare('INSERT INTO table SET(reference = :v, ...)';
     $req->bindValue(':v',$valeurReference);
-
-    
     $req->execute();
-    
     */
 }
 
@@ -266,7 +263,6 @@ function delete($id)
 {
 $sql = "DELETE FROM produit WHERE produit_pk_id = $id;";
 $result = $this->database->query($sql);
-
 }
 
 // **********************
@@ -275,23 +271,46 @@ $result = $this->database->query($sql);
 
 function insert()
 {
-$this->produit_pk_id = ""; // clear key for autoincrement
+/*$this->produit_pk_id = ""; // clear key for autoincrement
 
-/*$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( 
+$sql = "INSERT INTO produit ( id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) VALUES ( 
 '$this->id_produit','$this->reference','$this->nom','$this->prix_ht','$this->description','$this->poids','$this->is_venteprivee','$this->promotion','$this->promotion_vp',
 '$this->stock','$this->dim_larg','$this->dim_long','$this->dossier_photo' )";
- * 
- * //$result = $this->database->query($sql);
- */
+  
+ $result = $this->db->query($sql);*/
+ 
+
+$req=$this->db->prepare("INSERT INTO produit SET id_produit = :id_produit ,reference = :reference,nom = :nom,
+                                                 prix_ht = :prix_ht,description = :description,
+                                                 poids = :poids,is_venteprivee = :is_venteprivee,
+                                                 promotion = :promotion,promotion_vp = :promotion_vp,
+                                                 stock = :stock,dim_larg = :dim_larg,
+                                                 dim_long = :dim_long,dossier_photo =:dossier_photo");
+
+$req->bindValue(':id_produit',$this->id_produit);
+$req->bindValue(':reference',$this->reference);
+$req->bindValue(':nom',$this->nom);
+$req->bindValue(':prix_ht',$this->prix_ht);
+$req->bindValue(':description',$this->description);
+$req->bindValue(':poids',$this->poids);
+$req->bindValue(':is_venteprivee',$this->is_venteprivee);
+$req->bindValue(':promotion',$this->promotion);
+$req->bindValue(':promotion_vp',$this->promotion_vp);
+$req->bindValue(':stock',$this->stock);
+$req->bindValue(':dim_larg',$this->dim_larg);
+$req->bindValue(':dim_long',$this->dim_long);
+$req->bindValue(':dossier_photo',$this->dossier_photo,PDO::PARAM_STR);
 
 
-$req=$this->db->prepare('INSERT INTO produit (id_produit,reference,nom,prix_ht,description,poids,is_venteprivee,promotion,promotion_vp,stock,dim_larg,dim_long,dossier_photo ) 
-VALUES ('.$this->id_produit.','.$this->reference.','.$this->nom.','.$this->prix_ht.','.$this->description.','.$this->poids.','.$this->is_venteprivee.','.$this->promotion.',
-'.$this->promotion_vp.','.$this->stock.','.$this->dim_larg.','.$this->dim_long.','.$this->dossier_photo.' )');
 
 $req->execute();
-$this->produit_pk_id = mysql_insert_id($this->database->link);
- 
+
+//$this->produit_pk_id = mysql_insert_id($this->db->link);
+    
+/* $req=$db->prepare('INSERT INTO produit SET(reference = :v, ...)');
+ $req->bindValue(':v',$valeurReference);
+ $req->execute();
+  */  
 }
 
 // **********************
