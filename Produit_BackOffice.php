@@ -1,7 +1,6 @@
 <?php
 include ('./class/Produit.php');
 $prod = new Produit();
-//$prod->connexion();
 
 if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['description'], $_POST['poids'], $_POST['dim_larg'], $_POST['dim_long'], $_POST['is_venteprivee'],
         $_POST['promo'], $_POST['promo_vp'], $_POST['stock']))
@@ -167,25 +166,28 @@ if(isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descript
                     $dg->set_dimension(1600,600);
                     $dg->set_pagesize(40);
                     $dg->display();
-                    ?>
-                    <script type="text/javascript">
-                    function test(){
-                    jQuery("#getselected").click(function(){
-                    var selr = jQuery('#grid').jqGrid('getGridParam','selrow');
-                    if(selr) alert(selr);
-                    else alert("No selected row");
-                    return false;
-                    });
-                    }
-                    jQuery("#setselection").click(function(){
-                    jQuery('#grid').jqGrid('setSelection','10259');
-                    return false;
-                    });
-                    </script>
-                    <button onClick="test()"></button>
                 ?>
             </div>
         </form>
-                            
+        <link href="./phpGridx/css/start/jquery-ui-1.8.21.custom.css" media="screen" type="text/css" rel="stylesheet"/>
+        <link href="./phpGridx/css/ui.jqgrid.css" media="screen" type="text/css" rel="stylesheet"/>
+        <script type="text/javascript" src="./phpGrid/js/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="./phpGrid/js/jquery-ui-1.10.0.min.js"></script>
+        <script type="text/javascript" src="./phpGrid/js/i18n/grid.locale-en.js"></script>
+        <script type="text/javascript" src="./phpGrid/js/jquery.jqGrid.min.js"></script>
+        <script type="text/javascript" src="./phpGrid/js/grid.import.fix.js"></script>
+        <script type="text/javascript" src="./phpGrid/js/jquery-migrate-1.1.1.js"></script>
+        <script type="text/javascript">
+        </script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+$("#orders").bind("jqGridSelectRow", function(status, rowid)
+{
+alert('event 1');
+console.log(rowid);
+console.log(status);
+});
+}); 
+        </script>
     </body>
 </html>
