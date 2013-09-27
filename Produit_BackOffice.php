@@ -3,32 +3,16 @@
     <head>
         <title>Back_Office</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-        <SCRIPT  type="text/javascript">
-            function dropAdd()
-            {
-                var elements = document.getElementsByClassName('pg_notify');
-                for (var i = 0; i < elements.length; i++)
-                {
-                    elements[i].style.display = 'none';
-                }
-            }
-            function DeleteRow()
-            {
-                var row = $('#tt').datagrid('getSelected');
-                if (row)
-                {
-                    alert('Item ID:' + row.itemid + "\nPrice:" + row.listprice);
-                }
-            }
-        </SCRIPT>
-
-        
+        <script type='text/javascript' src='./js/jquery.js'></script>
+        <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
+        <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
+        <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
         <style>
             .image_css img{width: 100%;}
         </style>
         <script type='text/javascript' src='./js/jquery.js'></script>
-<script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
-<link type='css' href='./datatables/media/css/jquery.dataTables.css'/>
+        <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
+        <link type='css' href='./datatables/media/css/jquery.dataTables.css'/>
     </head>
 
 <?php
@@ -64,9 +48,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $prod->insert();
 }
 ?>
-
-    
-    <body onLoad="dropAdd()">
+    <body>
         <form id="form" method="POST" enctype="multipart/form-data">
             <div>	
                 <label for="identifiant">Référence:</label>
@@ -134,114 +116,54 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
             <div id="button">
                 <input type="submit" id="validation" name="validation" value="Ajouter"/>
             </div>
+            
         </form></br></br>
-        <form id="form2" method="POST" enctype="application/x-www-form-urlencoded">
+                    
             <div id="img">	
                 <label for="identifiant">Liste des produits:</label>
-       <?php/*
-                require_once "./phpGrid/conf.php";
-                $dg = new C_DataGrid('SELECT * FROM produit', 'id_produit', 'produit');
-                $dg->set_col_title("id_produit", "ID Produit");
-                $dg->set_col_width("id_produit", 100);
-                $dg->set_col_title("reference", "Référence");
-                $dg->set_col_width("reference", 70);
-                $dg->set_col_title("nom", "Nom");
-                $dg->set_col_title("prix_ht", "Prix hors taxe");
-                $dg->set_col_width("prix_ht", 90);
-                $dg->set_col_title("description", "Description");
-                $dg->set_col_width("description", 500);
-                $dg->set_col_title("poids", "Poids");
-                $dg->set_col_width("poids", 60);
-                $dg->set_col_title("is_venteprivee", "Vente privé");
-                $dg->set_col_width("is_venteprivee", 85);
-                $dg->set_col_title("promotion", "Promotion");
-                $dg->set_col_width("promotion", 70);
-                $dg->set_col_title("promotion_vp", "Promotion vente privé");
-                $dg->set_col_width("promotion_vp", 120);
-                $dg->set_col_title("stock", "Stock");
-                $dg->set_col_width("stock", 35);
-                $dg->set_col_title("dim_larg", "Dimension largeur");
-                $dg->set_col_width("dim_larg", 105);
-                $dg->set_col_title("dim_long", "Dimension longueur");
-                $dg->set_col_width("dim_long", 115);
-                $dg->set_col_title("dossier_photo", "Image");
-                $dg->set_col_width("dossier_photo", 200);
-                $dg->set_col_property('dossier_photo', array('classes' => 'image_css'));
-                $dg->set_col_img("dossier_photo", "./Photo/");
-                $dg->enable_edit('FORM');
-                $dg->set_dimension(1600, 600);
-                $dg->set_pagesize(40);
-                $dg->set_col_format("id_produit", "showlink", array("baseLinkUrl" => "javascript:", "target" => "_self",
-                    "showAction" => "myFunction(jQuery('#products'),'",
-                    "addParam" => "');"));
-
-
-
-                $onSelectRow = <<<ONSELECTROW
-function(status, rowid)
-{
-    alert('event 1');
-    console.log(rowid);
-    console.log(status);
-}
-ONSELECTROW;
-//$dg->add_event("jqGridLoadComplete","alert(\"jhgkjgkjgkg\")");
-                $dg->display();
-                ?>*/?>
             </div>
-        </form>
-       <!-- <link href="./phpGrid/css/start/jquery-ui-1.8.21.custom.css" media="screen" type="text/css" rel="stylesheet"/>
-        <link href="./phpGrid/css/ui.jqgrid.css" media="screen" type="text/css" rel="stylesheet"/>
-        <script type="text/javascript" src="./phpGrid/js/jquery-1.9.0.min.js"></script>
-        <script type="text/javascript" src="./phpGrid/js/jquery-ui-1.10.0.min.js"></script>
-        <script type="text/javascript" src="./phpGrid/js/i18n/grid.locale-en.js"></script>
-        <script type="text/javascript" src="./phpGrid/js/jquery.jqGrid.min.js"></script>
-        <script type="text/javascript" src="./phpGrid/js/grid.import.fix.js"></script>-->
-        <script type="text/javascript">
-            /*jQuery(document).ready(function($) {
-                $("#orders").bind("jqGridSelectRow", function(status, rowid)
-                {
-                    alert('event 1');
-                    console.log(rowid);
-                    console.log(status);
-                });
-            });
-
-            myFunction = function(grid, param) {
-                var ar = param.split('=');
-                //if (grid.length > 0 && ar.length === 2 && ar[0] === '?id') {
-                //  var rowid = ar[1];
-                //var prodDesc = grid.getCell(rowid, 'productDescription');
-                //alert(ar[1]);
-
-
-            };*/
-        </script>
-
+                    
         <table id='produit' class='display'>
             <thead>
                 <tr>
-                    <th>Photo</th>
-                    <th>Nom</th>
+                    <th>id_produit</th>
                     <th>Référence</th>
+                    <th>Nom</th>
                     <th>Prix HT</th>
-                    <th>Prix TTC</th>
                     <th>Description</th>
+                    <th>Poids</th>
+                    <th>Vente privée</th>
+                    <th>Promotion</th>
+                    <th>Promotion vente privée</th>
+                    <th>Stock</th>
+                    <th>Dimension largeur</th>
+                    <th>Dimension longueur</th>
+                    <th>Image</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $produit = new Produit();
-                $produit = $produit->selectall();
-                foreach ($produit as $row) {
-                    ?>
+                    $prod = $prod->selectall();
+                    foreach ($prod as $row) {
+                ?>
                     <tr>
-                        <td> <img src='./Photo/<?php echo $row['dossier_photo']; ?>'></td>
-                        <td>  <?php echo $row['nom']; ?></td>
-                        <td>  <?php echo $row['reference']; ?></td>
-                        <td>  <?php echo $row['prix_ht']; ?></td>
-                        <td>  <?php echo $row['prix_ht'] * 1.196; ?></td>
-                        <td>  <?php echo $row['description']; ?></td>
+                        <td width="10px">  <?php echo $row['id_produit']; ?></td>
+                        <td width="30px">  <?php echo $row['reference']; ?></td>
+                        <td width="30px">  <?php echo $row['nom']; ?></td>
+                        <td width="5px">  <?php echo $row['prix_ht'] * 1.196; ?></td>
+                        <td width="10px">  <?php echo $row['description']; ?></td>
+                        <td width="5px">  <?php echo $row['poids']; ?></td>
+                        <td width="5px">  <?php echo $row['is_venteprivee']; ?></td>
+                        <td width="10px">  <?php echo $row['promotion']; ?></td>
+                        <td width="20px">  <?php echo $row['promotion_vp']; ?></td>
+                        <td width="5px">  <?php echo $row['stock']; ?></td>
+                        <td width="30px">  <?php echo $row['dim_larg']; ?></td>
+                        <td width="30px">  <?php echo $row['dim_long']; ?></td>
+                        <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
+                        <td width="50px"><input type="button" value="Modifier"</td>
+                        <td width="50px"><input type="button" value="Supprimer"</td>
                     </tr>                
                 <?php } ?>
             </tbody>
