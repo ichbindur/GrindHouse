@@ -118,7 +118,6 @@ $this->image = $row->image;
 
 $this->description = $row->description;
 
-
 }
 function selectall(){
     
