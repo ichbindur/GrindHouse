@@ -179,7 +179,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
                         <td width="5px"><a href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
-                        <td width="5px"><a href="?action=modifier"></a></td>
+                        <td width="5px"><a href="?action=modifier"></a>Modifier</td>
                     </tr>                
                 <?php } ?>
             </tbody>
