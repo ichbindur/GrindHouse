@@ -17,17 +17,13 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $prod->setstock($_POST['stock']);
     $prod->setdossier_photo($_FILES['dossier_photo']);
 
-
     //------AJOUT DE L'IMAGE SUR LE SERVEUR------//
 
     $fileName = $_FILES["dossier_photo"]["name"];
     $fileTmpLoc = $_FILES["dossier_photo"]["tmp_name"];
     $pathAndName = 'Photo/' . $fileName;
     move_uploaded_file($fileTmpLoc, $pathAndName);
-    $prod->setdossier_photo($fileName);
-    
-    //------SUPPRESSION D'UN PRODUIT SUR LE SERVEUR------//
-    
+    $prod->setdossier_photo($fileName);    
     
     //------AJOUT DU NOUVEAU PRODUIT------//
 
@@ -41,6 +37,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
+        <script type="text/javascript" src="./datatables/bootstrap.js"></script>
         <link rel="stylesheet" href="/css/bootstrap.min.css"  media="screen" />        
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
@@ -69,12 +66,12 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <form id="form" method="POST" enctype="multipart/form-data">
             <div>	
                 <label for="identifiant">Référence:</label>
-                <input type="text" id="reference" name="reference" value=""><br/>
+                <input type="text" id="reference" name="reference" value=""/><br/>
             </div>
 
             <div>
                 <label>Nom:</label>
-                <input type="text" id="nom" name="nom" value=""><br/>
+                <input type="text" id="nom" name="nom" value=""/><br/>
             </div>	
 
             <div>	
@@ -179,18 +176,86 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_larg']; ?></td>
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
-                        <td width="5px"><a href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
-                        <td><div class="modal hide fade" id="infos">
-                            <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
-                            <h3>Plus d'informations</h3>
+                        <td width="5px"><a class="btn btn-primary" href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
+                        <td>
+                            <div class="modal hide fade" id="infos">
+                                <div class="modal-header"> <a href="#" class="close" data-dismiss="modal">×</a>
+                                    <h3>Modification d'un produit</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form" method="POST" enctype="multipart/form-data">
+                                        <div>	
+                                            <label for="identifiant">Référence:</label>
+                                            <input type="text" id="reference2" name="reference2" value=""/><br/>
+                                        </div>
+
+                                        <div>
+                                            <label>Nom:</label>
+                                            <input type="text" id="nom2" name="nom2" value=""/><br/>
+                                        </div>	
+
+                                        <div>	
+                                            <label>Prix HT:</label>
+                                            <input type="text" id="prix_ht2" name="prix_ht2" value=""/>
+                                        </div>
+
+                                        <div>
+                                            <label>Description:</label>
+                                            <textarea id="description2" name="description2"></textarea>
+                                        </div>
+
+                                        <div>
+                                            <label>Poids (gramme):</label>
+                                            <input type="text" id="poids2" name="poids2" value=""/>
+                                        </div>
+
+                                        <div>
+                                            <label>Vente privée:</label>
+                                            <span>
+                                                <input type="radio" name="is_venteprivee2" value="1"/>Oui
+                                                <input type="radio" name="is_venteprivee2" value="0"/>Non
+                                            </span>                    
+                                        </div>
+
+                                        <div>
+                                            <label>Promotion(%):</label>
+                                            <input type="text" id="promo2" name="promo2"/>
+                                        </div>
+
+                                        <div>
+                                            <label>Promotion vente privés:</label>
+                                            <input type="text" id="promo_vp2" name="promo_vp2"/>
+                                        </div>
+
+                                        <div>
+                                            <label>Nombres de produit en stock:</label>
+                                            <input type="text" id="stock2" name="stock2"/>
+                                        </div>
+
+                                        <div>
+                                            <label>Dimension largeur(cm):</label>
+                                            <input type="text" id="dim_larg2" name="dim_larg2"/>
+                                        </div>
+
+                                        <div>
+                                            <label>Dimension longueur(cm):</label>
+                                            <input type="text" id="dim_long2" name="dim_long2"/>
+                                        </div>            
+
+                                        <div>
+                                            <label>Dossier photo:</label>
+                                            <input type="file" id="dossier_photo2" name="dossier_photo2"/>
+                                        </div>
+
+                                        <div id="button">
+                                            <input type="submit" id="validation2" name="validation2" value="Ajouter"/>
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <p>Le Tigre (Panthera tigris) est un mammifère carnivore de la famille des félidés...</p>
-                            </div>
-                        </div>
-                        <a class="btn btn-primary" data-toggle="modal" href="#infos" >Modifier</a></td>
-                        <!--<td width="5px"><div class="modal-header"><a class="close" data-dismiss="modal" >Modifier</a></div></td>-->
-                        <!--<<td><button type="button" value="Modifier" data-toggle="modal" data-target="#myModal"></button></td>-->
+                            <a class="btn btn-primary" data-toggle="modal" href="#infos" >Modifier</a>
+                        </td>
                     </tr>                
                 <?php } ?>
             </tbody>
