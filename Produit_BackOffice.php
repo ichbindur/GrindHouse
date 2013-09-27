@@ -40,6 +40,9 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <title>Back_Office</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
+        <script src="/js/jquery-1.9.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>   
+        <link rel="stylesheet" href="/css/bootstrap.min.css"  media="screen" />
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
@@ -179,7 +182,9 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
                         <td width="5px"><a href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
-                        <td width="5px"><a href="?action=modifier"></a>Modifier</td>
+                        <!--<td width="5px"><a href="?action=modifier"></a>Modifier</td>-->
+                        <td><button type="button" value="Modifier" data-toggle="modal" data-target="#myModal">Launch modal</button></td>
+
                     </tr>                
                 <?php } ?>
             </tbody>
