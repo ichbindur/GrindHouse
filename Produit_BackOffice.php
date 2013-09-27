@@ -1,14 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-    <head>
-        <title>Back_Office</title>
-        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-        <script type='text/javascript' src='./js/jquery.js'></script>
-        <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
-        <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
-        <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
-    </head>
-
 <?php
 include ('./class/Produit.php');
 $prod = new Produit();
@@ -39,16 +28,43 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     
     //------SUPPRESSION D'UN PRODUIT SUR LE SERVEUR------//
     
-    function Supprimer(){
-        $sql ='DELETE from liste_disque WHERE numero="4"';
-    }
-
+    
     //------AJOUT DU NOUVEAU PRODUIT------//
 
     $prod->insert();
 }
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Back_Office</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+        <script type='text/javascript' src='./js/jquery.js'></script>
+        <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
+        <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
+        <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
+    </head>
     <body>
+        <?php
+        if(isset($_GET['action']))
+        {
+            $id=(int)$_GET['id'];
+            $action=$_GET['action'];
+            if($id > 0 && !empty($action))
+            {
+                switch($action)
+                {
+                    case 'modifier':
+                    break;
+            
+                    case 'supprimer': $prod->delete($id);
+                    break;
+                    default: echo "<p>Cette action n'est pas disponible</p>";
+                    break;
+                }         
+            }
+        }
+        ?>
         <form id="form" method="POST" enctype="multipart/form-data">
             <div>	
                 <label for="identifiant">Référence:</label>
@@ -162,8 +178,8 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_larg']; ?></td>
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
-                        <td width="5px"><input id="modifier" type="button" value="Modifier" onClick=""</td>
-                        <td width="5px"><input id="supprimer "type="button" value="Supprimer"</td>
+                        <td width="5px"><a href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
+                        <td width="5px"><a href="?action=modifier"></a></td>
                     </tr>                
                 <?php } ?>
             </tbody>
