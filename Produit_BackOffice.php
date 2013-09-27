@@ -40,10 +40,8 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <title>Back_Office</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
-        <script src="/js/jquery-1.9.1.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>   
-        <link rel="stylesheet" href="/css/bootstrap.min.css"  media="screen" />
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"  media="screen" />        
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
     </head>
@@ -158,8 +156,8 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                     <th>Dimension largeur</th>
                     <th>Dimension longueur</th>
                     <th>Image</th>
-                    <th>Modifier</th>
                     <th>Supprimer</th>
+                    <th>Modifier</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -182,9 +180,17 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
                         <td width="5px"><a href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
-                        <!--<td width="5px"><a href="?action=modifier"></a>Modifier</td>-->
-                        <td><button type="button" value="Modifier" data-toggle="modal" data-target="#myModal">Launch modal</button></td>
-
+                        <td><div class="modal hide fade" id="infos">
+                            <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+                            <h3>Plus d'informations</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>Le Tigre (Panthera tigris) est un mammifère carnivore de la famille des félidés...</p>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" data-toggle="modal" href="#infos" >Modifier</a></td>
+                        <!--<td width="5px"><div class="modal-header"><a class="close" data-dismiss="modal" >Modifier</a></div></td>-->
+                        <!--<<td><button type="button" value="Modifier" data-toggle="modal" data-target="#myModal"></button></td>-->
                     </tr>                
                 <?php } ?>
             </tbody>
