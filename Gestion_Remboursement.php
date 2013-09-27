@@ -14,23 +14,37 @@
             </div>
 				
             <div>
-                <label>D:</label>
-                <input type="text" id="txt_demande" name="txt_demande"><br/>
+                <label>Client:</label>
+                <input type="text" id="user" name="user"><br/>
             </div>	
 				
             <div>	
+                <label>Produit:</label>
+                <input type="text" id="id_produit" name="id_produit"/>
+            </div>
+				
+            <div>
+                <label>Demande:</label>
+                <textarea id="txt_demande" name="txt_demande"></textarea>
+            </div>
+				
+            <div>
                 <label>Statut:</label>
-                <input type="text" id="statut" name="statut"/>
+                <select>
+                    <option>En attente</option>
+                    <option>En cours</option>
+                    <option>Refusé</option>
+                    <option>Effectué</option>
+                </select>
             </div>
-				
+            
             <div>
-                <label>Date du remboursement:</label>
-                <input type="date" id="description" name="description"/>
+                <label>Date de remboursement:</label>
+                <input type="date" id="date_remboursement" name="date_remboursement"/>
             </div>
-				
-            <div>
-                
-            </div>
+            
+            <!--DATE!!!!!!!!!!!!!!!!!!!!-->
+               
 				
             <div id="button">
                 <input type="submit" id="bouton" name="soumission" value="Soumettre"/>
