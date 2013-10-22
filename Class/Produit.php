@@ -9,7 +9,8 @@
 * FOR MYSQL DB:     grindhouse
 */
 
-include_once("resources/class.database.php");
+require_once("resources/class.database.php");
+//include 'resources/class.database.php';
 
 // **********************
 // CLASS DECLARATION
@@ -200,6 +201,8 @@ class Produit
         $connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
 
         $this->db=$connexion;
+        
+        $this->database = new Database();
     }
     
     function selectall()
@@ -212,40 +215,40 @@ class Produit
     }
 
     function select($id)
-    {
-
-        $sql =  "SELECT * FROM produit WHERE produit_pk_id = $id;";
+    {        
+        
+        $sql =  "SELECT * FROM produit WHERE id_produit = $id;";
         $result =  $this->database->query($sql);
         $result = $this->database->result;
         $row = mysql_fetch_object($result);
 
+        if(isset($row->id_produit) && $row->id_produit != ''){
+            $this->id_produit = $row->id_produit;
 
-        $this->id_produit = $row->id_produit;
+            $this->reference = $row->reference;
 
-        $this->reference = $row->reference;
+            $this->nom = $row->nom;
 
-        $this->nom = $row->nom;
+            $this->prix_ht = $row->prix_ht;
 
-        $this->prix_ht = $row->prix_ht;
+            $this->description = $row->description;
 
-        $this->description = $row->description;
+            $this->poids = $row->poids;
 
-        $this->poids = $row->poids;
+            $this->is_venteprivee = $row->is_venteprivee;
 
-        $this->is_venteprivee = $row->is_venteprivee;
+            $this->promotion = $row->promotion;
 
-        $this->promotion = $row->promotion;
+            $this->promotion_vp = $row->promotion_vp;
 
-        $this->promotion_vp = $row->promotion_vp;
+            $this->stock = $row->stock;
 
-        $this->stock = $row->stock;
+            $this->dim_larg = $row->dim_larg;
 
-        $this->dim_larg = $row->dim_larg;
+            $this->dim_long = $row->dim_long;
 
-        $this->dim_long = $row->dim_long;
-
-        $this->dossier_photo = $row->dossier_photo;
-
+            $this->dossier_photo = $row->dossier_photo;
+        }
     }
 
     // **********************

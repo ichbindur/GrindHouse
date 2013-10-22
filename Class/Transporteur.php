@@ -29,7 +29,7 @@ var $id_transporteur;   // PrimaryKey de la table Transporteur
 var $nom;   // Nom du transporteur
 var $image;   // Photo/Avatar du transporteur
 var $description;   // Description fournis par le transporteur
-
+protected $db;
 var $database; // Instance de la base de donnée
 
 
@@ -41,6 +41,9 @@ function Transporteur()
 {
 
 $this->database = new Database();
+$connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
+
+$this->db=$connexion;
 
 }
 

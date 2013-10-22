@@ -129,18 +129,18 @@ if(isset($_POST['modMdpAncien']) && $_POST['modMdpAncien'] != ""){
 if(isset($_POST['jeton']) && $_POST['jeton'] != ""){
     $guid = new JetonMotDePasse();    
     try{
-    $guid->selectWGuid($_POST['jeton']);
-    if($guid->is_used == 0){
-        $userMdp = new Utilisateur();
-        echo '<script>alert("'. $guid->adresse_user .'")</script>';
-        $userMdp->selectWMail(trim($guid->adresse_user));
-        if($_POST['modMdpLost'] == $_POST['modMdpConfLost']){
-                $userMdp->mdp = MD5($_POST['modMdpLost']);
-                $userMdp->update($userMdp->id_user);
-                $guid->is_used = 1;
-                $guid->update($guid->is_used);
-            }else echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';
-    }else echo '<script>alert("Votre jeton n est pas valide");</script>';
+        $guid->selectWGuid($_POST['jeton']);
+        if($guid->is_used == 0){
+            $userMdp = new Utilisateur();
+            echo '<script>alert("'. $guid->adresse_user .'")</script>';
+            $userMdp->selectWMail(trim($guid->adresse_user));
+            if($_POST['modMdpLost'] == $_POST['modMdpConfLost']){
+                    $userMdp->mdp = MD5($_POST['modMdpLost']);
+                    $userMdp->update($userMdp->id_user);
+                    $guid->is_used = 1;
+                    $guid->update($guid->is_used);
+                }else echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';
+        }else echo '<script>alert("Votre jeton n est pas valide");</script>';
     }catch(Exception $e){
         echo '<script>alert("Votre jeton n est pas valide");</script>';
     }

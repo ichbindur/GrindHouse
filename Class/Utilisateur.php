@@ -227,32 +227,31 @@ $sql =  "SELECT * FROM utilisateur WHERE email = '$mail';";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
 $row = mysql_fetch_object($result);
+if (isset($row->id_user) && $row->id_user != ""){
+    $this->id_user = $row->id_user;
 
+    $this->prenom = $row->prenom;
 
-$this->id_user = $row->id_user;
+    $this->nom = $row->nom;
 
-$this->prenom = $row->prenom;
+    $this->email = $row->email;
 
-$this->nom = $row->nom;
+    $this->mdp = $row->mdp;
 
-$this->email = $row->email;
+    $this->adresse_postale = $row->adresse_postale;
 
-$this->mdp = $row->mdp;
+    $this->complement_adresse = $row->complement_adresse;
 
-$this->adresse_postale = $row->adresse_postale;
+    $this->cp = $row->cp;
 
-$this->complement_adresse = $row->complement_adresse;
+    $this->pays = $row->pays;
 
-$this->cp = $row->cp;
+    $this->is_venteprivee = $row->is_venteprivee;
 
-$this->pays = $row->pays;
+    $this->is_admin = $row->is_admin;
 
-$this->is_venteprivee = $row->is_venteprivee;
-
-$this->is_admin = $row->is_admin;
-
-$this->date_inscription = $row->date_inscription;
-
+    $this->date_inscription = $row->date_inscription;
+    }
 }
 
 function checkMail($mail){
@@ -261,7 +260,7 @@ function checkMail($mail){
     $result =  $this->database->query($sql);
     $result = $this->database->result;
     $row = mysql_fetch_object($result);
-    if($row->id_user != ""){
+    if(isset($row->id_user) && $row->id_user != ""){
         return false;
     }else return true;
 }
