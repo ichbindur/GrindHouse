@@ -36,6 +36,7 @@ class Produit
     var $dim_larg;   // Largeur du produit
     var $dim_long;   // Longueur du produit
     var $dossier_photo;   // Dossier contenant toutes les photos du produit
+    var $type_p;
     protected $db;
     var $database; // Instance de la base de données
 
@@ -121,6 +122,10 @@ class Produit
     {
         return $this->dossier_photo;
     }
+    function gettype_p()
+    {
+        return $this->type_p;
+    }
 
     // **********************
     // SETTER METHODS
@@ -191,7 +196,10 @@ class Produit
     {
         $this->dossier_photo =  $val;
     }
-
+    function settype_p($val)
+    {
+        $this->type_p = $val;
+    }
 // **********************
 // SELECT METHOD / LOAD
 // **********************
@@ -248,9 +256,11 @@ class Produit
             $this->dim_long = $row->dim_long;
 
             $this->dossier_photo = $row->dossier_photo;
+            
+            $this->type_p = $row->type_p;
         }
     }
-
+   
     // **********************
     // DELETE
     // **********************
@@ -273,7 +283,8 @@ class Produit
                                                      poids = :poids,is_venteprivee = :is_venteprivee,
                                                      promotion = :promotion,promotion_vp = :promotion_vp,
                                                      stock = :stock,dim_larg = :dim_larg,
-                                                     dim_long = :dim_long,dossier_photo =:dossier_photo");
+                                                     dim_long = :dim_long,dossier_photo =:dossier_photo,
+                                                     type_p = :type_p");
 
         $req->bindValue(':id_produit',$this->id_produit);
         $req->bindValue(':reference',$this->reference);
@@ -288,7 +299,8 @@ class Produit
         $req->bindValue(':dim_larg',$this->dim_larg);
         $req->bindValue(':dim_long',$this->dim_long);
         $req->bindValue(':dossier_photo',$this->dossier_photo,PDO::PARAM_STR);
-
+        $req->bindValue(':type_p',$this->type_p);
+        
         $req->execute();
     }
 
@@ -301,8 +313,14 @@ class Produit
         $sql = " UPDATE produit SET  id_produit = '$this->id_produit',reference = '$this->reference',nom = '$this->nom',prix_ht = '$this->prix_ht',
         description = '$this->description',poids = '$this->poids',is_venteprivee = '$this->is_venteprivee',promotion = '$this->promotion',
         promotion_vp = '$this->promotion_vp',stock = '$this->stock',dim_larg = '$this->dim_larg',dim_long = '$this->dim_long',
-        dossier_photo = '$this->dossier_photo' WHERE produit_pk_id = $id ";
+        dossier_photo = '$this->dossier_photo',type_p = '$this->type_p' WHERE produit_pk_id = $id ";
         $result = $this->database->query($sql);
+    }
+    function selecttype_p($type_p){
+        
+       $req=$this->db->prepare('SELECT * FROM produit where type_p ='. $type_p);
+       $req->execute();
+       return $req->fetchAll(); 
     }
 } // class : end
 
