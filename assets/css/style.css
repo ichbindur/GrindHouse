@@ -1,0 +1,347 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, i, font, img, ins, kbd, q, s, samp, small, strike, strong, b,  sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 100%;
+	vertical-align: baseline;
+	background-repeat: no-repeat;
+	background-position: center;
+	font-family: "ProximaNova", sans-serif;
+	color: #414142;
+}
+
+ul {
+list-style:none;
+margin-left:0;
+padding-left:0;
+}
+
+.clear2{
+	/* -- Clearfix code -- */
+	.clear:after {content: "."; clear: both; display: block; visibility:
+	hidden; line-height: 0; height: 0;}
+	.clear { display: inline-block;}
+	html[xmlns] .clearfix { display: block;}
+	* html .clearfix { height: 1%;}
+
+	/* -- Clearfix code -- */
+}
+
+.clear{
+	clear: both;
+}
+
+
+/** Header **/
+
+#header, .demi_col, .container_inscription{
+	-webkit-box-shadow:0 5px 10px #aaa;
+		   -moz-box-shadow:0 5px 10px #aaa;
+		        box-shadow:0 5px 10px #aaa;
+}
+
+#header{
+	position: relative;
+	top: 0;
+	left: 0;
+	background-color:#604e4a;
+	width: 100%;
+	height:40px;
+	padding: 0 30px 0 50px;
+}
+
+#titre_barre{
+	color: #fff;
+	font-size: 25px;
+	padding-top: 2px;
+	float: left;
+}
+
+#panier_barre{
+	float: right;
+	color: #fff;
+	font-size: 25px;
+	padding-top: 5px;
+	padding-right: 150px;
+}
+
+#connexion_barre{
+	float: right;
+	color: #fff;
+	padding-top: 10px;
+	padding-right: 100px;
+}
+
+#connexion_barre a{
+	color: #fff;
+	text-decoration: none;
+}
+
+#connexion_barre a:hover{
+	text-decoration: underline;
+}
+
+/** Navigation **/
+
+#nav{
+	position: relative;
+	display: inline-block;
+	padding: 0;
+	font-variant: small-caps;
+	font-size: 30px;
+	height: 80px;
+}
+
+#nav_logo{
+	float: right;
+	margin-top: -90px;
+	margin-right: 100px;
+}
+
+#nav li{
+	display: inline;
+}
+
+#nav li a{
+	text-decoration: none;
+	float: left;
+	padding: 10px;
+	background-color: #fff;
+	color: #414142;
+	border-bottom: 1px;
+	border-bottom-color: #3d272a;
+	border-bottom-style: solid;
+}
+
+#nav li a:hover{
+	background-color: #fff;
+	padding-bottom: 12px;
+	border-bottom: 2px;
+	border-bottom-color: #3d272a;
+	border-bottom-style: solid;
+	margin: -1px;
+	color:#604e4a;
+}
+
+/** Conteneur principal **/
+
+.container{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 100px auto;
+}
+
+#slide {
+	height:300px;
+	margin-bottom: 30px;
+}
+
+
+/** Catalogue page d'accueil **/
+
+.demi_col{
+	position: relative;
+	float: left;
+	margin: 2%;
+	width: 46%;
+	background-color: #ded6cb;
+	border-top: 10px solid #604e4a;
+}
+
+.demi_col_titre{
+	margin-top: 2px;
+	margin-left: 50px;
+	font-size: 25px;
+	letter-spacing: 2px;
+	color: black;
+	font-variant: small-caps;
+}
+
+.demi_col_prix{
+	margin: -40px 0 40px 85px;
+	font-size: 12px;
+}
+
+.demi_col_tdescription{
+	position: relative;
+	display: block;
+	float: right;
+	margin-right: 90px;
+	margin-top: -380px;
+}
+
+.demi_col_description{
+	position: absolute;
+	margin-right: 90px;
+	margin-top: -325px;
+}
+
+.images {
+	position: relative;
+	display: block;
+	margin: 30px 20px 50px 10px;
+}
+
+
+/** Catalogue **/
+
+.container_catalogue{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 0 auto;
+}
+
+.container_menu_catalogue{
+	float: left;
+	padding-right: 500px;
+	display: inline-block;
+}
+
+.catalogue{
+	margin-left: 150px;
+	border: 1px solid #edefe9;
+	display: inline-block;
+}
+
+#menu_catalogue{
+	position: absolute;
+	text-decoration: none;
+	margin-right: 5px;
+}
+
+#menu_catalogue li{
+	display: list-item;
+}
+
+#menu_catalogue li a{
+	text-decoration: none;
+	color: #414142;
+	font-size: 11px;
+	margin-left: 20px;
+}
+
+#menu_catalogue li a:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#menu_catalogue li a:hover p{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.produit_catalogue{
+	float:right;
+    height: 320px;
+    width: 200px;
+    color: #fff;
+    background-color: #000;
+    margin: 50px 5px 5px 2px;
+}
+
+.search_catalogue{
+	float: right;
+	
+}
+
+/** Inscription **/
+
+.container_inscription{
+	position: relative;
+	float: left;
+	margin: 1%;
+	width: 46%;
+	height: 300px;
+}
+
+#container_titre_inscription{
+	height: 40px;
+	background-color: #ded6cb;
+	padding-top: 15px;
+	padding-left: 38%;
+}
+
+#titre_inscription{
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: #414142;
+}
+
+.inscription_form{
+	color: #414142;
+	margin: 10% 0 0 10%;
+}
+
+.inscription_form_champs{
+	border: 2px solid #ded6cb;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.inscription_form label{
+	display: block;
+	float: left;
+	width: 160px;
+}
+
+.inscription_bouton a{
+	margin-left: 35%;
+	margin-bottom: 10px;
+	color: #414142;
+	font-size: 15px;
+}
+
+.inscription_bouton a:hover{
+	color:black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** Footer **/
+
+.footer{
+	position: relative;
+	height: 100px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background-color: #ded6cb;
+	border-top: 10px solid #604e4a;
+}
+
+.footer_text{
+	text-align: center;
+	padding: 30px 0 0 21px;
+	border: 0;
+	letter-spacing: 2px;
+}
+
+
+
+
+@media (min-width:768px){
+
+.demi_col{width:46%;}
+
+}
+
+@media (max-width: 767px) {
+
+.demi_col{width:96%;}
+
+}
