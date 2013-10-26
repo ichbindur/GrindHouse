@@ -1,3 +1,6 @@
+<?php include 'inscriptionUtilisateur.php';
+      include 'Commande2.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,8 +44,8 @@
 		<h1>Créez votre compte sur GrindHouse Leather</h1>
 	</div>
 	<div id="inscription_form">
-		<form action="">
-			<p>
+		<form action="" method="POST" name="inscriptionUtilisateur">
+		<input type="hidden" name="email" value="<?php echo $_POST['email']; ?>"/>	<p>
 	            <label for="nom">Nom :</label>
 	            <input type="text" name="nom" class="champs" value=""/>
 	        </p>
@@ -52,19 +55,15 @@
             </p>
             <p>
 	            <label for="password">Mot de passe :</label>
-	            <input type="password" name="password" class="champs" value=""/>
+	            <input type="password" name="paswd" class="champs" value=""/>
             </p>
             <p>
 	            <label for="password">Confirmation du mot de passe :</label>
-	            <input type="password" name="passwrd" class="champs" value="">
+	            <input type="password" name="paswdConfirm" class="champs" value="">
 	        </p>
 	        <p>
 	            <label for="cp">Code postal :</label>
 	            <input type="text" name="cp" class="champs" value="">
-	        </p>
-	        <p>
-	            <label for="bat">Nom bâtiment / N° Appartement :</label>
-	            <input type="text" name="bat" class="champs" value="">
 	        </p>
 	        <p>
 	            <label for="adresse">Adresse :</label>
@@ -72,7 +71,7 @@
 	        </p>
 	        <p>
 	            <label for="complement">Complément d'adresse :</label>
-	            <input type="text" name="complement" class="champs" value="">
+	            <input type="text" name="adresseComp" class="champs" value="">
 	        </p>
 	        <p>
 	            <label for="ville">Ville :</label>
@@ -84,11 +83,11 @@
 	        </p>
 	        <p>
 	            <label for="tel">Numéro de téléphone :</label>
-	            <input type="text" name="tel" class="champs" value="">
+	            <input type="text" name="telephone" class="champs" value="">
 	        </p>
 	        <p id="inscription_form_submit"> 
-                <input type="submit" value="S'inscrire"/> 
-            </p>
+                    <input type="submit" id="submit" name="submit" value="S'inscrire" onClick="checkInfo()"/>
+                </p>
 		</form>
 	</div>
 
