@@ -37,8 +37,8 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
-        <script type="text/javascript" src="./datatables/bootstrap.js"></script>
-        <link rel="stylesheet" href="/css/bootstrap.min.css"  media="screen" />        
+        <script type="text/javascript" src="./js/bootstrap.js"></script>
+        <link rel="stylesheet" href="./css/bootstrap.css"  media="screen" />        
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
     </head>
@@ -193,12 +193,10 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                                             <label>Nom:</label>
                                             <input type="text" id="nom2" name="nom2" value=""/><br/>
                                         </div>	
-
                                         <div>	
                                             <label>Prix HT:</label>
                                             <input type="text" id="prix_ht2" name="prix_ht2" value=""/>
                                         </div>
-
                                         <div>
                                             <label>Description:</label>
                                             <textarea id="description2" name="description2"></textarea>
