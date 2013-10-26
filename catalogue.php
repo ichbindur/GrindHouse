@@ -21,7 +21,7 @@
 <div class="container">
 	<div class="nav">
 		<div id="nav_logo">
-			<a href="index.html"><img src="assets/images/ghl_logo.png"></a>
+			<a href="index.php"><img src="assets/images/ghl_logo.png"></a>
 		</div>
 		<ul id="nav">
 			<li>
