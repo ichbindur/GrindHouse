@@ -43,11 +43,12 @@
 		<div id="container_titre_inscription">
 			<p id="titre_inscription">Inscription</p>
 		</div>
-		<form class="inscription_form">
+		<form class="inscription_form" name="bernardo" action="inscription.php" method="POST">
 			<p><label for="identifiant">Adresse email :</label></p>
-			<p><input type="email" name="email" class="inscription_form_champs" value=""/></p><br/>
+			<p><input type="email" name="email" class="inscription_form_champs"/></p><br/>
+                        <div class="inscription_bouton"><a href="#" onclick="document.forms['bernardo'].submit();">Créez votre compte</a></div>
 		</form>
-		<div class="inscription_bouton"><a href="inscription.php">Créez votre compte</a></div>
+		
 	</div>
 	<div class="container_inscription">
 		<div id="container_titre_inscription">
