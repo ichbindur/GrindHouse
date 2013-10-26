@@ -30,6 +30,8 @@
            document.getElementById("cp").border = '2px solid red';
        if(document.getElementById("pays").text === '' || document.getElementById("pays").text.length < 3)
            document.getElementById("pays").border = '2px solid red';
+       if(document.getElementById("pays").text === '' || document.getElementById("pays").text.length > 10)
+           document.getElementById("pays").border = '2px solid red';
     }
     function ceckInfo2(){
         f
@@ -51,6 +53,7 @@
                     compadresse<input type="text" id="adresseComp" name="adresseComp"/></br>
                     cp<input type="text" id="cp" name="cp"/></br>
                     pays<input type="text" id="pays" name="pays"/></br>
+                    telephone<input type="text" id="telephone" name="telephone"/></br>
                     <input type="button" id="submit2" name="submit2" onclick='checkInfo();'/></br>
                 </form>
             </td>
