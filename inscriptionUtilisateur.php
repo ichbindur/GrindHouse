@@ -36,7 +36,7 @@ if(isset($_SESSION['Nom']) && $_SESSION['Nom'] != ""){
     echo 'Votre date d\'inscription';
     echo '</td><td>';
     echo $user->date_inscription;
-    echo '</td></tr></table></fieldset>';          
+    echo '</td></tr><tr><td></table></fieldset>';          
 }else{
     //TODO : redirection vers page authentification même si cela ne devrais jamais arrivé!
 }
@@ -60,6 +60,7 @@ if (isset($_POST['nom']) && $_POST['nom'] != ""){
         $newUser->cp = $_POST['cp'];
         $newUser->pays = mysql_real_escape_string($_POST['pays']);
         $newUser->date_inscription = date('Y-m-d');
+        $newUser->telephone = mysql_real_escape_string($_POST['telephone']);
         $newUser->insert();
     }else echo '<script>alert("deja le mail gros!");</script>';
 }
@@ -103,6 +104,8 @@ if(isset($_POST['modNom']) && $_POST['modNom'] != ""){
         $user->cp = trim($_POST['modCp']);
     if($user->pays != trim($_POST['modPays']) && $_POST['modPays'] != "")
         $user->pays = trim($_POST['modPays']);
+    if($user->telephone != trim($_POST['modTelephone']) && $_POST['modTelephone'] != "")
+        $user->telephone = trim($_POST['modTelephone']);
     
     $user->update($user->id_user);
 }
@@ -179,11 +182,6 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
  * and open the template in the editor.
  */
 ?>
-<script>function checkInfo(){
-    //if(document.getElementById("nom").Text !== "")
-    //alert('c est bon tu le fera plus tard');
-}
-</script>
 <input type="hidden" value="0" id="session"/>
 <h1>Page d inscription de GrindHouse Leather</h1>
 <div>
