@@ -179,7 +179,7 @@ padding-left:0;
 	margin-top: -325px;
 }
 
-.images {
+.images, .container_photo_produit {
 	position: relative;
 	display: block;
 	margin: 30px 20px 50px 10px;
@@ -245,10 +245,9 @@ padding-left:0;
 
 .search_catalogue{
 	float: right;
-	
 }
 
-/** Inscription **/
+/** Connexion & Inscription **/
 
 .container_inscription{
 	position: relative;
@@ -298,24 +297,308 @@ padding-left:0;
 	color:black;
 }
 
+/** Formulaire d'inscription **/
+
+#inscription_form_titre{
+	font-size: 2em;
+	margin-bottom: 20px;
+	margin-left: 15%;
+}
+
+#inscription_form input:not([type="submit"]){
+    width: 92%;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    padding: 10px 5px 10px 30px;
+    border: 1px solid rgb(178, 178, 178);
+    box-sizing : content-box;
+    border-radius: 3px;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    transition: all 0.2s linear;
+}
+
+.inscription_form_submit{
+	width: 20%;
+	margin-left: 35%;
+	margin-top: 15px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	text-align: center;
+    cursor: pointer;
+    border: 1px solid rgb(178, 178, 178);
+    box-sizing : content-box;
+    border-radius: 3px;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    transition: all 0.2s linear;
+}
+
+/** Fiche Produit **/
+
+.container_fproduit{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 0 auto;
+	border: 2px solid #ded6cb;
+	border-radius: 4px;
+}
+
+#container_titre_fproduit{
+	height: 40px;
+	background-color: #ded6cb;
+	padding-top: 15px;
+	padding-left: 40%;
+}
+
+#titre_fproduit{
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: #414142;
+}
+
+.container_photo_produit{
+	width: 40%;
+	float: left;
+	margin-left: 6%;
+}
+
+.preview_photo_fproduit{
+	display: block;
+	margin: 30px 20px 50px 10px;
+	width: 4%;
+	height: 5%;
+}
+
+.container_presentation_fproduit{
+	position: relative;
+	width: 100%;
+	border: 2px solid #ded6cb;
+	font-size: 0.8em;
+}
+
+.container_description_fproduit{
+	position: absolute;
+	display: block;
+	width: 100%;
+	margin-left: -2px;
+	margin-top: 20px;
+	border: 2px solid #ded6cb;
+	font-size: 0.8em;
+}
+
+#presdesc_fproduit{
+	margin: 2%;
+}
+
+.info_fproduit{
+	text-align: right;
+	display: block;
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: #414142;
+}
+
+#marque_fproduit{
+	opacity: 0.7;
+}
+
+#prix_fproduit, #ref_fproduit{
+	opacity: 0.9;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+#select_fproduit{
+	padding:3px;
+    margin-top: 2%;
+    margin-left: 2%;
+    background: #ded6cb;
+    color:#414142;
+    border:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+#bouton_submit_fproduit{
+	text-align: center;
+	display: block;
+	padding: 5px 10px 5px 10px;
+	margin-top: 30px;
+	float: right;
+	color: #414142;
+	background-color: #ded6cb;
+	font-size: 15px;
+	cursor: pointer;
+    border:none;
+    outline:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+}
+
+/** Panier **/
+
+.container_panier{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 0 auto;
+	border: 2px solid #ded6cb;
+	border-radius: 4px;
+}
+
+.container_panier_contraste{
+	background-color: #ded6cb;
+}
+
+#nav_panier{
+	width: 750px;
+	margin: 0 auto;
+	font-size: 1.2em;
+}
+
+#nav_panier li{
+	padding: 5px;
+	margin: 5px;
+	display: inline-block;
+}
+
+#nav_panier li a{
+	padding: 5px;
+	margin: 5px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+#nav_panier_encours{
+	border-bottom: 1px solid black;
+	font-weight: bold;
+}
+
+#table_panier{
+	font-size: 0.9em;
+	text-align: center;
+}
+
+#table_panier td{
+	vertical-align:middle;
+}
+
+#total_panier{
+	float: right;
+}
+
+#total_panier li{
+	display: inline-block;
+	padding: 5px;
+}
+
+#promo_panier{
+	max-width:984px;
+	margin : 0 auto;
+	border: 2px solid #ded6cb;
+	border-radius: 4px;
+}
+
+#form_promo_panier{
+	padding-top: 3px;
+	padding-bottom: 5px;
+}
+
+#avantages_panier{
+	width: 20%;
+	float: right;
+	background-color: #ded6cb;
+	padding: 5px;
+}
+
+#avantages_panier p{
+	float: right;
+}
+
+#totalttc_panier{
+	width: 20%;
+	float: right;
+	border: 2px solid #ded6cb;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+#totalttc_panier p{
+	float: right;
+}
+
+.container_adresse_panier{
+	width: 30%;
+	margin: 0 auto;
+	border: 2px solid #ded6cb;
+	margin-top: 20px;
+}
+
+.container_adresse_panier p{
+	text-align: center;
+}
+
+.modif_supprimer_adresse_panier{
+	text-align: left;
+}
 
 
+/** Mon Compte **/
 
+.retour_shopping{
+	padding:3px;
+    background: #fff;
+    border: 2px solid #ded6cb;
+    color:#414142;
+    border:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
 
+.btn_continuer{
+	padding:3px;
+    background: #fff;
+    border: 2px solid #ded6cb;
+    color:#414142;
+    border:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    float: right;
+}
 
+.left{
+	float: left;
+	margin-left: 10px;
+}
 
-
-
-
-
-
-
-
+.right{
+	float: right;
+	margin-right: 10px;
+}
 
 /** Footer **/
 
 .footer{
 	position: relative;
+	clear: both;
+	height: 100px;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	background-color: #ded6cb;
+	border-top: 10px solid #604e4a;
+}
+
+.footer2{
+	position: absolute;
+	clear: both;
 	height: 100px;
 	width: 100%;
 	bottom: 0;
