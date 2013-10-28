@@ -37,7 +37,7 @@
 		</ul>
 	</div>
     <p>
-        Votre inscription est un succès, vous serez redirigez dans quelques secondes
+        Votre inscription est un succès, vous serez redirigé dans quelques secondes ...
     </p>
     <script language="JavaScript">
            cmd = "window.location='connexion.php'";
