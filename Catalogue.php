@@ -1,5 +1,5 @@
 <?php
-$type_p = $_GET['type_d'];
+$type_p = $_GET['type_p'];
 $Produit = new Produit();
 $ProduitTab = $Produit->selecttype_p($type_p);
 for ($i=0 ; $i < count($ProduitTab) ; $i++) { ?>
