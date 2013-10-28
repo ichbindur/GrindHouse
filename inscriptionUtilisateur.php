@@ -48,44 +48,31 @@ if(isset($_SESSION['Nom']) && $_SESSION['Nom'] != ""){
 
 if (isset($_SESSION['UserID']))
     echo 'vous êtes déjà inscrit sur ce site!';
-if (isset($_POST['nom']) && $_POST['nom'] != ""){
+if (isset($_POST['nom'],$_POST['prenom'],$_POST['adresse'],$_POST['cp'],$_POST['ville'],$_POST['paswd']) && $_POST['nom'] != ""){
     $newUser = new Utilisateur();
-    if($newUser->checkMail($_POST['mail'])){
-        $newUser->nom = mysql_real_escape_string($_POST['nom']);
-        $newUser->prenom = mysql_real_escape_string($_POST['prenom']);
-        $newUser->email = mysql_real_escape_string($_POST['mail']);
-        $newUser->mdp = MD5($_POST['paswd']);
-        $newUser->adresse_postale = mysql_real_escape_string($_POST['adresse']);
-        $newUser->complement_adresse = mysql_real_escape_string($_POST['adresseComp']);
-        $newUser->cp = $_POST['cp'];
-        $newUser->pays = mysql_real_escape_string($_POST['pays']);
-        $newUser->date_inscription = date('Y-m-d');
-        $newUser->telephone = mysql_real_escape_string($_POST['telephone']);
-        $newUser->insert();
-    }else echo '<script>alert("deja le mail gros!");</script>';
-}
+    if ($_POST['paswd'] == $_POST['paswdConfirm'] ){
+        if($newUser->checkMail($_POST['mail'])){
+            $newUser->nom = mysql_real_escape_string($_POST['nom']);
+            $newUser->prenom = mysql_real_escape_string($_POST['prenom']);
+            $newUser->email = mysql_real_escape_string($_POST['mail']);
+            $newUser->mdp = MD5($_POST['paswd']);
+            $newUser->adresse_postale = mysql_real_escape_string($_POST['adresse']);
+            $newUser->complement_adresse = mysql_real_escape_string($_POST['adresseComp']);
+            $newUser->ville = mysql_real_escape_string($_POST['ville']);
+            $newUser->cp = $_POST['cp'];
+            $newUser->pays = mysql_real_escape_string($_POST['pays']);
+            $newUser->date_inscription = date('Y-m-d');
+            $newUser->telephone = mysql_real_escape_string($_POST['telephone']);
+            $newUser->insert(); ?>
+            <script language="JavaScript">
+                window.location='InscrWin.php'
+            </script>
+            <?php 
+        }else echo '<script>alert("deja le mail gros!");</script>';
+    }else echo '<script>alert("Le mot de passe entré ne correspond pas à celui confirmé !");</script>'; 
+           
+        }
 //Fin de zone
-
-/**************************************************/
-//Zone de connexion
-/**************************************************/
-if (isset($_POST['connMail']) && $_POST['connMail'] != ""){
-    $user = new Utilisateur();
-    try{
-        $user->selectWMail($_POST['connMail']);
-    }catch(Exception $e){
-        echo '<script>alert("nom mais tu n existe pas!!");</script>';
-    }
-    if($user->mdp == MD5($_POST['connMdp'])){
-        echo '<script>alert("Connecté");</script>';
-        $_SESSION['ID'] = $user->id_user;
-        $_SESSION['Nom'] = $user->nom;
-        $_SESSION['Statut'] = $user->is_admin;
-        $_SESSION['Mail'] = $user->email;        
-    }
-}
-//Fin de zone
-
 /**************************************************/
 //Zone modification des infos information
 /**************************************************/
@@ -183,7 +170,7 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
  */
 ?>
 <input type="hidden" value="0" id="session"/>
-<h1>Page d inscription de GrindHouse Leather</h1>
+<!--<h1>Page d inscription de GrindHouse Leather</h1>
 <div>
     <fieldset>
         <legend>Inscription</legend>
@@ -200,7 +187,7 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             <input type="submit" id="submit" name="submit" onClick="checkInfo()"/>
         </form>
     </fieldset>
-</div>
+</div>-->
 <div>
     <fieldset>
         <legend>Connexion</legend>
