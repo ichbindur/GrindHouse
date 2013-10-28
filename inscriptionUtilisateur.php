@@ -170,34 +170,7 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
  */
 ?>
 <input type="hidden" value="0" id="session"/>
-<!--<h1>Page d inscription de GrindHouse Leather</h1>
-<div>
-    <fieldset>
-        <legend>Inscription</legend>
-        <form name="inscriptionUtilisateur" method="POST">
-            nom<input type="text" id="nom" name="nom"/>
-            prenom<input type="text" id="prenom" name="prenom"/>
-            mail<input type="text" id="mail" name="mail"/>
-            pass<input type="password" id="paswd" name="paswd"/>    
-            passconf<input type="password" id="paswdConfirm" name="paswdConfirm"/>
-            adresse<input type="text" id="adresse" name="adresse"/>
-            compadresse<input type="text" id="adresseComp" name="adresseComp"/>
-            cp<input type="text" id="cp" name="cp"/>
-            pays<input type="text" id="pays" name="pays"/>
-            <input type="submit" id="submit" name="submit" onClick="checkInfo()"/>
-        </form>
-    </fieldset>
-</div>-->
-<div>
-    <fieldset>
-        <legend>Connexion</legend>
-        <form method="POST">
-            <input type="text" id="connMail" name="connMail"/>
-            <input type="password" name="connMdp" id="connMdp"/>
-            <input type="submit" name="submit2" id="submit2"/>
-        </form>
-    </fieldset>
-</div>
+
 <div>
     <fieldset>
         <legend>Modification des informations</legend>
@@ -221,16 +194,6 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             <input type="password" id="modMdp" name="modMdp"/>
             <input type="password" id="modMdpConf" name="modMdpConf"/>
             <input type="submit" name="submit4" id="submit4"/>
-        </form>
-    </fieldset>
-</div>
-<div>
-    <fieldset>
-        <legend>Mot de passe perdu demande de changement</legend>
-        <form method="POST">            
-            Mot de passe perdu? 
-            <input type="text" name="mailLost" id ="mailLost"/>
-            <input type="submit" name="submit6" Value="Jeton" id="submit6"/>
         </form>
     </fieldset>
 </div>
