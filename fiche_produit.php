@@ -1,3 +1,10 @@
+<?php
+include 'class/Produit.php';
+$id = $_GET['xd'];
+$Produit = new Produit();
+$Produit = $Produit->select($id);
+ ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,10 +48,10 @@
 
 	<div class="container_fproduit">
 		<div id="container_titre_fproduit">
-			<p id="titre_fproduit">Nom du produit</p>
+			<p id="titre_fproduit"><?php echo $Produit['nom']; ?></p>
 		</div>
 		<div class="container_photo_produit">
-			<img src="assets/images/sac.jpg">
+			<img src="./Photo/<?php echo $Produit['dossier_photo']; ?>">
 		</div>
 		<div class="container_photo_produit">
 			<div class="info_fproduit">
