@@ -54,14 +54,14 @@
 		<div id="container_titre_inscription">
 			<p id="titre_inscription">Connexion</p>
 		</div>
-		<form class="inscription_form">
-			<p><label for="email">Adresse email :</label></p>
-			<p><input type="email" name="email" class="inscription_form_champs" value=""/></p><br/>
-			<p><label for="password">Mot de passe :</label></p>
-			<p><input type="password" name="password" class="inscription_form_champs" value=""/></p><br/>
+		<form class="inscription_form" method="POST" action="index.php" name="connexion">
+                    <p><label for="email">Adresse email :</label></p>
+                    <p><input type="email" name="email" class="inscription_form_champs" value=""/></p><br/>
+                    <p><label for="password">Mot de passe :</label></p>
+                    <p><input type="password" name="password" class="inscription_form_champs" value=""/></p><br/>
+                    <div class="inscription_bouton"><a href="#" onclick="document.forms['connexion'].submit();">Connectez-vous</a></div>
+                    <div class="inscription_bouton"><a href="connexion.php">Mot-de-passe oublié ?</a></div>
 		</form>
-		<div class="inscription_bouton"><a href="connexion.php">Connectez-vous</a></div>
-		<div class="inscription_bouton"><a href="connexion.php">Mot-de-passe oublié ?</a></div>
 	</div>
 	<!-- Demi-colonnes Fin -->
 
