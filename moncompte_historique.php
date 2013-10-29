@@ -72,7 +72,6 @@
 		<div>&nbsp</div>
 		<div class="container_remboursement_moncompte">
 					<h2 class="container_panier_contraste" style="text-align:center">Historique de commande :</h2>
-					<div>&nbsp</div>
 					<p>#ID 21/10/2013 0.00€</p><br/>
 					<p>#ID 21/10/2013 0.00€</p><br/>
 					<p>#ID 21/10/2013 0.00€</p><br/>

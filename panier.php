@@ -103,7 +103,7 @@
 			<form id="form_promo_panier" action="">
 				<label for="promo">Code promotionnel </label>
 				<input type="text" name="promo"/>
-				<input type="submit" value="OK" />
+				<input type="submit" value="OK"/>
 			</form>
 		</div>
 		<div>&nbsp</div>

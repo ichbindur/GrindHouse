@@ -72,13 +72,11 @@
 		<div>&nbsp</div>
 		<div class="container_remboursement_moncompte">
 				<h2 class="container_panier_contraste" style="text-align:center">Suivi de commande :</h2>
-				<div>&nbsp</div>
-				<div>&nbsp</div>
 				<p>Etat de la commande suivante :</p><br/>
 				<p>#ID 21/10/2013 0.00€</p><br/>
-				<p class="right bold">Non-traitée</p><br/>
+				<p class="right bold">Non-traitée</p>
 				<p>Etat de la commande suivante :</p><br/>
-				<p>#ID 22/10/2013 0.00€</p><br/>
+				<p>#ID 22/10/2013 0.00€</p>
 				<p class="right bold">Traitée</p><br/>
 		</div>
 		<div class="clear"></div>

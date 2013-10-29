@@ -71,8 +71,8 @@
 		</div>
 		<div class="catalogue">
 			<div class="search_catalogue">
-				<label for="identifiant"></label>
 				<input type="recherche" name="recherche" class="recherche_catalogue" value="Recherche..."/>
+				<input type="submit" value="OK" style="opacity:1" />
 				<div class="clear"></div>
 			</div>
                         <?php include 'ListeProduit.php';?>
