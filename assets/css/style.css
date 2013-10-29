@@ -12,21 +12,28 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acro
 	color: #414142;
 }
 
+input{
+	border: 1px solid #ded6cb;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
 ul {
 list-style:none;
 margin-left:0;
 padding-left:0;
 }
 
+.inline{
+	display: inline;
+}
+
 .clear2{
-	/* -- Clearfix code -- */
 	.clear:after {content: "."; clear: both; display: block; visibility:
 	hidden; line-height: 0; height: 0;}
 	.clear { display: inline-block;}
 	html[xmlns] .clearfix { display: block;}
 	* html .clearfix { height: 1%;}
-
-	/* -- Clearfix code -- */
 }
 
 .clear{
@@ -177,6 +184,7 @@ padding-left:0;
 	position: absolute;
 	margin-right: 90px;
 	margin-top: -325px;
+	float: left;
 }
 
 .images, .container_photo_produit {
@@ -239,12 +247,12 @@ padding-left:0;
     height: 320px;
     width: 200px;
     color: #fff;
-    background-color: #000;
     margin: 50px 5px 5px 2px;
 }
 
 .search_catalogue{
 	float: right;
+	opacity: 0.6;
 }
 
 /** Connexion & Inscription **/
@@ -341,6 +349,7 @@ padding-left:0;
 	margin : 0 auto;
 	border: 2px solid #ded6cb;
 	border-radius: 4px;
+	height: 500px;
 }
 
 #container_titre_fproduit{
@@ -374,6 +383,7 @@ padding-left:0;
 	width: 100%;
 	border: 2px solid #ded6cb;
 	font-size: 0.8em;
+	margin-top: 10px;
 }
 
 .container_description_fproduit{
@@ -535,6 +545,7 @@ padding-left:0;
 	margin: 0 auto;
 	border: 2px solid #ded6cb;
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .container_adresse_panier p{
@@ -545,8 +556,127 @@ padding-left:0;
 	text-align: left;
 }
 
+.livraison_panier{
+	width: 20%;
+	padding: 5px;
+}
+
+.container_paiementcb_panier{
+	margin: 0 auto;
+	width: 80%;
+	border: 2px solid #ded6cb;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.form_paiementcb_panier{
+	width: 40%;
+	margin-left: 5px;
+}
+
+#form_paiementcb_panier input{
+	border: 1px solid #ded6cb;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+#crypto_paiementcb_panier{
+	opacity: 0.8;
+	font-size: 0.6em;
+}
+
+#img_cb{
+	float: right;
+	width: 40%;
+}
+
+#paypal_panier{
+	margin-left: 5px;
+}
 
 /** Mon Compte **/
+
+.container_menu_moncompte{
+	float: left;
+	width: 30%;
+	line-height: 12px;
+	margin-top: 30px;
+}
+
+.container_moncompte{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 0 auto;
+	border: 2px solid #ded6cb;
+	border-radius: 4px;
+}
+
+.container_infos_moncompte{
+	float: right;
+	width: 70%;
+}
+
+.container_historique_moncompte{
+	float: right;
+	width: 30%;
+	margin: 20px 50px 20px 50px;
+	border: 2px solid #ded6cb;
+	text-align: left;
+}
+
+.container_remboursement_moncompte{
+	width: 60%;
+	margin-right: 50px;
+	border: 2px solid #ded6cb;
+	float: right;
+}
+
+.container_remboursement_moncompte p{
+	margin-top: 20px;
+}
+
+#titre_moncompte{
+	text-align: center;
+	padding: 10px;
+	font-size: 1.3em;
+}
+
+#vp_pub_moncompte{
+	margin: 0 auto;
+	float: right;
+	width: 100%;
+	margin-top: 80px;
+}
+
+#submit_remboursement{
+	padding: 5px;
+	margin-left: 150px;
+}
+
+
+/** Contact **/
+
+.container_contact{
+	position: relative;
+	background-color: #fff;
+	max-width:984px;
+	margin : 0 auto;
+}
+
+.container_contact h1{
+	font-size: 1.3em;
+	margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+/** Général **/
 
 .retour_shopping{
 	padding:3px;
@@ -583,6 +713,14 @@ padding-left:0;
 	margin-right: 10px;
 }
 
+.text_center{
+	text-align: center;
+}
+
+.bold{
+	font-weight: bold;
+}
+
 /** Footer **/
 
 .footer{
@@ -614,7 +752,13 @@ padding-left:0;
 	letter-spacing: 2px;
 }
 
+.footer_text a{
+	text-decoration: none;
+}
 
+.footer_text a:hover{
+	text-decoration: underline;
+}
 
 
 @media (min-width:768px){
