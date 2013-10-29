@@ -87,12 +87,14 @@ if(isset($_POST['modNom']) && $_POST['modNom'] != ""){
         $user->adresse_postale = trim($_POST['modAdresse']);
     if($user->complement_adresse != trim($_POST['modAdresseComp']) && $_POST['modAdresseComp'] != "")
         $user->complement_adresse = trim($_POST['modAdresseComp']);
+    if($user->ville != trim($_POST['modVille']) && $_POST['modVille'] != "")
+        $user->ville = trim($_POST['modVille']);
     if($user->cp != trim($_POST['modCp']) && $_POST['modCp'] != "")
         $user->cp = trim($_POST['modCp']);
     if($user->pays != trim($_POST['modPays']) && $_POST['modPays'] != "")
         $user->pays = trim($_POST['modPays']);
-    if($user->telephone != trim($_POST['modTelephone']) && $_POST['modTelephone'] != "")
-        $user->telephone = trim($_POST['modTelephone']);
+    if($user->telephone != trim($_POST['modTel']) && $_POST['modTel'] != "")
+        $user->telephone = trim($_POST['modTel']);
     
     $user->update($user->id_user);
 }
@@ -175,13 +177,13 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
     <fieldset>
         <legend>Modification des informations</legend>
         <form method="POST">
-            nom<input type="text" id="modNom" name="modNom" value="<?php if(isset($user) && $user->nom != "") echo $user->nom; ?>"/>
-            prenom<input type="text" id="modPrenom" name="modPrenom" value="<?php if(isset($user) && $user->prenom != "") echo $user->prenom; ?>"/>
-            mail<input type="text" id="modMail" name="modMail" value="<?php if(isset($user) && $user->email != "") echo $user->email; ?>"/>
-            adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php if(isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
-            compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if(isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
-            cp<input type="text" id="modCp" name="modCp" value="<?php if(isset($user) && $user->cp != "") echo $user->cp; ?>"/>
-            pays<input type="text" id="modPays" name="modPays" value="<?php if(isset($user) && $user->pays != "") echo $user->pays; ?>"/>
+            nom<input type="text" id="modNom" name="modNom" value="<?php // if(isset($user) && $user->nom != "") echo $user->nom; ?>"/>
+            prenom<input type="text" id="modPrenom" name="modPrenom" value="<?php // if(isset($user) && $user->prenom != "") echo $user->prenom; ?>"/>
+            mail<input type="text" id="modMail" name="modMail" value="<?php //if(isset($user) && $user->email != "") echo $user->email; ?>"/>
+            adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php // if(isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
+            compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php // if(isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
+            cp<input type="text" id="modCp" name="modCp" value="<?php  //if(isset($user) && $user->cp != "") echo $user->cp; ?>"/>
+            pays<input type="text" id="modPays" name="modPays" value="<?php //if(isset($user) && $user->pays != "") echo $user->pays; ?>"/>
             <input type="submit" name="submi3" id="submit3"/>
         </form>
     </fieldset>

@@ -47,8 +47,10 @@
                     mail<input type="text" id="modMail" name="modMail" value="<?php if(isset($user) && $user->email != "") echo $user->email; ?>"/>
                     adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php if(isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
                     compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if(isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
+                    ville<input type="text" id="modVille" name="modVille" value="<?php if(isset($user) && $user->ville != "") echo $user->ville; ?>"/>
                     cp<input type="text" id="modCp" name="modCp" value="<?php if(isset($user) && $user->cp != "") echo $user->cp; ?>"/>
                     pays<input type="text" id="modPays" name="modPays" value="<?php if(isset($user) && $user->pays != "") echo $user->pays; ?>"/>
+                    telephone<input type="text" id="modTel" name="modTel" value="<?php if(isset($user) && $user->telephone != "") echo $user->telephone; ?>"/>
                     <input type="submit" name="submi3" id="submit3"/>
                 </form>
             </fieldset>
