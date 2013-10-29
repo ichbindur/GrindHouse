@@ -51,69 +51,43 @@
 				</ul>
 			</div>
 		</div>
-		<table id="table_panier">
-			<tr>
-				<td width="6%">Supprimer</td>
-				<td width="20%">Produits</td>
-				<td width="20%">Description</td>
-				<td width="6%">Dispo.</td>
-				<td width="12%">Ref.</td>
-				<td width="12%">Prix unitaire</td>
-				<td width="4%">Qté</td>
-				<td width="20%">Total</td>
-			</tr>
-			<tr>
-				<td width="6%">X</td>
-				<td width="20%"><img src="assets/images/sac.jpg"></td>
-				<td width="20%">Sac très compliqué</td>
-				<td width="6%"><img src="assets/images/checked.png"></td>
-				<td width="12%">#0000</td>
-				<td width="12%">1000€</td>
-				<td width="4%">1</td>
-				<td width="20%">1000€</td>
-			</tr>
-			<tr>
-				<td width="6%">X</td>
-				<td width="20%"><img src="assets/images/sac.jpg"></td>
-				<td width="20%">Sac très compliqué</td>
-				<td width="6%"><img src="assets/images/checked.png"></td>
-				<td width="12%">#0000</td>
-				<td width="12%">1000€</td>
-				<td width="4%">1</td>
-				<td width="20%">1000€</td>
-			</tr>
-		</table>
 	</div>
 
-	<div>&nbsp</div>
-
 	<div class="container_panier">
-		<ul id="total_panier">
-			<li>Total panier</li>
-			<li>1 article(s)</li>
-			<li>0.00€</li>
-		</ul>
-	<div class="clear"></div>	
-	</div>
+		<div class="container_paiementcb_panier">
+			<div class="container_panier_contraste text_center">Paiement par carte bancaire</div>
+			<div>&nbsp</div>
 
-	<div>&nbsp</div>
-
-	<div class="container_panier">
-		<div class="container_panier_contraste">
-			<form id="form_promo_panier" action="">
-				<label for="promo">Code promotionnel </label>
-				<input type="text" name="promo"/>
-				<input type="submit" value="OK" />
+			<form class="form_paiementcb_panier left" action="">
+				<label for="nom">Nom du titulaire de la carte</label><br/>
+				<input type="text" name="nom" /><br/>
+				<label for="num">Numéro de la carte</label><br/>
+				<input type="text" name="num" /><br/>
+				<label for="crypto">Numéro de cryptogramme*</label><br/>
+				<input type="text" name="crypto" maxlength="3"/><br/>
+				<p id="crypto_paiementcb_panier">*Il est composé de 3 chiffres pour les cartes Bleues, Visa et Mastercard, et de 4 chiffres pour les American Express</p>
+			<div>&nbsp</div>
 			</form>
+
+			<div id="img_cb"><img src="assets/images/cb.png" alt=""></div>
+			<div>&nbsp</div>
+			<form class="form_paiementcb_panier right" action="">
+				<label for="dateexp">Date d'expiration</label><br/>
+				<input type="date" max="2020-12-31" min="2013-10-28" name="dateexp">
+			</form>
+			<div class="clear"></div>
+			<a href="#"><input class="btn_continuer" type="submit" value="Valider"/></a>
+			<div class="clear"></div>
 		</div>
-		<div>&nbsp</div>
-		<div id="avantages_panier">
-			<p>Avantages : //€</p>
-		</div>
-		<div class="clear"></div>
+	</div>
+
+	<div class="container_panier">
+		<div id="paypal_panier"><img src="assets/images/paypal.png" alt=""></div>
+		<p>Paiement par PayPal</p>
 	</div>
 
 	<div>&nbsp</div>
+
 
 	<div id="totalttc_panier">
 		<p>TOTAL TTC &nbsp&nbsp 0.00€</p>
@@ -139,7 +113,7 @@
 <div class="clear"></div>
 
 <!-- Footer Début -->
-<div class="footer">
+<div class="footer2">
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 

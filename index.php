@@ -31,6 +31,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 </head>
 
 <body>
+
 <!-- Header Début -->
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
@@ -38,6 +39,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
 </div>
 <!-- Header Début -->
+
 
 <!-- Conteneur principal Début -->
 <div class="container">
@@ -69,10 +71,10 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 		<div class="demi_col_titre">Femme</div>
 		<div class="images"><img src="assets/images/sac.jpg"></div>
 		<div>
-		<p class="demi_col_tdescription">Sac cool</p>
+		<p class="demi_col_tdescription">Sac sceau</p>
 		<p class="demi_col_description">
-			Superbe description d'un sac cool. 100% peau de chèvre. Fabriqué au Soudan.
-		</p>	
+			Description brève d'un sac en forme sceau, 100% cuir.
+		</p>
 		</div>
 
 		<div class="demi_col_prix">100€</div>

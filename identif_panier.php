@@ -83,11 +83,8 @@
 
 	<div class="clear"></div>
 
-
-
-
-
 <!-- Panier Fin -->
+
 <!-- Retour shopping & Continuer -->
 <div>&nbsp</div>
 <a href="index.php"><input class="retour_shopping" type="submit" value="Retour au shopping"/></a>

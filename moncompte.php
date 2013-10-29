@@ -37,38 +37,65 @@
 		</ul>
 	</div>
 
-<!-- Fiche Produit Début -->
+<!-- Mon compte Début -->
 
-	<div class="container_fproduit">
-		<div id="container_titre_fproduit">
-			<p id="titre_fproduit">Nom du produit</p>
-		</div>
-		<div class="container_photo_produit">
-			<img src="assets/images/sac.jpg">
-			<div class="info_fproduit">
-				<p id="marque_fproduit">Marque du produit</p>
-				<p id="prix_fproduit">0.00€</p>
-			</div>
-			<div class="container_presentation_fproduit">
-				<p id="presdesc_fproduit">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac hendrerit diam. Nullam ornare vulputate enim, quis facilisis ante posuere vitae. Nunc velit justo, egestas sit amet nulla euismod, condimentum pulvinar libero. </p>
-				<label>
-					<select id="select_fproduit" name="qt">
-						<option selected>Choisir la quantité</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-				</label>
-				<input id="bouton_submit_fproduit" type="submit" value="Ajouter au panier"/>
-				<div class="container_description_fproduit">
-					<p id="presdesc_fproduit">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac hendrerit diam.</p>
-				</div>
+	<div class="container_moncompte">
+		<div class="container_panier_contraste">
+			<div id="nav_panier">
+				<h3 id="titre_moncompte">Mon Compte</h3>
 			</div>
 		</div>
+		<div class="container_menu_moncompte">
+			<ul id="menu_catalogue">
+				<li>
+					<a href="moncompte.php"><p style="margin-left: 2px;font-size: 18px;">Mon Compte</p></a>
+				</li>
+				<li>
+					<a href="moncompte_informations.php"><p style="margin-left: 2px;font-size: 18px;">Informations</p></a>
+						<ul>
+							<li><a href="moncompte_modif.php">Modifications</a></li>
+							<li><a href="moncompte_mdp.php">Mot-de-passe</a></li>
+						</ul>
+				</li>
+				<li>
+					<a href="moncompte_commandes.php"><p style="margin-left: 2px;font-size: 18px;">Mes commandes</p></a>
+					<ul>
+						<li><a href="moncompte_historique.php">Historique</a></li>
+						<li><a href="moncompte_suivic.php">Suivi de commande</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="moncompte_remboursement.php"><p style="margin-left: 2px;font-size: 18px;">Remboursement</p></a>
+				</li>
+			</ul>
+		</div>
+		<div class="container_infos_moncompte">
+			<div class="container_adresse_panier left">
+					<p class="container_panier_contraste">Adresse de livraison :</p>
+					<div>&nbsp</div>
+					<p>9 Lotissement Pietralba <br/>
+					20214 Calenzana <br/>
+					France <br/>
+					Téléphone : 04.95.62.80.39 <br/>
+					Email : lea.journiac@gmail.com
+					</p>
+				<div>&nbsp</div>
+			</div>
+			<div class="container_historique_moncompte right">
+					<p class="container_panier_contraste" style="text-align:center">Historique de commande :</p>
+					<div>&nbsp</div>
+					<p>#ID 21/10/2013 0.00€</p><br/>
+					<p>#ID 21/10/2013 0.00€</p><br/>
+					<p>#ID 21/10/2013 0.00€</p><br/>
+					<p>#ID 21/10/2013 0.00€</p><br/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<a href="#"><img id="vp_pub_moncompte" src="assets/images/vp.jpg"></a>
+		<div class="clear"></div>
 	</div>
-<!-- Fiche Produit Fin -->
-<!-- Retour shopping -->
-<a href="index.php"><input type="submit" value="Retour au shopping"/></a>
+
+<!-- Mon compte Fin -->
 
 </div>
 <!-- Conteneur principal Fin -->

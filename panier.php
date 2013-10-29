@@ -93,7 +93,7 @@
 			<li>1 article(s)</li>
 			<li>0.00€</li>
 		</ul>
-	<div class="clear"></div>	
+	<div class="clear"></div>
 	</div>
 
 	<div>&nbsp</div>

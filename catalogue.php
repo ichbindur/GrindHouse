@@ -70,9 +70,10 @@
 			</ul>
 		</div>
 		<div class="catalogue">
-			<div class="recherche_catalogue">
+			<div class="search_catalogue">
 				<label for="identifiant"></label>
-				<input type="recherche" name="recherche" class="recherche_catalogue" value=""/>
+				<input type="recherche" name="recherche" class="recherche_catalogue" value="Recherche..."/>
+				<div class="clear"></div>
 			</div>
                         <?php include 'ListeProduit.php';?>
 		</div>

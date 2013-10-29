@@ -45,12 +45,14 @@
 				<ul>
 					<li><a href="panier.php">1 Résumé</a></li>
 					<li><a href="identif_panier.php">2 Identifiez-vous</a></li>
-					<li id="nav_panier_encours">3 Adresse</a></li>
-					<li>4 Frais de port</li>
+					<li><a href="adresse_panier.php">3 Adresse</a></li>
+					<li id="nav_panier_encours">4 Frais de port</li>
 					<li>5 Paiement</li>
 				</ul>
 			</div>
 		</div>
+		<div>&nbsp</div>
+		<div class="container_panier_contraste text_center">Sélectionnez un mode de livraison :</div>
 		<div class="container_adresse_panier left">
 			<p class="container_panier_contraste">Adresse de livraison :</p>
 			<div>&nbsp</div>
@@ -62,11 +64,9 @@
 			</p>
 			<div>&nbsp</div>
 		</div>
-		<div class="clear"></div>
 		<div>&nbsp</div>
 
-		<div class="container_adresse_panier right">
-			<p class="container_panier_contraste">Type de livraison :</p>
+		<div class="container_adresse_panier right livraison_panier">
 			<div>&nbsp</div>
 			<ul>
 				<li>Livraison suivi :</li>
@@ -102,7 +102,7 @@
 <div class="clear"></div>
 
 <!-- Footer Début -->
-<div class="footer">
+<div class="footer2">
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 

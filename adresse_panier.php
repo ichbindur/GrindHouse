@@ -58,7 +58,7 @@
 			20214 Calenzana <br/>
 			France <br/>
 			Téléphone : 04.95.62.80.39 <br/>
-			Email : lea.journiac@gmail.com!
+			Email : lea.journiac@gmail.com
 			</p>
 			<div>&nbsp</div>
 		</div>
