@@ -1,8 +1,8 @@
 <?php
-include 'class/Produit.php';
+include 'Class/Produit.php';
 $id = $_GET['xd'];
 $Produit = new Produit();
-$Produit = $Produit->select($id);
+$Produit->select($id);
  ?>
 
 <!doctype html>
@@ -43,36 +43,37 @@ $Produit = $Produit->select($id);
 			</li>
 		</ul>
 	</div>
-
+<?php echo gettype($Produit);?>
 <!-- Fiche Produit Début -->
 
 	<div class="container_fproduit">
 		<div id="container_titre_fproduit">
-			<p id="titre_fproduit"><?php echo $Produit['nom']; ?></p>
+                    <p id="titre_fproduit"><?php echo $Produit->nom; ?></p>
 		</div>
 		<div class="container_photo_produit">
-			<img src="./Photo/<?php echo $Produit['dossier_photo']; ?>">
+                    <img src="./Photo/<?php echo $Produit->dossier_photo; ?>">
 		</div>
 		<div class="container_photo_produit">
 			<div class="info_fproduit">
-				<p id="marque_fproduit">Marque du produit</p>
-				<p id="prix_fproduit">0.00€</p>
-				<p id="ref_fproduit">#0000</p>
+                                <p id="ref_fproduit">Reférence :<?php echo $Produit->reference; ?></p>
+                                <p id="prix_fproduit">Prix ht : <?php echo $Produit->prix_ht; ?></p>
+                                <p id="poids_fproduit">Poids :<?php echo $Produit->poids; ?></p>
 			</div>
 			<div class="container_presentation_fproduit">
 				<p id="presdesc_fproduit">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac hendrerit diam. Nullam ornare vulputate enim, quis facilisis ante posuere vitae. Nunc velit justo, egestas sit amet nulla euismod, condimentum pulvinar libero. </p>
 				<label>
-					<select id="select_fproduit" name="qt">
-						<option selected>Choisir la quantité</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
+					<div id="select_fproduit" name="qt">
+						<label>Choisir la quantité :</label>
+                                                <?php if($Produit->stock < 1){
+                                                    echo 'Produit plus en stock !';
+                                                }else{ ?>
+                                                <input type="text" name="qte" /><?php } ?>
+					</div>
 				</label>
 				<input id="bouton_submit_fproduit" type="submit" value="Ajouter au panier"/>
 				<div class="clear"></div>
 				<div class="container_description_fproduit">
-					<p id="presdesc_fproduit">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac hendrerit diam.</p>
+                                    <p id="presdesc_fproduit"><?php echo $Produit->description; ?></p>
 				</div>
 			</div>
 		</div>
