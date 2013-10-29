@@ -3,11 +3,14 @@
 session_start();
 include("./Class/Utilisateur.php");
 include("./Class/JetonMotDePasse.php");
+include("./Class/Commande.php");
+include("./Class/ACommande.php");
+include("./Class/Produit.php");
 
-/**************************************************/
+/* * *********************************************** */
 //Zone affichage information
-/**************************************************/
-if(isset($_SESSION['Nom']) && $_SESSION['Nom'] != ""){
+/* * *********************************************** */
+if (isset($_SESSION['Nom']) && $_SESSION['Nom'] != "") {
     $user = new Utilisateur();
     $user->select($_SESSION['ID']);
     echo '<fieldset><legend>Information utilisateur</legend><table><tr><td>';
@@ -28,7 +31,7 @@ if(isset($_SESSION['Nom']) && $_SESSION['Nom'] != ""){
     echo 'Votre adresse';
     echo '</td><td>';
     echo $user->adresse_postale;
-    if($user->complement_adresse != "")
+    if ($user->complement_adresse != "")
         echo '<br>' . $user->complement_adresse;
     echo '<br>' . $user->cp;
     echo '<br>' . $user->pays;
@@ -36,22 +39,22 @@ if(isset($_SESSION['Nom']) && $_SESSION['Nom'] != ""){
     echo 'Votre date d\'inscription';
     echo '</td><td>';
     echo $user->date_inscription;
-    echo '</td></tr><tr><td></table></fieldset>';          
-}else{
+    echo '</td></tr><tr><td></table></fieldset>';
+}else {
     //TODO : redirection vers page authentification même si cela ne devrais jamais arrivé!
 }
 //FIn de zone
 
-/**************************************************/
+/* * *********************************************** */
 //Zone inscription
-/**************************************************/
+/* * *********************************************** */
 
 if (isset($_SESSION['UserID']))
     echo 'vous êtes déjà inscrit sur ce site!';
-if (isset($_POST['nom'],$_POST['prenom'],$_POST['adresse'],$_POST['cp'],$_POST['ville'],$_POST['paswd']) && $_POST['nom'] != ""){
+if (isset($_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['paswd']) && $_POST['nom'] != "") {
     $newUser = new Utilisateur();
-    if ($_POST['paswd'] == $_POST['paswdConfirm'] ){
-        if($newUser->checkMail($_POST['mail'])){
+    if ($_POST['paswd'] == $_POST['paswdConfirm']) {
+        if ($newUser->checkMail($_POST['mail'])) {
             $newUser->nom = mysql_real_escape_string($_POST['nom']);
             $newUser->prenom = mysql_real_escape_string($_POST['prenom']);
             $newUser->email = mysql_real_escape_string($_POST['mail']);
@@ -63,88 +66,100 @@ if (isset($_POST['nom'],$_POST['prenom'],$_POST['adresse'],$_POST['cp'],$_POST['
             $newUser->pays = mysql_real_escape_string($_POST['pays']);
             $newUser->date_inscription = date('Y-m-d');
             $newUser->telephone = mysql_real_escape_string($_POST['telephone']);
-            $newUser->insert(); ?>
+            $newUser->insert();
+            ?>
             <script language="JavaScript">
-                window.location='InscrWin.php'
+                window.location = 'InscrWin.php'
             </script>
-            <?php 
-        }else echo '<script>alert("deja le mail gros!");</script>';
-    }else echo '<script>alert("Le mot de passe entré ne correspond pas à celui confirmé !");</script>'; 
-           
+            <?php
         }
+        else
+            echo '<script>alert("deja le mail gros!");</script>';
+    }
+    else
+        echo '<script>alert("Le mot de passe entré ne correspond pas à celui confirmé !");</script>';
+}
 //Fin de zone
-/**************************************************/
+/* * *********************************************** */
 //Zone modification des infos information
-/**************************************************/
-if(isset($_POST['modNom']) && $_POST['modNom'] != ""){
-    if($user->nom != trim($_POST['modNom']))
+/* * *********************************************** */
+if (isset($_POST['modNom']) && $_POST['modNom'] != "") {
+    if ($user->nom != trim($_POST['modNom']))
         $user->nom = trim($_POST['modNom']);
-    if($user->prenom != trim($_POST['modPrenom']) && $_POST['modPrenom'] != "")
+    if ($user->prenom != trim($_POST['modPrenom']) && $_POST['modPrenom'] != "")
         $user->prenom = trim($_POST['modPrenom']);
-    if($user->email != trim($_POST['modMail']) && $_POST['modMail'] != "")
+    if ($user->email != trim($_POST['modMail']) && $_POST['modMail'] != "")
         $user->email = trim($_POST['modMail']);
-    if($user->adresse_postale != trim($_POST['modAdresse']) && $_POST['modAdresse'] != "")
+    if ($user->adresse_postale != trim($_POST['modAdresse']) && $_POST['modAdresse'] != "")
         $user->adresse_postale = trim($_POST['modAdresse']);
-    if($user->complement_adresse != trim($_POST['modAdresseComp']) && $_POST['modAdresseComp'] != "")
+    if ($user->complement_adresse != trim($_POST['modAdresseComp']) && $_POST['modAdresseComp'] != "")
         $user->complement_adresse = trim($_POST['modAdresseComp']);
-    if($user->cp != trim($_POST['modCp']) && $_POST['modCp'] != "")
+    if ($user->cp != trim($_POST['modCp']) && $_POST['modCp'] != "")
         $user->cp = trim($_POST['modCp']);
-    if($user->pays != trim($_POST['modPays']) && $_POST['modPays'] != "")
+    if ($user->pays != trim($_POST['modPays']) && $_POST['modPays'] != "")
         $user->pays = trim($_POST['modPays']);
-    if($user->telephone != trim($_POST['modTelephone']) && $_POST['modTelephone'] != "")
+    if ($user->telephone != trim($_POST['modTelephone']) && $_POST['modTelephone'] != "")
         $user->telephone = trim($_POST['modTelephone']);
-    
+
     $user->update($user->id_user);
 }
 //Fin de zone
 
-/**************************************************/
+/* * *********************************************** */
 //Zone modification du mot de passe
-/**************************************************/
-if(isset($_POST['modMdpAncien']) && $_POST['modMdpAncien'] != ""){
-    if(MD5($_POST['modMdpAncien']) == $user->mdp){
-        if(MD5($_POST['modMdp']) != $user->mdp){
-            if($_POST['modMdp'] == $_POST['modMdpConf']){
+/* * *********************************************** */
+if (isset($_POST['modMdpAncien']) && $_POST['modMdpAncien'] != "") {
+    if (MD5($_POST['modMdpAncien']) == $user->mdp) {
+        if (MD5($_POST['modMdp']) != $user->mdp) {
+            if ($_POST['modMdp'] == $_POST['modMdpConf']) {
                 $user->mdp = MD5($_POST['modMdp']);
                 $user->update($user->id_user);
-            }else echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';  
-        }else echo '<script>alert("Ce mot de passe est le même que l ancien")</script>';
+            }
+            else
+                echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';
+        }
+        else
+            echo '<script>alert("Ce mot de passe est le même que l ancien")</script>';
     }
 }
 //Fin de zone
 
-/**************************************************/
+/* * *********************************************** */
 //Zone mot de passe perdu jeton
-/**************************************************/
-if(isset($_POST['jeton']) && $_POST['jeton'] != ""){
-    $guid = new JetonMotDePasse();    
-    try{
+/* * *********************************************** */
+if (isset($_POST['jeton']) && $_POST['jeton'] != "") {
+    $guid = new JetonMotDePasse();
+    try {
         $guid->selectWGuid($_POST['jeton']);
-        if($guid->is_used == 0){
+        if ($guid->is_used == 0) {
             $userMdp = new Utilisateur();
-            echo '<script>alert("'. $guid->adresse_user .'")</script>';
+            echo '<script>alert("' . $guid->adresse_user . '")</script>';
             $userMdp->selectWMail(trim($guid->adresse_user));
-            if($_POST['modMdpLost'] == $_POST['modMdpConfLost']){
-                    $userMdp->mdp = MD5($_POST['modMdpLost']);
-                    $userMdp->update($userMdp->id_user);
-                    $guid->is_used = 1;
-                    $guid->update($guid->is_used);
-                }else echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';
-        }else echo '<script>alert("Votre jeton n est pas valide");</script>';
-    }catch(Exception $e){
+            if ($_POST['modMdpLost'] == $_POST['modMdpConfLost']) {
+                $userMdp->mdp = MD5($_POST['modMdpLost']);
+                $userMdp->update($userMdp->id_user);
+                $guid->is_used = 1;
+                $guid->update($guid->is_used);
+            }
+            else
+                echo '<script>alert("Les mot de passe ne sont pas identiques")</script>';
+        }
+        else
+            echo '<script>alert("Votre jeton n est pas valide");</script>';
+    } catch (Exception $e) {
         echo '<script>alert("Votre jeton n est pas valide");</script>';
     }
 }
 //Fin de zone
 
-/**************************************************/
+/* * *********************************************** */
 //Zone demande pour mot de passe perdu
-/**************************************************/
-if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
+/* * *********************************************** */
+if (isset($_POST['mailLost']) && $_POST['mailLost'] != "") {
     $userMdp = new Utilisateur();
-    try{
-        $userMdp->selectWMail($_POST['mailLost']);    
-        if($userMdp->email != ""){
+    try {
+        $userMdp->selectWMail($_POST['mailLost']);
+        if ($userMdp->email != "") {
             $newGuid = new JetonMotDePasse();
             $newGuid->adresse_user = $_POST['mailLost'];
             $newGuid->createGuid();
@@ -154,14 +169,47 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             //TODO : Bien faire le message
             $msg += 'Suite à votre demande de changement de mot de passe nous vous envoyons.... \r\n';
             $msg += $newGuid->guid_jeton;
-            $headers = 'From: GrindHouse Leather <grindhouseleather@ghl.com>'."\r\n";
+            $headers = 'From: GrindHouse Leather <grindhouseleather@ghl.com>' . "\r\n";
             mail($to, $subjet, $msg, $headers);
             $newGuid->insert();
-            echo $newGuid->guid_jeton;    
-        }else echo '<script>alert("L adresse mail est invalide");</script>';
-    }catch(Exception $e){
+            echo $newGuid->guid_jeton;
+        }
+        else
+            echo '<script>alert("L adresse mail est invalide");</script>';
+    } catch (Exception $e) {
         echo '<script>alert("L adresse mail est invalide");</script>';
-    }     
+    }
+}
+if (isset($_SESSION['ID'])) {
+    if ($_SESSION['ID'] != '') {
+        $commande = new Commande();
+        $allCommande = $commande->selectallWUser($_SESSION['ID']);
+        if (!empty($allCommande)) {
+            echo '<table>';
+            foreach ($allCommande as $rows) {
+                $cpt = 0;
+                $acommande = new ACommande();
+                $allACommande = $acommande->selectallWUser($rows['id_commande']);
+                echo '<tr><td rowspan="'.count($allACommande).'"/>';
+                echo 'Identifiant de la commande : '.$rows['id_commande'];
+                echo '<br>Etat : '.$rows["etat"];
+                echo '</td>';
+                foreach ($allACommande as $itemRows) {
+                    if($cpt != 0)
+                        echo '<tr>';
+                    echo '<td>';
+                    $prod = new Produit();
+                    $prod->select($itemRows['id_produit']);
+                    echo $prod->nom. '<br>';
+                    echo $prod->prix_ht * 1.196;
+                    echo '</td>';                    
+                    echo '</tr>';
+                    $cpt ++;
+                }
+            }
+            echo '</table>';
+        }
+    }
 }
 //Fin de zone
 /*
@@ -175,13 +223,13 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
     <fieldset>
         <legend>Modification des informations</legend>
         <form method="POST">
-            nom<input type="text" id="modNom" name="modNom" value="<?php if(isset($user) && $user->nom != "") echo $user->nom; ?>"/>
-            prenom<input type="text" id="modPrenom" name="modPrenom" value="<?php if(isset($user) && $user->prenom != "") echo $user->prenom; ?>"/>
-            mail<input type="text" id="modMail" name="modMail" value="<?php if(isset($user) && $user->email != "") echo $user->email; ?>"/>
-            adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php if(isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
-            compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if(isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
-            cp<input type="text" id="modCp" name="modCp" value="<?php if(isset($user) && $user->cp != "") echo $user->cp; ?>"/>
-            pays<input type="text" id="modPays" name="modPays" value="<?php if(isset($user) && $user->pays != "") echo $user->pays; ?>"/>
+            nom<input type="text" id="modNom" name="modNom" value="<?php if (isset($user) && $user->nom != "") echo $user->nom; ?>"/>
+            prenom<input type="text" id="modPrenom" name="modPrenom" value="<?php if (isset($user) && $user->prenom != "") echo $user->prenom; ?>"/>
+            mail<input type="text" id="modMail" name="modMail" value="<?php if (isset($user) && $user->email != "") echo $user->email; ?>"/>
+            adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php if (isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
+            compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if (isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
+            cp<input type="text" id="modCp" name="modCp" value="<?php if (isset($user) && $user->cp != "") echo $user->cp; ?>"/>
+            pays<input type="text" id="modPays" name="modPays" value="<?php if (isset($user) && $user->pays != "") echo $user->pays; ?>"/>
             <input type="submit" name="submi3" id="submit3"/>
         </form>
     </fieldset>

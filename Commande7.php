@@ -102,6 +102,7 @@ if(isset($_SESSION['Panier'], $_SESSION['ID'])){
         $newCommande = new Commande();
         $newCommande->date_commande = date('Y-m-d');
         $newCommande->etat = 'Commande non traité';
+        echo 'commande';
         $newCommande->insert();
         foreach ($_SESSION['Panier'] as $item => $nb) {
             $prod = new Produit();
@@ -112,8 +113,10 @@ if(isset($_SESSION['Panier'], $_SESSION['ID'])){
             $acommande->id_transporteur = $_SESSION['Transporteur'][0];
             $acommande->id_user = $_SESSION['ID'];
             $acommande->id_commande = $newCommande->id_commande;
+            echo '  acommande';
             $acommande->insert();
             $prod->stock -= $nb;
+            echo '  prod';
             $prod->update($prod->id_produit);
         }
         $_SESSION['commendeOk'] = TRUE;

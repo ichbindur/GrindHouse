@@ -43,7 +43,9 @@ function ACommande()
 {
 
 $this->database = new Database();
+$connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
 
+$this->db=$connexion;
 }
 
 
@@ -143,6 +145,15 @@ $this->id_user = $row->id_user;
 $this->nb_produit = $row->nb_produit;
 
 }
+
+function selectallWUser($idCommande)
+    {   
+
+        $req=$this->db->prepare('SELECT * FROM acommande WHERE id_commande = '. $idCommande);
+        $req->execute();
+
+        return $req->fetchAll();
+    }
 
 // **********************
 // DELETE

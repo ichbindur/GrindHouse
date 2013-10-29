@@ -41,6 +41,9 @@ function Commande()
 {
 
 $this->database = new Database();
+$connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
+
+$this->db=$connexion;
 
 }
 
@@ -121,7 +124,7 @@ $this->etat = $row->etat;
 function selectallWUser($idUser)
     {   
 
-        $req=$this->db->prepare('SELECT * FROM commande WHERE id_utilisateur = '. $idUser);
+        $req=$this->db->prepare('SELECT * FROM commande c INNER JOIN acommande a ON c.id_commande = a.id_commande WHERE a.id_user = '. $idUser);
         $req->execute();
 
         return $req->fetchAll();
