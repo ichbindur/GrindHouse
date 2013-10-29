@@ -1,3 +1,4 @@
+<?php include 'inscriptionUtilisateur.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
