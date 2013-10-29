@@ -43,16 +43,14 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 
 <!-- Conteneur principal Début -->
 <div class="container_bo">
-	<img id="logo_bo" src="assets/images/ghl_logo.png">
+	<a href="index.php"><img id="logo_bo" src="assets/images/ghl_logo.png"></a>
 	<div id="nav_bo">
-		<img class="nav_bo" src="assets/images/bo_produit.png">
-		<img class="nav_bo" src="assets/images/bo_client.png">
-		<img class="nav_bo" src="assets/images/bo_transporteur.png">
+		<a href="Produit_BackOffice.php" title="Gestion des produits"><img class="nav_bo" src="assets/images/bo_produit.png"></a>
+		<a href="utilisateur_backoffice.php" title="Gestion des clients"><img class="nav_bo" src="assets/images/bo_client.png"></a>
+		<a href="Transporteur_BackOffice.php" title="Gestion des transporteurs"><img class="nav_bo" src="assets/images/bo_transporteur.png"></a>
 	</div>
 </div>
 <!-- Conteneur principal fin -->
-
-
 
 
 
