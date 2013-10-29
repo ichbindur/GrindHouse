@@ -39,16 +39,16 @@
 	</div>
        <!-- Conteneur principal Début --> 
         <div>
-         <fieldset>
-             <legend>Modification du mot de passe</legend>
-             <form method="POST">
-                 <label>Tapez votre ancien mot de passe : </label><input type="password" id="modMdpAncien" name="modMdpAncien"/>
-                 <label>Tapez votre nouveau mot de passe : </label><input type="password" id="modMdp" name="modMdp"/>
-                 <label>Retapez votre mot de passe : </label><input type="password" id="modMdpConf" name="modMdpConf"/>
-                 <input type="submit" name="submit4" id="submit4"/>
-             </form>
+        <fieldset>
+            <legend>Mot de passe perdu</legend>
+            <form method="POST">
+                jeton<input type="text" id="jeton" name="jeton"/>
+                <input type="password" id="modMdpLost" name="modMdpLost"/>
+                <input type="password" id="modMdpConfLost" name="modMdpConfLost"/>
+                <input type="submit" name="submit5" id="submit5"/>
+            </form>
         </fieldset>
-        </div>
+    </div>
 </div>
 <!-- Conteneur principal Fin -->
 
