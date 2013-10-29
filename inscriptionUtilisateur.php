@@ -171,7 +171,7 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
 ?>
 <input type="hidden" value="0" id="session"/>
 
-<div>
+<!--<div>
     <fieldset>
         <legend>Modification des informations</legend>
         <form method="POST">
@@ -185,8 +185,8 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             <input type="submit" name="submi3" id="submit3"/>
         </form>
     </fieldset>
-</div>
-<div>
+</div>-->
+<!--<div>
     <fieldset>
         <legend>Modification du mot de passe</legend>
         <form method="POST">
@@ -196,8 +196,8 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             <input type="submit" name="submit4" id="submit4"/>
         </form>
     </fieldset>
-</div>
-<div>
+</div>-->
+<!--<div>
     <fieldset>
         <legend>Mot de passe perdu</legend>
         <form method="POST">
@@ -207,4 +207,4 @@ if(isset($_POST['mailLost']) && $_POST['mailLost'] != ""){
             <input type="submit" name="submit5" id="submit5"/>
         </form>
     </fieldset>
-</div>
+</div>-->
