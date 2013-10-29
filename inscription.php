@@ -86,9 +86,7 @@
 	            <label for="tel">Numéro de téléphone :</label>
 	            <input type="text" name="telephone" class="champs" value="">
 	        </p>
-	        <p id="inscription_form_submit"> 
-                    <input type="submit" id="submit" name="submit" value="S'inscrire" onClick="checkInfo()"/>
-                </p>
+            <input type="submit" name="submit" value="S'inscrire" onClick="checkInfo()" class="submit" />
 		</form>
 	</div>
 
@@ -103,7 +101,7 @@
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 
-		Nous contacter
+		<a href="contact.php">Nous contacter</a>
 	</div>
 </div>
 <!-- Footer Fin-->
