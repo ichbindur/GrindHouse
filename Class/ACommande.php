@@ -4,8 +4,8 @@
 *
 * -------------------------------------------------------
 * CLASSNAME:        ACommande
-* GENERATION DATE:  23.09.2013
-* CLASS FILE:       ACommande.php
+* GENERATION DATE:  29.10.2013
+* CLASS FILE:       C:\wamp\www\php_class_generator/generated_classes/class.ACommande.php
 * FOR MYSQL TABLE:  acommande
 * FOR MYSQL DB:     grindhouse
 */
@@ -17,22 +17,22 @@ include_once("resources/class.database.php");
 // **********************
 
 class ACommande
-{
+{ 
 
 
 // **********************
 // ATTRIBUTE DECLARATION
 // **********************
 
-var $acommande_pk_id;   // primary key de la table
+var $id_acommande;   // KEY ATTR. WITH AUTOINCREMENT
 
-var $id_produit;   // PrimaryKey pkid de la tablme Produit
-var $id_commande;   // Freign Key pkid de la tablme Commande
-var $id_transporteur;   // Freign Key pkid de la tablme Transporteur
-var $id_user;   // // Freign Key pkid de la tablme Utilisateur
-var $nb_produit;   // nombre de produit pour la commande
+var $id_produit;   
+var $id_commande;  
+var $id_transporteur;  
+var $id_user;   
+var $nb_produit;  
 
-var $database; // Instance de la base de donnée
+var $database; // Instance of class database
 
 
 // **********************
@@ -51,6 +51,11 @@ $this->database = new Database();
 // GETTER METHODS
 // **********************
 
+
+function getid_acommande()
+{
+return $this->id_acommande;
+}
 
 function getid_produit()
 {
@@ -81,6 +86,11 @@ return $this->nb_produit;
 // SETTER METHODS
 // **********************
 
+
+function setid_acommande($val)
+{
+$this->id_acommande =  $val;
+}
 
 function setid_produit($val)
 {
@@ -114,11 +124,13 @@ $this->nb_produit =  $val;
 function select($id)
 {
 
-$sql =  "SELECT * FROM acommande WHERE acommande_pk_id = $id;";
+$sql =  "SELECT * FROM acommande WHERE id_acommande = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
 $row = mysql_fetch_object($result);
 
+
+$this->id_acommande = $row->id_acommande;
 
 $this->id_produit = $row->id_produit;
 
@@ -138,7 +150,7 @@ $this->nb_produit = $row->nb_produit;
 
 function delete($id)
 {
-$sql = "DELETE FROM acommande WHERE acommande_pk_id = $id;";
+$sql = "DELETE FROM acommande WHERE id_acommande = $id;";
 $result = $this->database->query($sql);
 
 }
@@ -149,11 +161,11 @@ $result = $this->database->query($sql);
 
 function insert()
 {
-$this->acommande_pk_id = ""; // clear key for autoincrement
+$this->id_acommande = ""; // clear key for autoincrement
 
 $sql = "INSERT INTO acommande ( id_produit,id_commande,id_transporteur,id_user,nb_produit ) VALUES ( '$this->id_produit','$this->id_commande','$this->id_transporteur','$this->id_user','$this->nb_produit' )";
 $result = $this->database->query($sql);
-$this->acommande_pk_id = mysql_insert_id($this->database->link);
+$this->id_acommande = mysql_insert_id($this->database->link);
 
 }
 
@@ -166,7 +178,7 @@ function update($id)
 
 
 
-$sql = " UPDATE acommande SET  id_produit = '$this->id_produit',id_commande = '$this->id_commande',id_transporteur = '$this->id_transporteur',id_user = '$this->id_user',nb_produit = '$this->nb_produit' WHERE acommande_pk_id = $id ";
+$sql = " UPDATE acommande SET  id_produit = '$this->id_produit',id_commande = '$this->id_commande',id_transporteur = '$this->id_transporteur',id_user = '$this->id_user',nb_produit = '$this->nb_produit' WHERE id_acommande = $id ";
 
 $result = $this->database->query($sql);
 
@@ -176,5 +188,5 @@ $result = $this->database->query($sql);
 
 
 }
-
 ?>
+

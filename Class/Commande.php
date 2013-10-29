@@ -118,6 +118,15 @@ $this->etat = $row->etat;
 
 }
 
+function selectallWUser($idUser)
+    {   
+
+        $req=$this->db->prepare('SELECT * FROM commande WHERE id_utilisateur = '. $idUser);
+        $req->execute();
+
+        return $req->fetchAll();
+    }
+
 // **********************
 // DELETE
 // **********************
@@ -137,7 +146,7 @@ function insert()
 {
 $this->commande_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO commande ( id_commande,date_commande,date_transporteur,etat ) VALUES ( '$this->id_commande','$this->date_commande','$this->date_transporteur','$this->etat' )";
+$sql = "INSERT INTO commande ( date_commande,date_transporteur,etat ) VALUES ( '$this->date_commande','$this->date_transporteur','$this->etat' )";
 $result = $this->database->query($sql);
 $this->commande_pk_id = mysql_insert_id($this->database->link);
 
