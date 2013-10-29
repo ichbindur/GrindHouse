@@ -43,7 +43,6 @@ $Produit->select($id);
 			</li>
 		</ul>
 	</div>
-<?php echo gettype($Produit);?>
 <!-- Fiche Produit Début -->
 
 	<div class="container_fproduit">
@@ -94,7 +93,7 @@ $Produit->select($id);
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 
-		Nous contacter
+		<a href="contact.php">Nous contacter</a>
 	</div>
 </div>
 <!-- Footer Fin-->

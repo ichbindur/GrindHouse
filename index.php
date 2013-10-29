@@ -101,7 +101,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 
-		Nous contacter
+		<a href="contact.php">Nous contacter</a>
 	</div>
 </div>
 <!-- Footer Fin -->
