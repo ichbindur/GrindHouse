@@ -302,6 +302,7 @@ class Produit
         $req->bindValue(':type_p',$this->type_p);
         
         $req->execute();
+        echo 'insert produit';
     }
 
     // **********************

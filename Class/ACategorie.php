@@ -111,11 +111,9 @@ $result = $this->database->query($sql);
 function insert()
 {
 $this->acategorie_pk_id = ""; // clear key for autoincrement
-
-$sql = "INSERT INTO acategorie (id_produit ) VALUES ( '$this->id_produit' )";
+$sql = "INSERT INTO acategorie (id_categorie,id_produit) VALUES ( '$this->id_produit','$this->id_categorie' )";
 $result = $this->database->query($sql);
-$this->acategorie_pk_id = mysql_insert_id($this->database->link);
-
+$this->id_categorie = mysql_insert_id($this->database->link);
 }
 
 // **********************

@@ -1,6 +1,8 @@
 <?php
 include ('./class/Produit.php');
-include 'Classe.Categorie.php';
+include ('./Class/ACategorie.php');
+include ('./Class/Categorie.php');
+include ('./Class/Type.php');
 
 $prod = new Produit();
 
@@ -17,7 +19,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $prod->setpromotion($_POST['promo']);
     $prod->setpromotion_vp($_POST['promo_vp']);
     $prod->setstock($_POST['stock']);
-    $prod->type_p = $_POST['type_p'];
+    $prod->settype_p = $_POST['type_p'];
     $prod->setdossier_photo($_FILES['dossier_photo']["name"]);
 
     //------AJOUT DE L'IMAGE SUR LE SERVEUR------//
@@ -32,13 +34,13 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     //------AJOUT DES CATEGORIES------//    
     $categorie = new ACategorie();
     $categorie->id_produit = $prod->id_produit;
-    foreach ($_POST['categorie'] as $value) {
-        $categorie->id_categorie = $value;
+    for ($i = 0; $i < count($_POST['categorie']); $i ++) {
+        $categorie->id_categorie = $_POST['categorie'][$i];
         $categorie->insert();
     }
 }
 
-if (isset($_POST['reference2'], $_POST['nom2'], $_POST['prix_ht2'], $_POST['description2'], $_POST['poids2'], $_POST['dim_larg2'], $_POST['dim_long2'], $_POST['is_venteprivee2'], $_POST['promo2'], $_POST['promo_vp2'], $_POST['stock2'], $_POST['type_p'])) {
+if (isset($_POST['reference2'], $_POST['nom2'], $_POST['prix_ht2'], $_POST['description2'], $_POST['poids2'], $_POST['dim_larg2'], $_POST['dim_long2'], $_POST['is_venteprivee2'], $_POST['promo2'], $_POST['promo_vp2'], $_POST['stock2'], $_POST['type_p2'])) {
     $updateProd = new Produit();
     $updateProd->setreference($_POST['reference2']);
     $updateProd->setnom($_POST['nom2']);
@@ -60,8 +62,8 @@ if (isset($_POST['reference2'], $_POST['nom2'], $_POST['prix_ht2'], $_POST['desc
     $updateProd->type_p = $_POST['type_p2'];
     $updateProd->update($_POST['id_produit2']);
 }
-if(isset($_GET['action'], $_GET['id'])){
-    if($_GET['action'] == 'supprimer'){
+if (isset($_GET['action'], $_GET['id'])) {
+    if ($_GET['action'] == 'supprimer') {
         $deleteProd = new Produit();
         $deleteProd->delete($_GET['id']);
     }
@@ -120,11 +122,11 @@ if(isset($_GET['action'], $_GET['id'])){
                 <label>Prix HT:</label>
                 <input type="text" id="prix_ht" name="prix_ht" value=""/>
             </div>
-            
-            <div>	
-                <label>Type</label>
-                <input type="text" id="type_p" name="type_p" value=""/>
-            </div>
+            <!--
+                        <div>	
+                            <label>Type</label>
+                            <input type="text" id="type_p" name="type_p" value=""/>
+                        </div>-->
 
             <div>
                 <label>Description:</label>
@@ -178,14 +180,26 @@ if(isset($_GET['action'], $_GET['id'])){
                 <label>Categorie:</label>
                 <?php
                 $cat = new Categorie();
-                $categorie = $cat->selectAll();                
+                $categorie = $cat->selectAll();
                 foreach ($categorie as $row) {
-                    echo '<input type="checkbox" id="categorie" name="categorie" value="'. $row['id_categorie'] .'"/>'. $row['nom']. '<br>';
+                    echo '<input type="checkbox" id="categorie" name="categorie" value="' . $row['id_categorie'] . '"/>' . $row['nom'] . '<br>';
                 }
                 ?>
-                <!--<input type="checkbox" id="categorie" name="categorie"/>-->
             </div>
-            
+
+            <div>
+                <label>Type de sac:</label>
+                <?php
+                $type = new Type();
+                $allType = $type->selectAll();
+                echo '<select name="type_p">';
+                foreach ($allType as $row) {
+                    echo '<option value="' . $row['id_type'] . '">' . $row['nom'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div> 
+
             <div id="button">
                 <input type="submit" id="validation" name="validation" value="Ajouter"/>
             </div>
@@ -206,6 +220,8 @@ if(isset($_GET['action'], $_GET['id'])){
                     <th>Categorie</th>
                     <th>Description</th>
                     <th>Poids</th>
+                    <th>Type</th>                    
+                    <th>Categorie</th>                    
                     <th>Vente privée</th>
                     <th>Promotion</th>
                     <th>Promotion vente privée</th>
@@ -221,6 +237,11 @@ if(isset($_GET['action'], $_GET['id'])){
                 <?php
                 $prod = $prod->selectall();
                 foreach ($prod as $row) {
+                    $type = new Type();
+                    $categorie = new Categorie();
+                    if (isset($row['type_p']) && $row['type_p'] != 0)
+                        $type->select($row['type_p']);
+                    $cats = $categorie->selectallWProduit($row['id_produit']);
                     ?>
                     <tr>
                         <td width="10px">  <?php echo $row['id_produit']; ?></td>
@@ -228,22 +249,28 @@ if(isset($_GET['action'], $_GET['id'])){
                         <td width="30px">  <?php echo $row['nom']; ?></td>
                         <td width="5px">  <?php echo $row['prix_ht'] * 1.196; ?></td>
                         <td width="30px">  
-                        <?php switch($row['type_p']){
-                            case 1:
-                                echo 'homme';
-                                break;
-                            case 2: 
-                                echo 'femme';
-                                break;
-                            case 3:
-                                echo 'commun';
-                                break;
-                            case 4: 
-                                echo 'voyage';
-                                break;
-                        }?></td>
+                            <?php
+                            switch ($row['type_p']) {
+                                case 1:
+                                    echo 'homme';
+                                    break;
+                                case 2:
+                                    echo 'femme';
+                                    break;
+                                case 3:
+                                    echo 'commun';
+                                    break;
+                                case 4:
+                                    echo 'voyage';
+                                    break;
+                            }
+                            ?></td>                        
                         <td width="10px">  <?php echo $row['description']; ?></td>
                         <td width="5px">  <?php echo $row['poids']; ?></td>
+                        <td width="6px">  <?php if ($type->nom != '') echo $type->nom; ?></td>
+                        <td width="10px">  <?php if (count($cats) > 0) foreach ($cats as $value) {
+                                echo $value['nom'] . '<br>';
+                            } ?></td>
                         <td width="5px">  <?php echo $row['is_venteprivee']; ?></td>
                         <td width="10px">  <?php echo $row['promotion']; ?></td>
                         <td width="20px">  <?php echo $row['promotion_vp']; ?></td>
@@ -276,13 +303,15 @@ if(isset($_GET['action'], $_GET['id'])){
 
                                         <div>	
                                             <label>Type:</label>
-                                            <?php switch ($row['type_p']) {
+                                            <?php
+                                            switch ($row['type_p']) {
                                                 //homme
                                                 case 1:
                                                     echo '<select name="type_p2">
                                                            <option selected="selected" value=1>Homme</option>
                                                            <option value=2>Femme</option>
                                                            <option value=3>Commun</option>
+                                                           <option value=4>Voyage</option>
                                                             </select>';
                                                     break;
                                                 case 2:
@@ -290,6 +319,7 @@ if(isset($_GET['action'], $_GET['id'])){
                                                            <option value=1>Homme</option>
                                                            <option selected="selected" value=2>Femme</option>
                                                            <option value=3>Commun</option>
+                                                           <option value=4>Voyage</option>
                                                             </select>';
                                                     break;
                                                 case 3:
@@ -297,11 +327,19 @@ if(isset($_GET['action'], $_GET['id'])){
                                                            <option value=1>Homme</option>
                                                            <option value=2>Femme</option>
                                                            <option selected="selected" value=3>Commun</option>
+                                                           <option value=4>Voyage</option>
                                                             </select>';
                                                     break;
-                                            }                                            
+                                                case 4:
+                                                    echo '<select name="type_p2">
+                                                           <option value=1>Homme</option>
+                                                           <option value=2>Femme</option>
+                                                           <option value=3>Commun</option>
+                                                           <option selected="selected" value=4>Voyage</option>
+                                                            </select>';
+                                                    break;
+                                            }
                                             ?>
-                                            <input type="text" id="prix_ht2" name="type_p" value="<?php echo $row['type_p'] ?>"/>
                                         </div>
                                         <div>
                                             <label>Description:</label>
@@ -320,12 +358,24 @@ if(isset($_GET['action'], $_GET['id'])){
                                                 if ($row['is_venteprivee']) {
                                                     echo '<input type="radio" name="is_venteprivee2" value="1" checked="checked"/>Oui
                                                 <input type="radio" name="is_venteprivee2" value="0"/>Non';
-                                                }
-                                                else
+                                                } else{
                                                     echo '<input type="radio" name="is_venteprivee2" value="1"/>Oui
-                                                <input type="radio" name="is_venteprivee2" value="0" checked="checked"/>Non';
+                                                    <input type="radio" name="is_venteprivee2" value="0" checked="checked"/>Non';
+                                                }
                                                 ?>
                                             </span>                    
+                                        </div>
+
+                                       <div>
+                                            <label>Categorie:</label>
+                                            <?php
+                                            $cat = new Categorie();
+                                            $categorie2 = $cat->selectAll();
+                                            foreach ($categorie2 as $row) {
+                                                echo '<input type="checkbox" id="categorie2" name="categorie2" value="' . $row['id_categorie'] . '">' . $row['nom'].'</input>';
+                                            }
+                                            
+                                            ?>
                                         </div>
 
                                         <div>
@@ -372,9 +422,9 @@ if(isset($_GET['action'], $_GET['id'])){
             </tbody>
         </table>
         <script>
-        $(document).ready(function() {
-            $('#produit').dataTable({});
-        });
+            $(document).ready(function() {
+                $('#produit').dataTable({});
+            });
         </script>
     </body>
 </html>

@@ -123,6 +123,12 @@ function selectall()
         return $req->fetchAll();
     }
 
+function selectallWProduit($idProduit)
+{   
+    $req=$this->db->prepare('SELECT * FROM categorie c INNER JOIN acategorie a ON c.id_categorie = a.id_categorie WHERE a.id_produit = '.$idProduit);
+    $req->execute();
+    return $req->fetchAll();
+}
 // **********************
 // DELETE
 // **********************
