@@ -43,7 +43,6 @@ $Produit->select($id);
 			</li>
 		</ul>
 	</div>
-<?php echo gettype($Produit);?>
 <!-- Fiche Produit Début -->
 
 	<div class="container_fproduit">
