@@ -134,6 +134,24 @@ function selectTrans($id_transporteur){
     $this->prix = $row->prix;
 }
 
+function selectTransWPoids($id_transporteur, $poids){
+    
+    $sql =  "SELECT * FROM grille WHERE id_transporteur = $id_transporteur AND poids_max > $poids OR poids_max = (SELECT MAX(poids_max) FROM Grille WHERE id_Transporteur = $id_transporteur)LIMIT 1;";
+    $result =  $this->database->query($sql);
+    $result = $this->database->result;
+    $row = mysql_fetch_object($result);
+
+    if(isset($row->id_grille)){
+        $this->id_grille = $row->id_grille;
+
+        $this->id_transporteur = $row->id_transporteur;
+
+        $this->poids_max = $row->poids_max;
+
+        $this->prix = $row->prix;
+    }
+}
+
 // **********************
 // DELETE
 // **********************

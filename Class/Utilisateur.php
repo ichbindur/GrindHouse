@@ -36,6 +36,7 @@ var $pays;   // Pays de l'utilisateur
 var $is_venteprivee;   // L'utilisateur a t il acces à la section "vente privé"
 var $is_admin;   // L'utilisateur est il un administrateur
 var $date_inscription;   // Date de l'inscription de l'utilisateur
+var $ville;
 var $database; // Instance de la base de données
 
 
@@ -116,6 +117,12 @@ function getdate_inscription()
 return $this->date_inscription;
 }
 
+function getdate_ville()
+{
+return $this->ville;
+}
+
+
 // **********************
 // SETTER METHODS
 // **********************
@@ -181,6 +188,11 @@ function setdate_inscription($val)
 $this->date_inscription =  $val;
 }
 
+function setdate_ville($val)
+{
+$this->ville =  $val;
+}
+
 // **********************
 // SELECT METHOD / LOAD
 // **********************
@@ -218,6 +230,8 @@ $this->is_admin = $row->is_admin;
 
 $this->date_inscription = $row->date_inscription;
 
+$this->ville = $row->ville;
+
 }
 
 function selectWMail($mail)
@@ -251,6 +265,8 @@ if (isset($row->id_user) && $row->id_user != ""){
     $this->is_admin = $row->is_admin;
 
     $this->date_inscription = $row->date_inscription;
+    
+    $this->ville = $row->ville;
     }
 }
 
@@ -285,7 +301,7 @@ function insert()
 {
 $this->utilisateur_pk_id = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
+$sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,ville,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->ville','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
 $result = $this->database->query($sql);
 $this->utilisateur_pk_id = mysql_insert_id($this->database->link);
 
@@ -300,7 +316,7 @@ function update($id)
 
 
 
-$sql = " UPDATE utilisateur SET  prenom = '$this->prenom',nom = '$this->nom',email = '$this->email',mdp = '$this->mdp',adresse_postale = '$this->adresse_postale',complement_adresse = '$this->complement_adresse',cp = '$this->cp',pays = '$this->pays',is_venteprivee = '$this->is_venteprivee',is_admin = '$this->is_admin',date_inscription = '$this->date_inscription' WHERE id_user = $id ";
+$sql = " UPDATE utilisateur SET  prenom = '$this->prenom',nom = '$this->nom',email = '$this->email',mdp = '$this->mdp',adresse_postale = '$this->adresse_postale',complement_adresse = '$this->complement_adresse',ville = '$this->ville',cp = '$this->cp',pays = '$this->pays',is_venteprivee = '$this->is_venteprivee',is_admin = '$this->is_admin',date_inscription = '$this->date_inscription' WHERE id_user = $id ";
 
 $result = $this->database->query($sql);
 

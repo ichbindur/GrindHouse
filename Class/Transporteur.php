@@ -107,7 +107,7 @@ $this->description =  $val;
 function select($id)
 {
 
-$sql =  "SELECT * FROM transporteur WHERE transporteur_pk_id = $id;";
+$sql =  "SELECT * FROM transporteur WHERE id_transporteur = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
 $row = mysql_fetch_object($result);
@@ -171,7 +171,6 @@ $result = $this->database->query($sql);
 
 
 }
-
 }
 
 ?>
