@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+session_start();
+include 'Class/Produit.php';
+ ?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -52,7 +56,8 @@
 			</div>
 		</div>
 		<table id="table_panier">
-			<tr>
+                    <?php if(isset($_SESSION['Panier']) && $_SESSION['Panier'] != ''){
+			echo '<tr>
 				<td width="6%">Supprimer</td>
 				<td width="20%">Produits</td>
 				<td width="20%">Description</td>
@@ -61,8 +66,33 @@
 				<td width="12%">Prix unitaire</td>
 				<td width="4%">Qté</td>
 				<td width="20%">Total</td>
-			</tr>
-			<tr>
+			</tr>';                        
+                                $produit = new Produit();
+                                $articleTotal =0;
+                                $prixTotal = 0;
+                                $prixAvantage = 0; 
+                                foreach ($_SESSION['Panier'] as $item => $nb) {
+                                    $produit->select($item);
+                                    if($produit->stock > 0)
+                                        $stock = '<img src="assets/images/checked.png">';
+                                    else $stock = 'Indisponible';
+                                    echo '<tr>
+                                            <td width="6%">'. $produit->nom .'</td>
+                                            <td width="20%"><img src="./Photo/'. $produit->dossier_photo .'"></td>
+                                            <td width="20%">'. $produit->description .'</td>
+                                            <td width="6%">'. $stock .'</td>
+                                            <td width="12%">'. $produit->reference .'</td>
+                                            <td width="12%">'. $produit->prix_ht*1.196 .'</td>
+                                            <td width="4%">'. $nb .'</td>
+                                            <td width="20%">'. $produit->prix_ht*1.196*$nb .'</td>
+                                    </tr>';
+                                    $articleTotal += $nb;
+                                    $prixTotal += $produit->prix_ht*1.196*$nb;
+                                }
+                                //$produit->select($_SESSION[''])
+                        }?>
+
+<!--			<tr>
 				<td width="6%">X</td>
 				<td width="20%"><img src="assets/images/sac.jpg"></td>
 				<td width="20%">Sac très compliqué</td>
@@ -81,7 +111,7 @@
 				<td width="12%">1000€</td>
 				<td width="4%">1</td>
 				<td width="20%">1000€</td>
-			</tr>
+			</tr>-->
 		</table>
 	</div>
 
@@ -90,8 +120,8 @@
 	<div class="container_panier">
 		<ul id="total_panier">
 			<li>Total panier</li>
-			<li>1 article(s)</li>
-			<li>0.00€</li>
+			<li><?php echo $articleTotal; ?> article(s)</li>
+			<li><?php echo $prixTotal; ?>€</li>
 		</ul>
 	<div class="clear"></div>
 	</div>
@@ -108,7 +138,7 @@
 		</div>
 		<div>&nbsp</div>
 		<div id="avantages_panier">
-			<p>Avantages : //€</p>
+			<p>Avantages :<?php/********TODO : CALCULER L'AVANTAGE********/?> //€</p>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -116,7 +146,7 @@
 	<div>&nbsp</div>
 
 	<div id="totalttc_panier">
-		<p>TOTAL TTC &nbsp&nbsp 0.00€</p>
+		<p>TOTAL TTC &nbsp&nbsp <?php echo $prixTotal - $prixAvantage; ?>€</p>
 	</div>
 	<div class="clear"></div>
 <!-- Panier Fin -->
