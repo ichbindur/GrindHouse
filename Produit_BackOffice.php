@@ -15,7 +15,8 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $prod->setpromotion($_POST['promo']);
     $prod->setpromotion_vp($_POST['promo_vp']);
     $prod->setstock($_POST['stock']);
-    $prod->setdossier_photo($_FILES['dossier_photo']);
+    $prod->type_p = $_POST['type_p'];
+    $prod->setdossier_photo($_FILES['dossier_photo']["name"]);
 
     //------AJOUT DE L'IMAGE SUR LE SERVEUR------//
 
@@ -23,11 +24,39 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $fileTmpLoc = $_FILES["dossier_photo"]["tmp_name"];
     $pathAndName = 'Photo/' . $fileName;
     move_uploaded_file($fileTmpLoc, $pathAndName);
-    $prod->setdossier_photo($fileName);    
-    
+    $prod->setdossier_photo($fileName);
+
     //------AJOUT DU NOUVEAU PRODUIT------//
 
     $prod->insert();
+}
+if (isset($_POST['reference2'], $_POST['nom2'], $_POST['prix_ht2'], $_POST['description2'], $_POST['poids2'], $_POST['dim_larg2'], $_POST['dim_long2'], $_POST['is_venteprivee2'], $_POST['promo2'], $_POST['promo_vp2'], $_POST['stock2'], $_POST['type_p'])) {
+    $updateProd = new Produit();
+    $updateProd->setreference($_POST['reference2']);
+    $updateProd->setnom($_POST['nom2']);
+    $updateProd->setprix_ht($_POST['prix_ht2']);
+    $updateProd->setdescription($_POST['description2']);
+    $updateProd->setpoids($_POST['poids2']);
+    $updateProd->setdim_larg($_POST['dim_larg2']);
+    $updateProd->setdim_long($_POST['dim_long2']);
+    $updateProd->setis_venteprivee($_POST['is_venteprivee2']);
+    $updateProd->setpromotion($_POST['promo2']);
+    $updateProd->setpromotion_vp($_POST['promo_vp2']);
+    $updateProd->setstock($_POST['stock2']);
+    $updateProd->setdossier_photo($_FILES['dossier_photo2']["name"]);
+    $fileName = $_FILES["dossier_photo2"]["name"];
+    $fileTmpLoc = $_FILES["dossier_photo2"]["tmp_name"];
+    $pathAndName = 'Photo/' . $fileName;
+    move_uploaded_file($fileTmpLoc, $pathAndName);
+    $prod->setdossier_photo($fileName);
+    $updateProd->type_p = $_POST['type_p2'];
+    $updateProd->update($_POST['id_produit2']);
+}
+if(isset($_GET['action'], $_GET['id'])){
+    if($_GET['action'] == 'supprimer'){
+        $deleteProd = new Produit();
+        $deleteProd->delete($_GET['id']);
+    }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -42,24 +71,29 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
     </head>
+    <script>
+        function confirmation(id) {
+            var conf = confirm("Voulez-vous vraiment supprimer cette entrée?");
+            var url = document.URL.split('?');
+            if (conf)
+                window.location = url[0] + "?action=supprimer&id=" + id;
+        }
+    </script>
     <body>
         <?php
-        if(isset($_GET['action']))
-        {
-            $id=(int)$_GET['id'];
-            $action=$_GET['action'];
-            if($id > 0 && !empty($action))
-            {
-                switch($action)
-                {
+        if (isset($_GET['action'])) {
+            $id = (int) $_GET['id'];
+            $action = $_GET['action'];
+            if ($id > 0 && !empty($action)) {
+                switch ($action) {
                     case 'modifier':
-                    break;
-            
+                        break;
+
                     case 'supprimer': $prod->delete($id);
-                    break;
+                        break;
                     default: echo "<p>Cette action n'est pas disponible</p>";
-                    break;
-                }         
+                        break;
+                }
             }
         }
         ?>
@@ -77,6 +111,11 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
             <div>	
                 <label>Prix HT:</label>
                 <input type="text" id="prix_ht" name="prix_ht" value=""/>
+            </div>
+            
+            <div>	
+                <label>Type</label>
+                <input type="text" id="type_p" name="type_p" value=""/>
             </div>
 
             <div>
@@ -130,13 +169,13 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
             <div id="button">
                 <input type="submit" id="validation" name="validation" value="Ajouter"/>
             </div>
-            
+
         </form></br></br>
-                    
-            <div id="img">	
-                <label for="identifiant">Liste des produits:</label>
-            </div>
-                    
+
+        <div id="img">	
+            <label for="identifiant">Liste des produits:</label>
+        </div>
+
         <table id='produit' class='display'>
             <thead>
                 <tr>
@@ -144,6 +183,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                     <th>Référence</th>
                     <th>Nom</th>
                     <th>Prix HT</th>
+                    <th>Categorie</th>
                     <th>Description</th>
                     <th>Poids</th>
                     <th>Vente privée</th>
@@ -159,14 +199,29 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
             </thead>
             <tbody>
                 <?php
-                    $prod = $prod->selectall();
-                    foreach ($prod as $row) {
-                ?>
+                $prod = $prod->selectall();
+                foreach ($prod as $row) {
+                    ?>
                     <tr>
                         <td width="10px">  <?php echo $row['id_produit']; ?></td>
                         <td width="30px">  <?php echo $row['reference']; ?></td>
                         <td width="30px">  <?php echo $row['nom']; ?></td>
                         <td width="5px">  <?php echo $row['prix_ht'] * 1.196; ?></td>
+                        <td width="30px">  
+                        <?php switch($row['type_p']){
+                            case 1:
+                                echo 'homme';
+                                break;
+                            case 2: 
+                                echo 'femme';
+                                break;
+                            case 3:
+                                echo 'commun';
+                                break;
+                            case 4: 
+                                echo 'voyage';
+                                break;
+                        }?></td>
                         <td width="10px">  <?php echo $row['description']; ?></td>
                         <td width="5px">  <?php echo $row['poids']; ?></td>
                         <td width="5px">  <?php echo $row['is_venteprivee']; ?></td>
@@ -176,73 +231,111 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                         <td width="30px">  <?php echo $row['dim_larg']; ?></td>
                         <td width="30px">  <?php echo $row['dim_long']; ?></td>
                         <td width="150px"> <img src='./Photo/<?php echo $row['dossier_photo']; ?>' width="100%"/></td>
-                        <td width="5px"><a class="btn btn-primary" href="?action=supprimer&id=<?php echo $row['id_produit'] ?>">Supprimer</a></td></td>
+                        <td width="5px"><a class="btn btn-primary" onclick="confirmation(<?php echo $row['id_produit'] ?>);"/>Supprimer</a></td>
                         <td>
-                            <div class="modal hide fade" id="infos">
+                            <div class="modal hide fade" id="infos" style="overflow-y:auto;">
                                 <div class="modal-header"> <a href="#" class="close" data-dismiss="modal">×</a>
                                     <h3>Modification d'un produit</h3>
                                 </div>
                                 <div class="modal-body">
                                     <form id="form" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" id="id_produit2" name="id_produit2" value="<?php echo $row['id_produit']; ?>"/>
                                         <div>	
                                             <label for="identifiant">Référence:</label>
-                                            <input type="text" id="reference2" name="reference2" value=""/><br/>
+                                            <input type="text" id="reference2" name="reference2" value="<?php echo $row['reference']; ?>"/><br/>
                                         </div>
 
                                         <div>
                                             <label>Nom:</label>
-                                            <input type="text" id="nom2" name="nom2" value=""/><br/>
+                                            <input type="text" id="nom2" name="nom2" value="<?php echo $row['nom']; ?>"/><br/>
                                         </div>	
                                         <div>	
                                             <label>Prix HT:</label>
-                                            <input type="text" id="prix_ht2" name="prix_ht2" value=""/>
+                                            <input type="text" id="prix_ht2" name="prix_ht2" value="<?php echo $row['prix_ht'] ?>"/>
+                                        </div>
+
+                                        <div>	
+                                            <label>Type:</label>
+                                            <?php switch ($row['type_p']) {
+                                                //homme
+                                                case 1:
+                                                    echo '<select name="type_p2">
+                                                           <option selected="selected" value=1>Homme</option>
+                                                           <option value=2>Femme</option>
+                                                           <option value=3>Commun</option>
+                                                            </select>';
+                                                    break;
+                                                case 2:
+                                                    echo '<select name="type_p2">
+                                                           <option value=1>Homme</option>
+                                                           <option selected="selected" value=2>Femme</option>
+                                                           <option value=3>Commun</option>
+                                                            </select>';
+                                                    break;
+                                                case 3:
+                                                    echo '<select name="type_p2">
+                                                           <option value=1>Homme</option>
+                                                           <option value=2>Femme</option>
+                                                           <option selected="selected" value=3>Commun</option>
+                                                            </select>';
+                                                    break;
+                                            }                                            
+                                            ?>
+                                            <input type="text" id="prix_ht2" name="type_p" value="<?php echo $row['type_p'] ?>"/>
                                         </div>
                                         <div>
                                             <label>Description:</label>
-                                            <textarea id="description2" name="description2"></textarea>
+                                            <textarea id="description2" name="description2"><?php echo $row['description']; ?></textarea>
                                         </div>
 
                                         <div>
                                             <label>Poids (gramme):</label>
-                                            <input type="text" id="poids2" name="poids2" value=""/>
+                                            <input type="text" id="poids2" name="poids2" value="<?php echo $row['poids']; ?>"/>
                                         </div>
 
                                         <div>
                                             <label>Vente privée:</label>
                                             <span>
-                                                <input type="radio" name="is_venteprivee2" value="1"/>Oui
-                                                <input type="radio" name="is_venteprivee2" value="0"/>Non
+                                                <?php
+                                                if ($row['is_venteprivee']) {
+                                                    echo '<input type="radio" name="is_venteprivee2" value="1" checked="checked"/>Oui
+                                                <input type="radio" name="is_venteprivee2" value="0"/>Non';
+                                                }
+                                                else
+                                                    echo '<input type="radio" name="is_venteprivee2" value="1"/>Oui
+                                                <input type="radio" name="is_venteprivee2" value="0" checked="checked"/>Non';
+                                                ?>
                                             </span>                    
                                         </div>
 
                                         <div>
                                             <label>Promotion(%):</label>
-                                            <input type="text" id="promo2" name="promo2"/>
+                                            <input type="text" id="promo2" name="promo2" value="<?php echo $row['promotion']; ?>"/>
                                         </div>
 
                                         <div>
                                             <label>Promotion vente privés:</label>
-                                            <input type="text" id="promo_vp2" name="promo_vp2"/>
+                                            <input type="text" id="promo_vp2" name="promo_vp2" value="<?php echo $row['promotion_vp']; ?>"/>
                                         </div>
 
                                         <div>
                                             <label>Nombres de produit en stock:</label>
-                                            <input type="text" id="stock2" name="stock2"/>
+                                            <input type="text" id="stock2" name="stock2" value="<?php echo $row['stock']; ?>"/>
                                         </div>
 
                                         <div>
                                             <label>Dimension largeur(cm):</label>
-                                            <input type="text" id="dim_larg2" name="dim_larg2"/>
+                                            <input type="text" id="dim_larg2" name="dim_larg2" value="<?php echo $row['dim_larg']; ?>"/>
                                         </div>
 
                                         <div>
                                             <label>Dimension longueur(cm):</label>
-                                            <input type="text" id="dim_long2" name="dim_long2"/>
+                                            <input type="text" id="dim_long2" name="dim_long2" value="<?php echo $row['dim_long']; ?>"/>
                                         </div>            
 
                                         <div>
-                                            <label>Dossier photo:</label>
-                                            <input type="file" id="dossier_photo2" name="dossier_photo2"/>
+                                            <label>Ajouter photo:</label>
+                                            <input type="file" id="dossier_photo2" name="dossier_photo2" value=""/>
                                         </div>
 
                                         <div id="button">
@@ -255,13 +348,13 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
                             <a class="btn btn-primary" data-toggle="modal" href="#infos" >Modifier</a>
                         </td>
                     </tr>                
-                <?php } ?>
+<?php } ?>
             </tbody>
         </table>
         <script>
-            $(document).ready(function() {
-                $('#produit').dataTable({});
-            });
+        $(document).ready(function() {
+            $('#produit').dataTable({});
+        });
         </script>
     </body>
 </html>
