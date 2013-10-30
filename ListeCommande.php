@@ -1,4 +1,6 @@
 <?php include_once ("./Class/Commande.php");
+    include_once ("./Class/ACommande.php");
+    include_once ("./Class/Produit.php");
     if (isset($_SESSION['ID'])) {
             if ($_SESSION['ID'] != '') {
                 $commande = new Commande();
