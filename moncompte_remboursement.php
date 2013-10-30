@@ -95,7 +95,7 @@
 <div class="clear"></div>
 
 <!-- Footer Début -->
-<div class="footer2">
+<div class="footer">
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
 		Conditions générales - 
