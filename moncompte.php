@@ -70,7 +70,7 @@ include 'header.php';?>
 		</div>
 		<div class="container_infos_moncompte">
 			<div class="container_adresse_panier left">
-					<?php include 'inscriptionUtilisateur.php';?>
+					<?php include 'InfoUtilisateur.php';?>
 				<div>&nbsp</div>
 			</div>
 			<div class="container_historique_moncompte right">
