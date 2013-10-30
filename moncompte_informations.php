@@ -72,12 +72,7 @@
 		<div>&nbsp</div>
 		<div class="container_remboursement_moncompte">
 			<h2 class="container_panier_contraste" style="text-align:center">Mes informations générales :</h2>
-			<p>9 Lotissement Pietralba <br/>
-			20214 Calenzana <br/>
-			France <br/>
-			Téléphone : 04.95.62.80.39 <br/>
-			Email : lea.journiac@gmail.com
-			</p>
+			<?php include 'inscriptionUtilisateur.php';?>
 			<div>&nbsp</div>
 		</div>
 		<div class="clear"></div>
