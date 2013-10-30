@@ -76,14 +76,7 @@ include 'header.php';?>
 			<div class="container_historique_moncompte right">
 					<p class="container_panier_contraste" style="text-align:center">Historique de commande :</p>
 					<div>&nbsp</div>
-                                        <?php
-                                        for ($i=0;$i < 4;$i++){
-                                            
-                                        }?>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
+                                        <?php include 'ListeCommande.php'; ?>                                      
 			</div>
 		</div>
 		<div class="clear"></div>
