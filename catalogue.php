@@ -97,6 +97,5 @@ include 'Class/Categorie.php';
 	</div>
 </div>
 
-
 </body>
 </html>

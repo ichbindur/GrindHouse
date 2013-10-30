@@ -35,6 +35,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $categorie = new ACategorie();
     $categorie->id_produit = $prod->id_produit;
     for ($i = 0; $i < count($_POST['categorie']); $i ++) {
+        //$val = split('&', $_POST['categorie'][$i]);
         $categorie->id_categorie = $_POST['categorie'][$i];
         $categorie->insert();
     }
@@ -88,6 +89,19 @@ if (isset($_GET['action'], $_GET['id'])) {
             var url = document.URL.split('?');
             if (conf)
                 window.location = url[0] + "?action=supprimer&id=" + id;
+        }
+        
+        function ddCheckChanged(ddType){
+            var i = 1;
+            while(document.getElementById('categorie'+i.toString())){
+                document.getElementById('categorie'+i.toString()).style.display = 'none';
+                document.getElementById('lblCategorie'+i.toString()).style.display = 'none';
+                i++;
+            }
+            if(document.getElementById('categorie'+ddType.value.toString())){
+                document.getElementById('categorie'+ddType.value.toString()).style.display = 'inline';
+                document.getElementById('lblCategorie'+ddType.value.toString()).style.display = 'inline';                
+            }
         }
     </script>
     <body>
@@ -192,6 +206,19 @@ if (isset($_GET['action'], $_GET['id'])) {
             <div>
                 <label>Dossier photo:</label><br/>
                 <input type="file" id="dossier_photo" name="dossier_photo"/>
+            </div>
+            
+            <div>
+                <label>Type de sac:</label>
+                <?php                
+                $type = new Type();
+                $allType = $type->selectAll();
+                echo '<select name="type_p" onchange="ddCheckChanged(this);">';
+                foreach ($allType as $row) {
+                    echo '<option value="' . $row['id_type'] . '">' . $row['nom'] . '</option>';
+                }
+                echo '</select>';
+                ?>
             </div>
 
             <div>
