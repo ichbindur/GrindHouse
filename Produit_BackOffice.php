@@ -194,7 +194,7 @@ if (isset($_GET['action'], $_GET['id'])) {
 
             <div>
                 <label>Type de sac:</label>
-                <?php
+                <?php                
                 $type = new Type();
                 $allType = $type->selectAll();
                 echo '<select name="type_p">';
@@ -376,8 +376,8 @@ if (isset($_GET['action'], $_GET['id'])) {
                                             <?php
                                             $cat = new Categorie();
                                             $categorie2 = $cat->selectAll();
-                                            foreach ($categorie2 as $row) {
-                                                echo '<input type="checkbox" id="categorie2" name="categorie2" value="' . $row['id_categorie'] . '">' . $row['nom'].'</input>';
+                                            foreach ($categorie2 as $cat) {
+                                                echo '<input type="checkbox" id="categorie2" name="categorie2" value="' . $cat['id_categorie'] . '"/>' . $cat['nom'];
                                             }
                                             
                                             ?>
