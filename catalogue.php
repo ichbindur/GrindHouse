@@ -69,12 +69,15 @@
 				</li>
 			</ul>
 		</div>
+		<div class="search_catalogue">
+			<input type="submit" value="Trier par prix" class="sort_by">
+			<input type="submit" value="Trier par nouveautés" class="sort_by">
+			<input type="text" name="recherche" class="recherche_catalogue" value="Recherche..."/>
+			<input type="submit" value="OK"/>
+			<div class="clear"></div>
+		</div>
 		<div class="catalogue">
-			<div class="search_catalogue">
-				<input type="recherche" name="recherche" class="recherche_catalogue" value="Recherche..."/>
-				<input type="submit" value="OK" style="opacity:1" />
-				<div class="clear"></div>
-			</div>
+
                         <?php include 'ListeProduit.php';?>
 		</div>
 	</div>

@@ -45,8 +45,8 @@
 	</div>
 	<div id="inscription_form">
 		<form action="" method="POST" name="inscriptionUtilisateur">
-                <p>
-                    <input type="hidden" name="mail" value="<?php echo $_POST['email']; ?>"/>	
+            <p>
+                <input type="hidden" name="mail" value="<?php echo $_POST['email']; ?>"/>	
 	            <label for="nom">Nom :</label>
 	            <input type="text" name="nom" class="champs" value=""/>
 	        </p>

@@ -255,6 +255,10 @@ padding-left:0;
 	opacity: 0.6;
 }
 
+.sort_by{
+	padding: 5px;
+}
+
 /** Connexion & Inscription **/
 
 .container_inscription{
@@ -670,12 +674,6 @@ padding-left:0;
 }
 
 
-
-
-
-
-
-
 /** Général **/
 
 .retour_shopping{
@@ -771,4 +769,95 @@ padding-left:0;
 
 .demi_col{width:96%;}
 
+}
+
+
+
+/*************
+			****************
+							****
+
+								BACK OFFICE
+
+							****
+			****************
+ ************/
+
+/** Accueil **/
+
+#mode_admin{
+	color: #fff;
+	padding-top: 10px;
+	margin-right: 100px;
+	float: right;
+}
+
+#logo_bo{
+	display: block;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.container_bo{
+	width: 100%;
+}
+
+#nav_bo{
+	margin-left: 31%;
+	margin-top: 100px;
+}
+
+.nav_bo{
+	display: inline;
+	width: 18%;
+	height: 18%;
+}
+
+/** Gestion des produits **/
+
+
+#produit_form input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]) {
+    width: 30%;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    padding: 8px 5px 8px 20px;
+    border: 1px solid rgb(178, 178, 178);
+    box-sizing : content-box;
+    border-radius: 3px;
+}
+
+.produit_form{
+	color: #414142;
+	margin: 10% 0 0 10%;
+}
+
+.produit_form_champs{
+	border: 2px solid #ded6cb;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.produit_form label{
+	display: block;
+	float: left;
+	width: 300px;
+}
+
+.produit_form h1{
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+
+#submit_ajoutp{
+	padding: 5px;
+	margin-left: 300px;
+	margin-top: 20px;
+}
+
+.titre_tab{
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	text-align: center;
 }
