@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php if(!session_start()) 
+        session_start();  ?>
 <!-- Header Début -->
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
