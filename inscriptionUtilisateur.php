@@ -1,8 +1,7 @@
 
 <?php
-if(!session_start()){
-session_start();
-}
+if(session_id() == "")
+     session_start();
 include("./Class/Utilisateur.php");
 include("./Class/JetonMotDePasse.php");
 include("./Class/Commande.php");
