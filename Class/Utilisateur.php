@@ -37,6 +37,7 @@ var $is_venteprivee;   // L'utilisateur a t il acces à la section "vente privé
 var $is_admin;   // L'utilisateur est il un administrateur
 var $date_inscription;   // Date de l'inscription de l'utilisateur
 var $ville;
+var $telephone;
 var $database; // Instance de la base de données
 
 
@@ -125,6 +126,11 @@ function getdate_ville()
 return $this->ville;
 }
 
+function gettelephone()
+{
+ return $this->telephone;   
+}
+
 
 // **********************
 // SETTER METHODS
@@ -195,7 +201,10 @@ function setdate_ville($val)
 {
 $this->ville =  $val;
 }
-
+function settelephone($val)
+{
+    $this->telephone =  $val;
+}
 // **********************
 // SELECT METHOD / LOAD
 // **********************
@@ -234,6 +243,8 @@ $this->is_admin = $row->is_admin;
 $this->date_inscription = $row->date_inscription;
 
 $this->ville = $row->ville;
+
+$this->telephone = $row->telephone;
 
 }
 
@@ -279,6 +290,8 @@ if (isset($row->id_user) && $row->id_user != ""){
     $this->date_inscription = $row->date_inscription;
     
     $this->ville = $row->ville;
+    
+    $this->telephone = $row->telephone;
     }
 }
 
@@ -313,7 +326,7 @@ function insert()
 {
 $this->id_utilisateur = ""; // clear key for autoincrement
 
-$sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,ville,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->ville','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
+$sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,ville,cp,pays,is_venteprivee,is_admin,date_inscription,telephone ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->ville','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription','$this->telephone' )";
 $result = $this->database->query($sql);
 $this->utilisateur_pk_id = mysql_insert_id($this->database->link);
 
