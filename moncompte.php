@@ -1,4 +1,4 @@
-<?php include 'inscriptionUtilisateur.php'; ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,13 +11,11 @@
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';?>
 
 <!-- Conteneur principal Début -->
 <div class="container">
@@ -72,19 +70,16 @@
 		</div>
 		<div class="container_infos_moncompte">
 			<div class="container_adresse_panier left">
-					<p class="container_panier_contraste">Adresse de livraison :</p>
-					<div>&nbsp</div>
-					<p>9 Lotissement Pietralba <br/>
-					20214 Calenzana <br/>
-					France <br/>
-					Téléphone : 04.95.62.80.39 <br/>
-					Email : lea.journiac@gmail.com
-					</p>
+					<?php include 'inscriptionUtilisateur.php';?>
 				<div>&nbsp</div>
 			</div>
 			<div class="container_historique_moncompte right">
 					<p class="container_panier_contraste" style="text-align:center">Historique de commande :</p>
 					<div>&nbsp</div>
+                                        <?php
+                                        for ($i=0;$i < 4;$i++){
+                                            
+                                        }?>
 					<p>#ID 21/10/2013 0.00€</p><br/>
 					<p>#ID 21/10/2013 0.00€</p><br/>
 					<p>#ID 21/10/2013 0.00€</p><br/>
