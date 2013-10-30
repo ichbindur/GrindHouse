@@ -1,25 +1,3 @@
-<?php 
-/**************************************************/
-//Zone de connexion
-/**************************************************/
-include './Class/Utilisateur.php';
-if (isset($_POST['email']) && $_POST['email'] != ""){
-    $user = new Utilisateur();
-    try{
-        $user->selectWMail($_POST['email']);
-    }catch(Exception $e){
-        echo '<script>alert("nom mais tu n existe pas!!");</script>';
-    }
-    if($user->mdp == MD5($_POST['password'])){
-        echo '<script>alert("Connecté");</script>';
-        $_SESSION['ID'] = $user->id_user;
-        $_SESSION['Nom'] = $user->nom;
-        $_SESSION['Statut'] = $user->is_admin;
-        $_SESSION['Mail'] = $user->email;        
-    }
-}
-//Fin de zone
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,13 +10,11 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';?>
 
 
 <!-- Conteneur principal Début -->
