@@ -24,7 +24,7 @@ if(isset($_POST['nom'],$_POST['description'],$_FILES['image'])){
     //------AJOUT DU NOUVEAU TRANSPORTEUR------//
     $NewTrans->insert();
 }
-if(isset($_POST['id_transporteur2'], $_POST['nom2'],$_POST['description2'],$_POST['image2'])){
+if(isset($_POST['nom2'],$_POST['description2'],$_POST['image2'])){    
     $NewTrans->nom = $_POST['nom2'];
     $NewTrans->description = $_POST['description2'];
     $updateProd->setdossier_photo($_FILES['image2']["name"]);
@@ -111,7 +111,7 @@ if(isset($_POST['id_transporteur2'], $_POST['nom2'],$_POST['description2'],$_POS
                                 </div>
                                 <div class="modal-body">
                                     <form id="form" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" id="id_transporteur2" name="id_transporteur2" value="<?php echo $TransTab[$i]['id_transporteur']; ?>" readonly/>
+                                        <input type="hidden" id="id_transporteur2" name="id_transporteur2" value="<?php echo $TransTab[$i]['id_transporteur']; ?>"/>
                                         <div>	
                                             <label for="identifiant">Nom:</label>
                                             <input type="text" id="nom2" name="nom2" value="<?php echo $TransTab[$i]['nom']; ?>"/><br/>
