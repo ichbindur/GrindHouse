@@ -48,6 +48,9 @@ function Utilisateur()
 {
 
 $this->database = new Database();
+$connexion = new PDO("mysql:host=localhost;dbname=grindhouse", 'root', ''); // connexion à la BDD
+
+$this->db=$connexion;
 
 }
 
@@ -234,6 +237,15 @@ $this->ville = $row->ville;
 
 }
 
+function selectall()
+    {   
+
+        $req=$this->db->prepare('SELECT * FROM utilisateur');
+        $req->execute();
+
+        return $req->fetchAll();
+    }
+
 function selectWMail($mail)
 {
 
@@ -299,7 +311,7 @@ $result = $this->database->query($sql);
 
 function insert()
 {
-$this->utilisateur_pk_id = ""; // clear key for autoincrement
+$this->id_utilisateur = ""; // clear key for autoincrement
 
 $sql = "INSERT INTO utilisateur ( prenom,nom,email,mdp,adresse_postale,complement_adresse,ville,cp,pays,is_venteprivee,is_admin,date_inscription ) VALUES ( '$this->prenom','$this->nom','$this->email','$this->mdp','$this->adresse_postale','$this->complement_adresse','$this->ville','$this->cp','$this->pays','$this->is_venteprivee','$this->is_admin','$this->date_inscription' )";
 $result = $this->database->query($sql);
