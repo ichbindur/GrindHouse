@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**************************************************/
 //Zone de connexion
 /**************************************************/
@@ -28,12 +28,13 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/entypo.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/entypo.css" />
+	<link rel="icon" href="assets/favicon.ico"/>
 </head>
 
 <body>
 
 <!-- Header Début -->
-<div id="header">
+<div id="header_bo">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
 	<div id="mode_admin">Mode Admin</div>
 	<div class="clear"></div>

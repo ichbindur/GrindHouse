@@ -19,7 +19,7 @@ if (isset($_GET['action'])) {
 if(isset($_POST['sauvegarde'])){
     for ($i = 0; $i < intval($_POST['nbUser']); $i++){
         $user = new Utilisateur();
-        if(isset($_POST['checkAdmin_'.$i])){            
+        if(isset($_POST['checkAdmin_'.$i])){
             $user->select($_POST['checkAdmin_'.$i]);
             if($user->is_admin == 0){
                 $user->is_admin = 1;
@@ -38,15 +38,17 @@ if(isset($_POST['sauvegarde'])){
 ?>
 <html>
     <head>
-        <title>Utilisateur Back_Office</title>
+        <title>GHL / Client</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
         <script type="text/javascript" src="./js/bootstrap.js"></script>
-        <link rel="stylesheet" href="./css/bootstrap.min.css"  media="screen" /> -->
-        <link rel="stylesheet" href="./bootstrap-modal-master/css/bootstrap-modal.css"  media="screen" /> 
+        <link rel="stylesheet" href="./css/bootstrap.min.css"  media="screen" />
+        <link rel="stylesheet" href="./bootstrap-modal-master/css/bootstrap-modal.css"  media="screen" />
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
+        <link rel="stylesheet" type='text/css' href='./assets/css/style.css'/>
+        <link rel="icon" href="assets/favicon.ico"/>
     </head>
     <script>
         function confirmation(id) {
@@ -59,7 +61,14 @@ if(isset($_POST['sauvegarde'])){
             document.getElementById('checkAdmin_' + id.toString()).style.display = "inline";
         }
     </script>
+
     <form method="POST">
+        <h1 class="h1_bo">Gestion des clients</h1>
+        <ul class="nav_gestion">
+            <li><a href="produit_backoffice.php">Gestion des produits</a></li>
+            <li><a href="utilisateur_backoffice.php">Gestion des clients</a></li>
+            <li><a href="transporteur_backoffice.php">Gestion des transporteurs</a></li>
+        </ul>
         <table id='produit' class='display'>
             <thead>
                 <tr>
@@ -102,8 +111,8 @@ if(isset($_POST['sauvegarde'])){
                             else
                                 echo '<a onclick="afficheAdmin(' . $cptUser . ')">non</a>&nbsp;&nbsp;<input style="display: none;" value="'.$row['id_user'].'" type="checkbox" name="checkAdmin_' . $cptUser . '" id="checkAdmin_' . $cptUser . '"/>';
                             ?></td>
-                        <td width="5px"><a class="btn btn-primary" onclick="confirmation(<?php echo $row['id_user'] ?>);"/>Supprimer</a></td>                        
-                    </tr>                
+                        <td width="5px"><a class="btn btn-primary" onclick="confirmation(<?php echo $row['id_user'] ?>);"/>Supprimer</a></td>
+                    </tr>
 <?php } ?>
             </tbody>
         </table>

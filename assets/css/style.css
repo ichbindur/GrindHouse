@@ -12,35 +12,6 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acro
 	color: #414142;
 }
 
-input{
-	border: 1px solid #ded6cb;
-	margin-bottom: 2px;
-	margin-top: 2px;
-}
-
-ul {
-list-style:none;
-margin-left:0;
-padding-left:0;
-}
-
-.inline{
-	display: inline;
-}
-
-.clear2{
-	.clear:after {content: "."; clear: both; display: block; visibility:
-	hidden; line-height: 0; height: 0;}
-	.clear { display: inline-block;}
-	html[xmlns] .clearfix { display: block;}
-	* html .clearfix { height: 1%;}
-}
-
-.clear{
-	clear: both;
-}
-
-
 /** Header **/
 
 #header, .demi_col, .container_inscription{
@@ -49,7 +20,7 @@ padding-left:0;
 		        box-shadow:0 5px 10px #aaa;
 }
 
-#header{
+#header, #header_bo{
 	position: relative;
 	top: 0;
 	left: 0;
@@ -719,6 +690,36 @@ padding-left:0;
 	font-weight: bold;
 }
 
+input{
+	border: 1px solid #ded6cb;
+	margin-bottom: 2px;
+	margin-top: 2px;
+}
+
+ul {
+list-style:none;
+margin-left:0;
+padding-left:0;
+}
+
+.inline{
+	display: inline;
+}
+
+.clear2{
+	.clear:after {content: "."; clear: both; display: block; visibility:
+	hidden; line-height: 0; height: 0;}
+	.clear { display: inline-block;}
+	html[xmlns] .clearfix { display: block;}
+	* html .clearfix { height: 1%;}
+}
+
+.clear{
+	clear: both;
+}
+
+
+
 /** Footer **/
 
 .footer{
@@ -801,6 +802,8 @@ padding-left:0;
 
 .container_bo{
 	width: 100%;
+	top: 0;
+	position: relative;
 }
 
 #nav_bo{
@@ -814,7 +817,19 @@ padding-left:0;
 	height: 18%;
 }
 
-/** Gestion des produits **/
+.h1_bo{
+	font-size: 1.3em;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.nav_gestion{
+	float: left;
+	display: inline;
+	font-size: 0.8em;
+}
+
+/** Gestion **/
 
 
 #produit_form input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]) {
@@ -846,7 +861,6 @@ padding-left:0;
 .produit_form h1{
 	font-size: 1.3em;
 	margin-bottom: 20px;
-	text-align: center;
 }
 
 

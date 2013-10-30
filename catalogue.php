@@ -27,7 +27,7 @@ include 'Class/Categorie.php';
 		<div id="nav_logo">
 			<a href="index.php"><img src="assets/images/ghl_logo.png"></a>
 		</div>
-		<ul id="nav">                    
+		<ul id="nav">
 			<li>
 				<a href="catalogue.php?&type_p=2">Femme</a>
 			</li>
@@ -68,20 +68,15 @@ include 'Class/Categorie.php';
 			</ul>
 		</div>
 		<div class="search_catalogue">
-			<input type="submit" value="Trier par prix" class="sort_by">
-			<input type="submit" value="Trier par nouveautés" class="sort_by">
+                    <form method="POST">
+			<input type="submit" value="Trier par prix" class="sort_by" name="triprix">
+			<input type="submit" value="Trier par nouveautés" class="sort_by" name="tridate">
 			<input type="text" name="recherche" class="recherche_catalogue" value="Recherche..."/>
 			<input type="submit" value="OK"/>
 			<div class="clear"></div>
+                    </form>
 		</div>
 		<div class="catalogue">
-			<div class="search_catalogue">
-                            <form method="POST">
-				<input type="recherche" name="recherche" class="recherche_catalogue" value="Recherche..."/>
-				<input type="submit" value="OK" style="opacity:1" />
-				<div class="clear"></div>
-                            </form>
-			</div>
                         <?php include 'ListeProduit.php';?>
 		</div>
 	</div>
@@ -92,7 +87,7 @@ include 'Class/Categorie.php';
 <div class="footer">
 	<div class="footer_text">
 		© 2013 GrindHouse Leather - 
-		Conditions générales - 
+		Conditions générales -
 		<a href="contact.php">Nous contacter</a>
 	</div>
 </div>
