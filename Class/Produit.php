@@ -317,9 +317,38 @@ class Produit
         dossier_photo = '$this->dossier_photo',type_p = '$this->type_p' WHERE produit_pk_id = $id ";
         $result = $this->database->query($sql);
     }
+    
     function selecttype_p($type_p){
         
        $req=$this->db->prepare('SELECT * FROM produit where type_p ='. $type_p);
+       $req->execute();
+       return $req->fetchAll(); 
+    }
+    
+    function selecttype_pWFiltre($type_p, $filtre){
+        
+       $req=$this->db->prepare('SELECT * FROM produit where type_p ='. $type_p .' '.$filtre);
+       $req->execute();
+       return $req->fetchAll(); 
+    }
+    
+    function selecttype_pcatWFiltre($type_p,$cat, $filtre){
+        
+       $req=$this->db->prepare('SELECT * FROM produit p INNER JOIN acategorie a ON p.id_produit = a.id_produit where p.type_p = '. $type_p .' AND a.id_categorie = '. $cat .' '.$filtre);
+       $req->execute();
+       return $req->fetchAll(); 
+    }
+    
+    function selecttype_pcat($type_p,$cat){
+        
+       $req=$this->db->prepare('SELECT * FROM produit p INNER JOIN acategorie a ON p.id_produit = a.id_produit where p.type_p = '. $type_p .' AND a.id_categorie = '. $cat);
+       $req->execute();
+       return $req->fetchAll(); 
+    }
+    
+    function selectWFiltre($filtre){
+        
+       $req=$this->db->prepare('SELECT * FROM produit WHERE '.$filtre);
        $req->execute();
        return $req->fetchAll(); 
     }

@@ -58,44 +58,22 @@ include 'Class/Categorie.php';
 						<ul>';
                                 for($j = 0; $j < count($menuCat); $j++){
                                     if($menuCat[$j]['type_p'] == $menuType[$i]['id_type']){
-                                        echo '<li><a href="#">'. $menuCat[$j]['nom'] .'</a></li>';
+                                        echo '<li><a href="./catalogue.php?type_p='.$menuCat[$j]['type_p'].'&cat='.$menuCat[$j]['id_categorie'].'">'. $menuCat[$j]['nom'] .'</a></li>';
                                     }
                                 }
                                 echo '</ul></li>';
                             }
                             
                             ?>
-<!--				<li>
-					<a href="#"><p style="margin-left: 2px;font-size: 18px;">Femme</p></a>
-						<ul>
-							<li><a href="#">Sacs cabat</a></li>
-	                        <li><a href="#">Sacs besace</a></li>
-	                        <li><a href="#">Sacs pochette</a></li>
-	                        <li><a href="#">Sacs cartable</a></li>
-	                        <li><a href="#">Sacs à dos</a></li>
-	                        <li><a href="#">Sacs de sport</a></li>
-	                        <li><a href="#">Porte-feuilles</a></li>
-						</ul>
-				</li>
-				<li>
-					<a href="#"><p style="margin-left: 2px;font-size: 18px;">Homme</p></a>
-						<ul>
-							<li><a href="#">Sacs besace</a></li>
-							<li><a href="#">Sacs de sport</a></li>
-	                        <li><a href="#">Sacs à dos</a></li>
-	                        <li><a href="#">Porte-feuilles</a></li> 
-						</ul>
-				</li>
-				<li>
-					<a href="#"><p style="margin-left: 2px;font-size: 18px;">Voyage</p></a>
-				</li>-->
 			</ul>
 		</div>
 		<div class="catalogue">
 			<div class="search_catalogue">
+                            <form method="POST">
 				<input type="recherche" name="recherche" class="recherche_catalogue" value="Recherche..."/>
 				<input type="submit" value="OK" style="opacity:1" />
 				<div class="clear"></div>
+                            </form>
 			</div>
                         <?php include 'ListeProduit.php';?>
 		</div>
