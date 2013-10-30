@@ -98,7 +98,7 @@ if($id != ''){
 
     $this->id_type = $row->id_type;
 
-    $this->nom = $row->nom;
+    $this->nom = $row->nom; 
     }
 }
 
