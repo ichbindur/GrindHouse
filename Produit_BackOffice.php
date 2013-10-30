@@ -35,6 +35,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $categorie = new ACategorie();
     $categorie->id_produit = $prod->id_produit;
     for ($i = 0; $i < count($_POST['categorie']); $i ++) {
+        //$val = split('&', $_POST['categorie'][$i]);
         $categorie->id_categorie = $_POST['categorie'][$i];
         $categorie->insert();
     }
@@ -77,9 +78,10 @@ if (isset($_GET['action'], $_GET['id'])) {
         <script type='text/javascript' src='./js/jquery.js'></script>
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
         <script type="text/javascript" src="./js/bootstrap.js"></script>
-        <link rel="stylesheet" href="./css/bootstrap.css"  media="screen" />        
+        <link rel="stylesheet" href="./css/bootstrap.css"  media="screen" />
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
+        <link rel="stylesheet" type='text/css' href='./assets/css/style.css'/>
     </head>
     <script>
         function confirmation(id) {
@@ -87,6 +89,19 @@ if (isset($_GET['action'], $_GET['id'])) {
             var url = document.URL.split('?');
             if (conf)
                 window.location = url[0] + "?action=supprimer&id=" + id;
+        }
+        
+        function ddCheckChanged(ddType){
+            var i = 1;
+            while(document.getElementById('categorie'+i.toString())){
+                document.getElementById('categorie'+i.toString()).style.display = 'none';
+                document.getElementById('lblCategorie'+i.toString()).style.display = 'none';
+                i++;
+            }
+            if(document.getElementById('categorie'+ddType.value.toString())){
+                document.getElementById('categorie'+ddType.value.toString()).style.display = 'inline';
+                document.getElementById('lblCategorie'+ddType.value.toString()).style.display = 'inline';                
+            }
         }
     </script>
     <body>
@@ -107,24 +122,36 @@ if (isset($_GET['action'], $_GET['id'])) {
             }
         }
         ?>
-        <form id="form" method="POST" enctype="multipart/form-data">
+
+    <!-- Header Début -->
+    <div id="header">
+        <a href="index.php"><img src="assets/images/ghl_titre.png"></a>
+    </div>
+    <!-- Header Début -->
+
+    <!-- Main -->
+    <div class="container_bo">
+        <!-- Ajout produit -->
+        
+        <form class="produit_form" id="produit_form" method="POST" enctype="multipart/form-data">
+        <h1>Ajout de nouveaux produits :</h1>
             <div>	
-                <label for="identifiant">Référence:</label>
-                <input type="text" id="reference" name="reference" value=""/><br/>
+                <label for="identifiant">Référence:</label><br/>
+                <input type="text" id="reference" name="reference" value=""/>
             </div>
 
             <div>
-                <label>Nom:</label>
-                <input type="text" id="nom" name="nom" value=""/><br/>
+                <label>Nom:</label><br/>
+                <input type="text" id="nom" name="nom" value=""/>
             </div>	
 
             <div>	
-                <label>Prix HT:</label>
+                <label>Prix HT:</label><br/>
                 <input type="text" id="prix_ht" name="prix_ht" value=""/>
             </div>
             
             <div>	
-                <label>Type</label>
+                <label>Type</label><br/>
                 <input type="text" id="type_p" name="type_p" value=""/>
             </div>
             <!--
@@ -134,63 +161,76 @@ if (isset($_GET['action'], $_GET['id'])) {
                         </div>-->
 
             <div>
-                <label>Description:</label>
+                <label>Description:</label><br/>
                 <textarea id="description" name="description"></textarea>
             </div>
 
             <div>
-                <label>Poids (gramme):</label>
+                <label>Poids (gramme):</label><br/>
                 <input type="text" id="poids" name="poids" value=""/>
             </div>
 
             <div>
-                <label>Vente privée:</label>
+                <label>Vente privée:</label><br/>
                 <span>
-                    <input type="radio" name="is_venteprivee" value="1"/>Oui
-                    <input type="radio" name="is_venteprivee" value="0"/>Non
-                </span>                    
+                    <input type="radio" name="is_venteprivee" value="1"/>&nbsp Oui &nbsp
+                    <input type="radio" name="is_venteprivee" value="0"/>&nbsp Non
+                </span>
             </div>
 
             <div>
-                <label>Promotion(%):</label>
+                <label>Promotion(%):</label><br/>
                 <input type="text" id="promo" name="promo"/>
             </div>
 
             <div>
-                <label>Promotion vente privés:</label>
+                <label>Promotion vente privés:</label><br/>
                 <input type="text" id="promo_vp" name="promo_vp"/>
             </div>
 
             <div>
-                <label>Nombres de produit en stock:</label>
+                <label>Nombres de produit en stock:</label><br/>
                 <input type="text" id="stock" name="stock"/>
             </div>
 
             <div>
-                <label>Dimension largeur(cm):</label>
+                <label>Dimension largeur(cm):</label><br/>
                 <input type="text" id="dim_larg" name="dim_larg"/>
             </div>
 
             <div>
-                <label>Dimension longueur(cm):</label>
+                <label>Dimension longueur(cm):</label><br/>
                 <input type="text" id="dim_long" name="dim_long"/>
-            </div>            
-
-            <div>
-                <label>Dossier photo:</label>
-                <input type="file" id="dossier_photo" name="dossier_photo"/>
             </div>
 
             <div>
-                <label>Categorie:</label>
+                <label>Dossier photo:</label><br/>
+                <input type="file" id="dossier_photo" name="dossier_photo"/>
+            </div>
+            
+            <div>
+                <label>Type de sac:</label>
+                <?php                
+                $type = new Type();
+                $allType = $type->selectAll();
+                echo '<select name="type_p" onchange="ddCheckChanged(this);">';
+                foreach ($allType as $row) {
+                    echo '<option value="' . $row['id_type'] . '">' . $row['nom'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+
+            <div>
+                <label>Categorie: &nbsp</label>
                 <?php
                 $cat = new Categorie();
                 $categorie = $cat->selectAll();
                 foreach ($categorie as $row) {
-                    echo '<input type="checkbox" id="categorie" name="categorie" value="' . $row['id_categorie'] . '"/>' . $row['nom'] . '<br>';
+                    echo '<input type="checkbox" id="categorie" name="categorie" value="' . $row['id_categorie'] . '"/>'  . '<span>&nbsp</span>' . $row['nom'] . '<span>&nbsp&nbsp&nbsp</span>';
                 }
                 ?>
-            </div>
+            </div><br/>
 
             <div>
                 <label>Type de sac:</label>
@@ -203,18 +243,19 @@ if (isset($_GET['action'], $_GET['id'])) {
                 }
                 echo '</select>';
                 ?>
-            </div> 
+            </div>
 
-            <div id="button">
+            <div id="submit_ajoutp">
                 <input type="submit" id="validation" name="validation" value="Ajouter"/>
             </div>
 
         </form></br></br>
+        <!-- Fin ajout -->
 
-        <div id="img">	
-            <label for="identifiant">Liste des produits:</label>
-        </div>
+        <!-- Début liste produits-->
 
+        <h1 class="titre_tab">Liste des produits:</h1>
+       
         <table id='produit' class='display'>
             <thead>
                 <tr>
@@ -426,6 +467,7 @@ if (isset($_GET['action'], $_GET['id'])) {
 <?php } ?>
             </tbody>
         </table>
+    </div>
         <script>
         $(document).ready(function() {
             $('#produit').dataTable({});
