@@ -6,6 +6,7 @@
 	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/entypo.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/entypo.css" />
+	<link rel="icon" href="assets/favicon.ico"/>
 </head>
 
 <body>

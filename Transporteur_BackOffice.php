@@ -38,7 +38,7 @@ if(isset($_POST['nom2'],$_POST['description2'],$_POST['image2'])){
 ?>
 <html>
     <head>
-        <title>Back_Office</title>
+        <title>GHL / Transporteurs</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <script type='text/javascript' src='./js/jquery.js'></script>
         <script type='text/javascript' src='./datatables/media/js/jquery.dataTables.js'></script>
@@ -46,7 +46,8 @@ if(isset($_POST['nom2'],$_POST['description2'],$_POST['image2'])){
         <link rel="stylesheet" href="./css/bootstrap.css"  media="screen" />        
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/bootstrap.css'/>
         <link rel="stylesheet" type='text/css' href='./datatables/media/css/jquery.dataTables.css'/>
-            
+        <link rel="stylesheet" type='text/css' href='./assets/css/style.css'/>
+        <link rel="icon" href="assets/favicon.ico"/>
     </head>
     <script>
         function confirmation(id) {
@@ -74,14 +75,20 @@ if(isset($_POST['nom2'],$_POST['description2'],$_POST['image2'])){
             }
         }
         ?>
-        <input type="button" name="Ajouter" value="Ajouter"/>
-        <form action="" method="post" enctype="multipart/form-data" name="ajoutTransporteur">
-                Entrer le nom de votre transporteur<input type="text" name="nom"/>
-               Entrer la description du transporteur<textarea name="description"></textarea>
+        <form action="" method="post" enctype="multipart/form-data" name="ajoutTransporteur" class="produit_form" id="produit_form">
+            <h1 class="h1_bo">Ajout de nouveaux transporteurs</h1>
+        <ul class="nav_gestion">
+            <li><a href="produit_backoffice.php">Gestion des produits</a></li>
+            <li><a href="utilisateur_backoffice.php">Gestion des clients</a></li>
+            <li><a href="transporteur_backoffice.php">Gestion des transporteurs</a></li>
+        </ul>
+            Entrez le nom de votre transporteur<input type="text" name="nom"/>
+            Entrez la description du transporteur<textarea name="description"></textarea>
                 <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
                 <input type="file" name="image"/>
                 <input type="submit" value="Valider"/>
         </form></br></br>
+
         <div>
             <table id='transporteur'>
                 <thead>

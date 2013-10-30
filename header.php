@@ -5,7 +5,7 @@
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
 	<div id="panier_barre" data-icon="p"></div>
         <div id="connexion_barre"> 
-            <?php if (!empty($_SESSION)){?>
+            <?php if (!empty($_SESSION)&& isset($_SESSION['Non'])){?>
                     <a href="moncompte.php">
                 <?php echo 'Bienvenue '.$_SESSION['Nom'] ; 
             }else{?>
