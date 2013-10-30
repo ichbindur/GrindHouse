@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+include 'Class/Type.php';
+include 'Class/Categorie.php';
+?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -23,7 +27,7 @@
 		<div id="nav_logo">
 			<a href="index.php"><img src="assets/images/ghl_logo.png"></a>
 		</div>
-		<ul id="nav">
+		<ul id="nav">                    
 			<li>
 				<a href="catalogue.php?&type_p=2">Femme</a>
 			</li>
@@ -43,7 +47,25 @@
 	<div class="container_catalogue">
 		<div class="container_menu_catalogue">
 			<ul id="menu_catalogue">
-				<li>
+                            <?php
+                            $type = new Type();
+                            $categorie = new Categorie();
+                            $menuType = $type->selectall();
+                            $menuCat = $categorie->selectall();
+                            for($i = 0; $i < count($menuType); $i++){
+                                echo '<li>
+					<a href="#"><p style="margin-left: 2px;font-size: 18px;">'. $menuType[$i]['nom'] .'</p></a>
+						<ul>';
+                                for($j = 0; $j < count($menuCat); $j++){
+                                    if($menuCat[$j]['type_p'] == $menuType[$i]['id_type']){
+                                        echo '<li><a href="#">'. $menuCat[$j]['nom'] .'</a></li>';
+                                    }
+                                }
+                                echo '</ul></li>';
+                            }
+                            
+                            ?>
+<!--				<li>
 					<a href="#"><p style="margin-left: 2px;font-size: 18px;">Femme</p></a>
 						<ul>
 							<li><a href="#">Sacs cabat</a></li>
@@ -66,7 +88,7 @@
 				</li>
 				<li>
 					<a href="#"><p style="margin-left: 2px;font-size: 18px;">Voyage</p></a>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<div class="catalogue">

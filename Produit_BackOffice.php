@@ -35,6 +35,7 @@ if (isset($_POST['reference'], $_POST['nom'], $_POST['prix_ht'], $_POST['descrip
     $categorie = new ACategorie();
     $categorie->id_produit = $prod->id_produit;
     for ($i = 0; $i < count($_POST['categorie']); $i ++) {
+        //$val = split('&', $_POST['categorie'][$i]);
         $categorie->id_categorie = $_POST['categorie'][$i];
         $categorie->insert();
     }
@@ -87,6 +88,19 @@ if (isset($_GET['action'], $_GET['id'])) {
             var url = document.URL.split('?');
             if (conf)
                 window.location = url[0] + "?action=supprimer&id=" + id;
+        }
+        
+        function ddCheckChanged(ddType){
+            var i = 1;
+            while(document.getElementById('categorie'+i.toString())){
+                document.getElementById('categorie'+i.toString()).style.display = 'none';
+                document.getElementById('lblCategorie'+i.toString()).style.display = 'none';
+                i++;
+            }
+            if(document.getElementById('categorie'+ddType.value.toString())){
+                document.getElementById('categorie'+ddType.value.toString()).style.display = 'inline';
+                document.getElementById('lblCategorie'+ddType.value.toString()).style.display = 'inline';                
+            }
         }
     </script>
     <body>
@@ -180,6 +194,19 @@ if (isset($_GET['action'], $_GET['id'])) {
                 <label>Dossier photo:</label>
                 <input type="file" id="dossier_photo" name="dossier_photo"/>
             </div>
+            
+            <div>
+                <label>Type de sac:</label>
+                <?php                
+                $type = new Type();
+                $allType = $type->selectAll();
+                echo '<select name="type_p" onchange="ddCheckChanged(this);">';
+                foreach ($allType as $row) {
+                    echo '<option value="' . $row['id_type'] . '">' . $row['nom'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
 
             <div>
                 <label>Categorie:</label>
@@ -187,23 +214,10 @@ if (isset($_GET['action'], $_GET['id'])) {
                 $cat = new Categorie();
                 $categorie = $cat->selectAll();
                 foreach ($categorie as $row) {
-                    echo '<input type="checkbox" id="categorie" name="categorie" value="' . $row['id_categorie'] . '"/>' . $row['nom'] . '<br>';
+                    echo '<input type="checkbox" id="categorie'.$row['type_p'].'" name="categorie" value="' . $row['id_categorie'] .'"/><span id="lblCategorie'.$row['type_p'].'">' . $row['nom'] . '</span><br>';
                 }
                 ?>
-            </div>
-
-            <div>
-                <label>Type de sac:</label>
-                <?php                
-                $type = new Type();
-                $allType = $type->selectAll();
-                echo '<select name="type_p">';
-                foreach ($allType as $row) {
-                    echo '<option value="' . $row['id_type'] . '">' . $row['nom'] . '</option>';
-                }
-                echo '</select>';
-                ?>
-            </div> 
+            </div>            
 
             <div id="button">
                 <input type="submit" id="validation" name="validation" value="Ajouter"/>
