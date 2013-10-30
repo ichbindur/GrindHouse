@@ -1,8 +1,16 @@
 <?php
+session_start();
 include 'Class/Produit.php';
 $id = $_GET['xd'];
 $Produit = new Produit();
 $Produit->select($id);
+if(isset($_POST['bouton_submit_fproduit'])){
+    $panier = array($Produit->id_produit => 1);
+    if(isset($_SESSION['Panier']) && $_SESSION['Panier'] != '')
+        $_SESSION['Panier'] += $panier;
+    else $_SESSION['Panier'] = $panier;    
+}
+
  ?>
 
 <!doctype html>
@@ -69,7 +77,9 @@ $Produit->select($id);
                                                 <input type="text" name="qte" /><?php } ?>
 					</div>
 				</label>
-				<input id="bouton_submit_fproduit" type="submit" value="Ajouter au panier"/>
+                                <form method="POST">
+                                    <input id="bouton_submit_fproduit" name="bouton_submit_fproduit" type="submit" value="Ajouter au panier"/>
+                                </form>
 				<div class="clear"></div>
 				<div class="container_description_fproduit">
                                     <p id="presdesc_fproduit"><?php echo $Produit->description; ?></p>

@@ -1,3 +1,4 @@
+<?php include ('./inscriptionUtilisateur.php');?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,9 +37,18 @@
 			</li>
 		</ul>
 	</div>
-
-
-
+       <!-- Conteneur principal Début --> 
+        <div>
+        <fieldset>
+            <legend>Mot de passe perdu</legend>
+            <form method="POST">
+                jeton<input type="text" id="jeton" name="jeton"/>
+                <input type="password" id="modMdpLost" name="modMdpLost"/>
+                <input type="password" id="modMdpConfLost" name="modMdpConfLost"/>
+                <input type="submit" name="submit5" id="submit5"/>
+            </form>
+        </fieldset>
+    </div>
 </div>
 <!-- Conteneur principal Fin -->
 

@@ -245,7 +245,6 @@ padding-left:0;
 
 .search_catalogue{
 	float: right;
-	
 }
 
 /** Inscription **/
@@ -323,8 +322,11 @@ padding-left:0;
 	margin-left: 35%;
 }
 
+/** Fiche Produit **/
 
-
+#container_fproduit{
+	
+}
 
 
 

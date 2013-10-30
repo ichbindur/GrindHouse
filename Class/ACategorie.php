@@ -81,7 +81,7 @@ $this->id_produit =  $val;
 function select($id)
 {
 
-$sql =  "SELECT * FROM acategorie WHERE acategorie_pk_id = $id;";
+$sql =  "SELECT * FROM acategorie WHERE id_acategorie = $id;";
 $result =  $this->database->query($sql);
 $result = $this->database->result;
 $row = mysql_fetch_object($result);
@@ -99,7 +99,7 @@ $this->id_produit = $row->id_produit;
 
 function delete($id)
 {
-$sql = "DELETE FROM acategorie WHERE acategorie_pk_id = $id;";
+$sql = "DELETE FROM acategorie WHERE id_acategorie = $id;";
 $result = $this->database->query($sql);
 
 }
@@ -111,11 +111,9 @@ $result = $this->database->query($sql);
 function insert()
 {
 $this->acategorie_pk_id = ""; // clear key for autoincrement
-
-$sql = "INSERT INTO acategorie ( id_categorie,id_produit ) VALUES ( '$this->id_categorie','$this->id_produit' )";
+$sql = "INSERT INTO acategorie (id_categorie,id_produit) VALUES ( '$this->id_produit','$this->id_categorie' )";
 $result = $this->database->query($sql);
-$this->acategorie_pk_id = mysql_insert_id($this->database->link);
-
+$this->id_categorie = mysql_insert_id($this->database->link);
 }
 
 // **********************
@@ -127,7 +125,7 @@ function update($id)
 
 
 
-$sql = " UPDATE acategorie SET  id_categorie = '$this->id_categorie',id_produit = '$this->id_produit' WHERE acategorie_pk_id = $id ";
+$sql = " UPDATE acategorie SET  id_categorie = '$this->id_categorie',id_produit = '$this->id_produit' WHERE id_acategorie = $id ";
 
 $result = $this->database->query($sql);
 

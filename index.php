@@ -71,10 +71,8 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
 		<div class="demi_col_titre">Femme</div>
 		<div class="images"><img src="assets/images/sac.jpg"></div>
 		<div>
-		<p class="demi_col_tdescription">Sac sceau</p>
-		<p class="demi_col_description">
-			Description brève d'un sac en forme sceau, 100% cuir.
-		</p>
+		<p class="demi_col_tdescription">Sac sceau
+			Description brève d'un sac en forme sceau, 100% cuir.</p>
 		</div>
 
 		<div class="demi_col_prix">100€</div>
