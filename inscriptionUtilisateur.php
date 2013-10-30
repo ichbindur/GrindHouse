@@ -14,7 +14,7 @@ include("./Class/Produit.php");
 if (isset($_SESSION['Nom']) && $_SESSION['Nom'] != "") {
     $user = new Utilisateur();
     $user->select($_SESSION['ID']);
-    echo '<fieldset><legend>Information utilisateur</legend><table><tr><td>';
+    echo '<fieldset><legend>Information utilisateur :</legend><table><tr><td>';
     echo 'Votre Nom';
     echo '</td><td>';
     echo $user->nom;
