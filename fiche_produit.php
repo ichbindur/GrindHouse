@@ -63,7 +63,7 @@ if(isset($_POST['bouton_submit_fproduit'])){
 		<div class="container_photo_produit">
 			<div class="info_fproduit">
                                 <p id="ref_fproduit">Reférence :<?php echo $Produit->reference; ?></p>
-                                <p id="prix_fproduit">Prix ht : <?php echo $Produit->prix_ht; ?></p>
+                                <p id="prix_fproduit">Prix HT : <?php echo $Produit->prix_ht; ?></p>
                                 <p id="poids_fproduit">Poids :<?php echo $Produit->poids; ?></p>
 			</div>
 			<div class="container_presentation_fproduit">
