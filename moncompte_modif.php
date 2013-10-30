@@ -1,4 +1,4 @@
-<?php include ('./inscriptionUtilisateur.php');?>
+<?php include("./Class/Utilisateur.php"); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,13 +11,14 @@
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';
+$modifUser = new Utilisateur();
+$modifUser->select($_SESSION['ID']);
+?>
 
 <!-- Conteneur principal Début -->
 <div class="container">
@@ -40,18 +41,38 @@
         <!-- Conteneur principal Début -->  
         <div>
             <fieldset>
-                <legend>Modification des informations</legend>
+                <legend><h1>Modification des informations</h1></legend>
                 <form method="POST">
-                    nom<input type="text" id="modNom" name="modNom" value="<?php if(isset($user) && $user->nom != "") echo $user->nom; ?>"/>
-                    prenom<input type="text" id="modPrenom" name="modPrenom" value="<?php if(isset($user) && $user->prenom != "") echo $user->prenom; ?>"/>
-                    mail<input type="text" id="modMail" name="modMail" value="<?php if(isset($user) && $user->email != "") echo $user->email; ?>"/>
-                    adresse<input type="text" id="modAdresse" name="modAdresse" value="<?php if(isset($user) && $user->adresse_postale != "") echo $user->adresse_postale; ?>"/>
-                    compadresse<input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if(isset($user) && $user->complement_adresse != "") echo $user->complement_adresse; ?>"/>
-                    ville<input type="text" id="modVille" name="modVille" value="<?php if(isset($user) && $user->ville != "") echo $user->ville; ?>"/>
-                    cp<input type="text" id="modCp" name="modCp" value="<?php if(isset($user) && $user->cp != "") echo $user->cp; ?>"/>
-                    pays<input type="text" id="modPays" name="modPays" value="<?php if(isset($user) && $user->pays != "") echo $user->pays; ?>"/>
-                    telephone<input type="text" id="modTel" name="modTel" value="<?php if(isset($user) && $user->telephone != "") echo $user->telephone; ?>"/>
+                   <p>
+                    <label>Nom :</label><input type="text" id="modNom" name="modNom" value="<?php if(isset($modifUser) && $modifUser->nom != "") echo $modifUser->nom; ?>"/>
+                   </p>
+                   <p>
+                    <label>Prenom :</label><input type="text" id="modPrenom" name="modPrenom" value="<?php if(isset($modifUser) && $modifUser->prenom != "") echo $modifUser->prenom; ?>"/>
+                   </p>
+                   <p>
+                    <label>Email :</label><input type="text" id="modMail" name="modMail" value="<?php if(isset($modifUser) && $modifUser->email != "") echo $modifUser->email; ?>"/>
+                    </p>
+                    <p>
+                    <label>Adresse :</label><input type="text" id="modAdresse" name="modAdresse" value="<?php if(isset($modifUser) && $modifUser->adresse_postale != "") echo $modifUser->adresse_postale; ?>"/>
+                   </p>
+                   <p>
+                    <label>Complément d'adresse :</label><input type="text" id="modAdresseComp" name="modAdresseComp" value="<?php if(isset($modifUser) && $modifUser->complement_adresse != "") echo $modifUser->complement_adresse; ?>"/>
+                    </p>
+                    <p>
+                    <label>Ville :</label><input type="text" id="modVille" name="modVille" value="<?php if(isset($modifUser) && $modifUser->ville != "") echo $modifUser->ville; ?>"/>
+                   </p>
+                   <p>
+                    <label>Code postale :</label><input type="text" id="modCp" name="modCp" value="<?php if(isset($modifUser) && $modifUser->cp != "") echo $modifUser->cp; ?>"/>
+                   </p>
+                   <p>
+                    <label>Pays :</label><input type="text" id="modPays" name="modPays" value="<?php if(isset($modifUser) && $modifUser->pays != "") echo $modifUser->pays; ?>"/>
+                    </p>
+                    <p>
+                    <label>Telephone :</label><input type="text" id="modTel" name="modTel" value="<?php if(isset($modifUser) && $modifUser->telephone != "") echo $modifUser->telephone; ?>"/>
+                    </p>
+                    <p>
                     <input type="submit" name="submi3" id="submit3"/>
+                    </p>
                 </form>
             </fieldset>
         </div>
@@ -70,7 +91,33 @@
 	</div>
 </div>
 <!-- Footer Fin-->
-
-
 </body>
 </html>
+<?php
+/* * *********************************************** */
+//Zone modification des infos information
+/* * *********************************************** */
+
+if (isset($_POST['modNom']) && $_POST['modNom'] != "") {
+    if ($modifUser->nom != trim($_POST['modNom']))
+        $modifUser->nom = trim($_POST['modNom']);
+    if ($modifUser->prenom != trim($_POST['modPrenom']) && $_POST['modPrenom'] != "")
+        $modifUser->prenom = trim($_POST['modPrenom']);
+    if ($modifUser->email != trim($_POST['modMail']) && $_POST['modMail'] != "")
+        $modifUser->email = trim($_POST['modMail']);
+    if ($modifUser->adresse_postale != trim($_POST['modAdresse']) && $_POST['modAdresse'] != "")
+        $modifUser->adresse_postale = trim($_POST['modAdresse']);
+    if ($modifUser->complement_adresse != trim($_POST['modAdresseComp']) && $_POST['modAdresseComp'] != "")
+        $modifUser->complement_adresse = trim($_POST['modAdresseComp']);
+    if($modifUser->ville != trim($_POST['modVille']) && $_POST['modVille'] != "")
+        $modifUser->ville = trim($_POST['modVille']);
+    if($modifUser->cp != trim($_POST['modCp']) && $_POST['modCp'] != "")
+        $modifUser->cp = trim($_POST['modCp']);
+    if ($modifUser->pays != trim($_POST['modPays']) && $_POST['modPays'] != "")
+        $modifUser->pays = trim($_POST['modPays']);
+    if($modifUser->telephone != trim($_POST['modTel']) && $_POST['modTel'] != "")
+        $modifUser->telephone = trim($_POST['modTel']);
+    
+    $modifUser->update($user->id_user);
+}
+//Fin de zone?>
