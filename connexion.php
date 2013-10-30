@@ -13,7 +13,6 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
     }
     if($user->mdp == MD5($_POST['password'])){
        echo('<script>alert("Connecté");</script>');
-        session_start();
         $_SESSION['ID'] = $user->id_user;
         $_SESSION['Nom'] = $user->nom;
         $_SESSION['Statut'] = $user->is_admin;
@@ -77,7 +76,7 @@ include 'header.php';?>
 		<div id="container_titre_inscription">
 			<p id="titre_inscription">Connexion</p>
 		</div>
-		<form class="inscription_form" method="POST" action="index.php" name="connexion">
+		<form class="inscription_form" method="POST" name="connexion">
                     <p><label for="email">Adresse email :</label></p>
                     <p><input type="email" name="email" class="inscription_form_champs" value=""/></p><br/>
                     <p><label for="password">Mot de passe :</label></p>

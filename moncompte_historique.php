@@ -10,13 +10,11 @@
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';?>
 
 <!-- Conteneur principal Début -->
 <div class="container">
@@ -72,10 +70,7 @@
 		<div>&nbsp</div>
 		<div class="container_remboursement_moncompte">
 					<h2 class="container_panier_contraste" style="text-align:center">Historique de commande :</h2>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
-					<p>#ID 21/10/2013 0.00€</p><br/>
+					<?php include 'ListeCommande.php'; ?>
 		</div>
 		<div class="clear"></div>
 		<div>&nbsp</div>
