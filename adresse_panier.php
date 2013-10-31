@@ -54,22 +54,12 @@
 		<div class="container_adresse_panier">
 			<p class="container_panier_contraste">Adresse de livraison :</p>
 			<div>&nbsp</div>
-			<p>9 Lotissement Pietralba <br/>
-			20214 Calenzana <br/>
-			France <br/>
-			Téléphone : 04.95.62.80.39 <br/>
-			Email : lea.journiac@gmail.com
-			</p>
+			<?php include 'InfoUtilisateur.php';?>
 			<div>&nbsp</div>
 		</div>
 		<div class="container_adresse_panier" style="margin-top:-2px";>
-			<p class="modif_supprimer_adresse_panier">Modifier / Supprimer</p>
+			<a href='moncompte_modif.php'<p class="modif_supprimer_adresse_panier">Modifier / Supprimer</p></a>
 		</div>
-		<div>&nbsp</div>
-		<div class="container_adresse_panier">
-			<p>Nouvelle adresse de livraison</p>
-		</div>
-		<div>&nbsp</div>
 	</div>
 
 	<div>&nbsp</div>
