@@ -1,12 +1,11 @@
-<?php if(session_id() == "")
-     session_start(); ?>
+
 <!-- Header Début -->
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
         <a href='panier.php'><div id="panier_barre" data-icon="p"></div></a>
         <div id="connexion_barre">
             
-            <?php if (!empty($_SESSION)&& isset($_SESSION['Nom'])){?>
+            <?php if (isset($_SESSION['Nom'])&& $_SESSION['Nom'] !=''){?>
                     <a href="moncompte.php">
                 <?php echo 'Bienvenue '.$_SESSION['Nom'] ;?>
                 <form id="form_header" action="header.php" method="post">
