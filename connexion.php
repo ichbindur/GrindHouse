@@ -27,10 +27,9 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
     try{
         $user->selectWMail($_POST['email']);
     }catch(Exception $e){
-        die ('<script>alert("nom mais tu n existe pas!!");</script>');
+        die ('<script>alert("Cette email n\'existe pas !");</script>');
     }
     if($user->mdp == MD5($_POST['password'])){
-        echo $user->nom;
         $_SESSION['ID'] = $user->id_user;
         $_SESSION['Nom'] = $user->nom;
         $_SESSION['Statut'] = $user->is_admin;
