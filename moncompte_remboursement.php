@@ -10,13 +10,11 @@
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';?>
 
 <!-- Conteneur principal Début -->
 <div class="container">
