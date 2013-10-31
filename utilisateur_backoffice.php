@@ -61,7 +61,8 @@ if(isset($_POST['sauvegarde'])){
             document.getElementById('checkAdmin_' + id.toString()).style.display = "inline";
         }
     </script>
-
+    <body>
+        <?php include 'header_BackOffice.php'; ?>
     <form method="POST">
         <h1 class="h1_bo">Gestion des clients</h1>
         <ul class="nav_gestion">
