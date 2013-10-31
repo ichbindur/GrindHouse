@@ -30,7 +30,7 @@ if (isset($_POST['email']) && $_POST['email'] != ""){
         die ('<script>alert("nom mais tu n existe pas!!");</script>');
     }
     if($user->mdp == MD5($_POST['password'])){
-        session_start();
+        echo $user->nom;
         $_SESSION['ID'] = $user->id_user;
         $_SESSION['Nom'] = $user->nom;
         $_SESSION['Statut'] = $user->is_admin;
