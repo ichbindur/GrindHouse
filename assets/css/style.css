@@ -144,11 +144,9 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acro
 }
 
 .demi_col_tdescription{
-	position: relative;
-	display: block;
-	float: right;
-	margin-right: 90px;
-	margin-top: -380px;
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
 }
 
 .demi_col_description{

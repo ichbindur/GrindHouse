@@ -51,6 +51,7 @@ include 'header.php';?>
 		<p class="demi_col_tdescription">Sac sceau
 			Description brève d'un sac en forme sceau, 100% cuir.</p>
 		</div>
+		
 
 		<div class="demi_col_prix">100€</div>
 		<div class="images"><img src="assets/images/sac.jpg"></div>
