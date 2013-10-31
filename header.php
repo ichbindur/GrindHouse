@@ -1,5 +1,5 @@
-
 <!-- Header Début -->
+<?php         session_start(); ?>
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
         <a href='panier.php'><div id="panier_barre" data-icon="p"></div></a>
