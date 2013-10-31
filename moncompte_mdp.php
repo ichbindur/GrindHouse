@@ -37,23 +37,60 @@
 			</li>
 		</ul>
 	</div>
-       <!-- Conteneur principal Début --> 
-        <div>
-         <fieldset>
-             <legend>Modification du mot de passe</legend>
-             <form method="POST">
-                 <label>Tapez votre ancien mot de passe : </label><input type="password" id="modMdpAncien" name="modMdpAncien"/>
-                 <label>Tapez votre nouveau mot de passe : </label><input type="password" id="modMdp" name="modMdp"/>
-                 <label>Retapez votre mot de passe : </label><input type="password" id="modMdpConf" name="modMdpConf"/>
+       <!-- Mon compte Début -->
+
+	<div class="container_moncompte">
+		<div class="container_panier_contraste">
+			<div id="nav_panier">
+				<h3 id="titre_moncompte">Mon Compte</h3>
+			</div>
+		</div>
+		<div class="container_menu_moncompte2">
+			<ul id="menu_catalogue">
+				<li>
+					<a href="moncompte.php"><p style="margin-left: 2px;font-size: 18px;">Mon Compte</p></a>
+				</li>
+				<li>
+					<a href="moncompte_informations.php"><p style="margin-left: 2px;font-size: 18px;">Informations</p></a>
+						<ul>
+							<li><a href="moncompte_modif.php">Modifications</a></li>
+							<li><a href="moncompte_mdp.php">Mot-de-passe</a></li>
+						</ul>
+				</li>
+				<li>
+					<a href="moncompte_commandes.php"><p style="margin-left: 2px;font-size: 18px;">Mes commandes</p></a>
+					<ul>
+						<li><a href="moncompte_historique.php">Historique</a></li>
+						<li><a href="moncompte_suivic.php">Suivi de commande</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="moncompte_remboursement.php"><p style="margin-left: 2px;font-size: 18px;">Remboursement</p></a>
+				</li>
+			</ul>
+		</div>
+
+        <div class="container_infos_moncompte">
+        	<div>&nbsp</div>
+             <p style="text-align:center; padding:5px">Modification du mot-de-passe</p>
+             <div>&nbsp</div>
+             <form method="POST" id="inscription_form">
+                 <label>Tapez votre ancien mot-de-passe : </label><input type="password" id="modMdpAncien" name="modMdpAncien"/>
+                 <label>Tapez votre nouveau mot-de-passe : </label><input type="password" id="modMdp" name="modMdp"/>
+                 <label>Retapez votre mot-de-passe : </label><input type="password" id="modMdpConf" name="modMdpConf"/>
                  <input type="submit" name="submit4" id="submit4"/>
              </form>
-        </fieldset>
         </div>
+		<div class="clear"></div>
+		<a href="#"><img id="vp_pub_moncompte" src="assets/images/vp.jpg"></a>
+		<div class="clear"></div>
+	</div>
 </div>
+
+	
 <!-- Conteneur principal Fin -->
 
 
-<div class="clear"></div>
 
 <!-- Footer Début -->
 <div class="footer">
