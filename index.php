@@ -46,21 +46,34 @@ include 'header.php';?>
 	<!-- Demi-colonnes Début -->
 	<div class="demi_col">
 		<div class="demi_col_titre">Femme</div>
-		<div class="images"><img src="assets/images/sac.jpg"></div>
-		<div>
-		<p class="demi_col_tdescription">Sac sceau
-			Description brève d'un sac en forme sceau, 100% cuir.</p>
+		<div class="images">
+			<img src="assets/images/sac.jpg">
+			<span class="demi_col_tdescription">Sac sceau <br/><br/>
+			Description brève d'un sac en forme sceau, 100% cuir.
+			</span>
 		</div>
-
 		<div class="demi_col_prix">100€</div>
-		<div class="images"><img src="assets/images/sac.jpg"></div>
+		<div class="images">
+			<img src="assets/images/sac.jpg">
+			<span class="demi_col_tdescription">Sac sceau <br/><br/>
+			Description brève d'un sac en forme sceau, 100% cuir.
+			</span>
+		</div>
 		<div class="demi_col_prix">10€</div>
 	</div>
 	<div class="demi_col">
 		<div class="demi_col_titre">Homme</div>
-		<div class="images"><img src="assets/images/sac.jpg"></div>
+		<div class="images"><img src="assets/images/sac.jpg">
+			<span class="demi_col_tdescription">Sac sceau <br/><br/>
+			Description brève d'un sac en forme sceau, 100% cuir.
+			</span>
+		</div>
 		<div class="demi_col_prix">1000€</div>
-		<div class="images"><img src="assets/images/sac.jpg"></div>
+		<div class="images"><img src="assets/images/sac.jpg">
+			<span class="demi_col_tdescription">Sac sceau <br/><br/>
+			Description brève d'un sac en forme sceau, 100% cuir.
+			</span>		
+		</div>
 		<div class="demi_col_prix">9999€</div>
 	</div>
 	<!-- Demi-colonnes Fin -->
