@@ -1,6 +1,5 @@
 <!doctype html>
 <?php
-session_start();
 include 'Class/Produit.php';
  ?>
 <html lang="en">
