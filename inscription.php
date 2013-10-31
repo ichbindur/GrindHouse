@@ -1,5 +1,4 @@
 <?php include 'inscriptionUtilisateur.php';
-      include 'Commande2.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,14 +12,63 @@
 
 <body>
 
-<!-- Header Début -->
-<div id="header">
-	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
-	<div id="connexion_barre"><a href="connexion.php">Voir ou Créer un compte</a></div>
-</div>
-<!-- Header Début -->
-
+<?php
+////////////////////////////////
+     //AJOUT DU HEADER
+////////////////////////////////
+include 'header.php';?>
+<script>
+    function checkInfo() {
+        var valide = true;
+        if (document.getElementById("nom").value.length < 3) {
+            document.getElementById("nom").style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("nom").style.border = '';
+        if (document.getElementById("prenom").value.length < 3) {
+            document.getElementById("prenom").style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("prenom").style.border = '';
+        if (document.getElementById("mail").value == '') {
+            document.getElementById("mail").style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("mail").style.border = '';
+        if (document.getElementById("paswd").value.length < 3 || document.getElementById("paswd").value !== document.getElementById("paswdConfirm").value) {
+            document.getElementById("paswd").style.border = '2px solid red';
+            document.getElementById("paswdConfirm").style.border = '2px solid red';
+            valide = false;
+        } else {
+            document.getElementById("paswd").style.border = '';
+            document.getElementById("paswdConfirm").style.border = '';
+        }
+        if (document.getElementById('adresse').value.length < 05) {
+            document.getElementById("adresse").style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("adresse").style.border = '';
+        if (document.getElementById("cp").value.length < 5 || document.getElementById("cp").value.length > 5) {
+            document.getElementById('cp').style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("cp").style.border = '';
+        if (document.getElementById("pays").value.length < 3) {
+            document.getElementById("pays").style.border = '2px solid red';
+            valide = false;
+        }
+        else
+            document.getElementById("pays").style.border = '';
+        if (valide) {
+            document.forms["inscriptionUtilisateur"].submit();
+        }
+   }
+</script>
 <!-- Conteneur principal Début -->
 <div class="container">
 	<div class="nav">
