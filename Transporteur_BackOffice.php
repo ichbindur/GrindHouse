@@ -6,7 +6,6 @@
  */
 include './class/Transporteur.php';
 include './Class/Utilisateur.php';
-
 // test si les champs sont bien remplis
 $NewTrans = new Transporteur();
 if(isset($_POST['nom'],$_POST['description'],$_FILES['image'])){
@@ -58,7 +57,7 @@ if(isset($_POST['nom2'],$_POST['description2'],$_POST['image2'])){
         }
     </script>
     <body>
-        <?php
+        <?php        include 'header_BackOffice.php';
         if (isset($_GET['action'])) {
             $id = (int) $_GET['id'];
             $action = $_GET['action'];
