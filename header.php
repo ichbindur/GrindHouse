@@ -3,7 +3,7 @@
 <!-- Header Début -->
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
-	<div id="panier_barre" data-icon="p"></div>
+        <a href='panier.php'><div id="panier_barre" data-icon="p"></div></a>
         <div id="connexion_barre">
             
             <?php if (!empty($_SESSION)&& isset($_SESSION['Nom'])){?>
