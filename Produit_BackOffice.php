@@ -105,7 +105,7 @@ if (isset($_GET['action'], $_GET['id'])) {
         }
     </script>
     <body>
-        <?php
+        <?php include 'header_BackOffice.php';
         if (isset($_GET['action'])) {
             $id = (int) $_GET['id'];
             $action = $_GET['action'];
