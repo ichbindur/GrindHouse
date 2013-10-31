@@ -4,11 +4,21 @@
 <div id="header">
 	<a href="index.php"><img src="assets/images/ghl_titre.png"></a>
 	<div id="panier_barre" data-icon="p"></div>
-        <div id="connexion_barre"> 
+        <div id="connexion_barre">
+            
             <?php if (!empty($_SESSION)&& isset($_SESSION['Nom'])){?>
                     <a href="moncompte.php">
-                <?php echo 'Bienvenue '.$_SESSION['Nom'] ; 
-            }else{?>
-                <a href="connexion.php">Voir ou Créer un compte<?php } ?></a></div>
+                <?php echo 'Bienvenue '.$_SESSION['Nom'] ;?>
+                <form id="form_header" action="header.php" method="post">
+                <input id="deconnexion" name="deconnexion" type="submit" value="Déconnexion" />
+                </form>
+                <?php if(isset($_POST['deconnexion'])){
+                          session_destroy();
+                          header ('Location: index.php');
+                          }
+                }else{?>
+                <a href="connexion.php">Voir ou Créer un compte<?php } ?></a>
+            
+       </div>
 </div>
 <!-- Header Fin -->
